@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="EKonyvtarUW.Views.BrowsePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=BrowsePage}">
+
+    <Grid>
+        <Hub>
+            <Hub.Header>
+                <TextBlock Text="{Binding Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+            </Hub.Header>
+            <HubSection Header="Könyvek" Margin="20,0,0,0" Width="500">
+                <DataTemplate>
+                    <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
+                        <StackPanel>
+                            <GridView ItemsSource="{Binding SearchResult.Result}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                                            <TextBlock Text="{Binding Title}" />
+                                            <Image Source="{Binding ThumbnailUrl}" Height="160" Width="130"/>
+                                            <TextBlock Text="{Binding Text}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                            <!-- 
+                            <TextBlock Text="{Binding HelloWorld}"></TextBlock>
+                            <TextBlock Text="Happy coding!" />
+
+                            <Button Content="Goto Page1" Command="{Binding GotoPage1Command}"></Button>
+                            -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+           <!-- <HubSection Header="Kategóriák" Margin="20,0,0,0" Width="300">
+                <DataTemplate>
+                    <GridView ItemsSource="{Binding Categories.Result}">
+                    </GridView>
+                </DataTemplate>
+            </HubSection>
+           -->
+        </Hub>
+
+    </Grid>
+</Page>
