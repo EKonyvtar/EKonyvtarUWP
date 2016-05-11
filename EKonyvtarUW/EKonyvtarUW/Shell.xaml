@@ -10,11 +10,14 @@
     d:DesignWidth="400">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="Assets/oszk_blur.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Background="{ThemeResource SystemChromeMediumColor}">
+        <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48" />
                 <ColumnDefinition Width="3*" />
@@ -22,7 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="&#xE700;" Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}" Style="{StaticResource IconButtonStyle}" Grid.Column="0"/>
-            <TextBlock Text="Könyvek" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="1"/>
+            <TextBlock Text="Elektronikus Könyvtár" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="1"/>
             <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="10" Grid.Column="2" QuerySubmitted="Search_QuerySubmitted"/>
         </Grid>
 

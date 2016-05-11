@@ -26,8 +26,16 @@ namespace EKonyvtarUW.ViewModels
             GotoPage1Command = new RelayCommand(() => _navigationService.NavigateTo("BrowsePage"));
             GotoPage1Command = new RelayCommand(() => _navigationService.NavigateTo("Book"));
 
-            MekFeed = new NotifyTaskCompletion<List<Recommendation>>(RssFeedService.GetMekFeedAsync());
-            Categories = new NotifyTaskCompletion<List<string>>(LocalMekService.GetCategories());
+            // In design mode sample
+            if (IsInDesignMode)
+            {
+                
+            }
+            else
+            {
+                MekFeed = new NotifyTaskCompletion<List<Recommendation>>(RssFeedService.GetMekFeedAsync());
+                Categories = new NotifyTaskCompletion<List<string>>(LocalMekService.GetCategories());
+            }
         }
 
         public string HelloWorld

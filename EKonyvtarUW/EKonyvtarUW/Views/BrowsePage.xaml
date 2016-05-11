@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bc="using:EKonyvtarUW.Views"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=BrowsePage}">
 
@@ -19,11 +20,7 @@
                             <GridView ItemsSource="{Binding SearchResult.Result}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick">
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                                            <TextBlock Text="{Binding Title}" />
-                                            <Image Source="{Binding ThumbnailUrl}" Height="160" Width="130"/>
-                                            <TextBlock Text="{Binding Text}" />
-                                        </StackPanel>
+                                        <bc:BookControl></bc:BookControl>
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>
