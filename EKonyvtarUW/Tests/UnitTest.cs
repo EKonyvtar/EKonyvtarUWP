@@ -23,7 +23,7 @@ namespace Tests
         [TestMethod]
         public void TestGetBook()
         {
-            var results = EKonyvtarUW.Services.OnlineMekService.GetBookByUid("2397").Result;
+            var results = EKonyvtarUW.Services.OnlineMekService.GetBookByUrlId("2397").Result;
             Assert.IsNotNull(results);
         }
 

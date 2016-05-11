@@ -28,7 +28,7 @@ namespace EKonyvtarUW.Common
 
         public async void Search(string text)
         {
-            var results = await LocalMekService.FindBook(text);
+            var results = await LocalMekService.SearchBookAsync(text);
 
         }
         public MenuItem SelectedMenuItem

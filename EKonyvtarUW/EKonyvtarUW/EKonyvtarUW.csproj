@@ -103,7 +103,6 @@
     <Compile Include="Models\ItemResolver.cs" />
     <Compile Include="Models\Latin2Encoding.cs" />
     <Compile Include="Models\Recommendation.cs" />
-    <Compile Include="Models\SearchEntry.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\TextManipulation.cs" />
     <Compile Include="Models\Topic.cs" />
@@ -179,7 +178,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.12.1">
+    <SDKReference Include="SQLite.UWP.2015, Version=3.12.2">
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">

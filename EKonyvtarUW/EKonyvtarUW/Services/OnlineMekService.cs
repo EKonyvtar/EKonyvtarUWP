@@ -34,19 +34,19 @@ namespace EKonyvtarUW.Services
             return converted;
         }
 
-        public static async Task<Book> GetBookByUid(string id)
+        public static async Task<Book> GetBookByUrlId(string urlId)
         {
             // "http://vmek.oszk.hu/mobil/konyvoldal.phtml?id=12455";
 
-            if (id.Contains("/"))
+            if (urlId.Contains("/"))
             {
-                id = id.Split('/')[1];
+                urlId = urlId.Split('/')[1];
             }
-            var uri = String.Format("http://vmek.oszk.hu/mobil/konyvoldal.phtml?id={0}", id);
+            var uri = String.Format("http://vmek.oszk.hu/mobil/konyvoldal.phtml?id={0}", urlId);
 
             try
             {
-                var book = new Book() { Id = id };
+                var book = new Book() { UrlId = urlId };
                 var webGet = new HtmlWeb();
                 var document = await webGet.LoadFromWebAsync(uri, new Latin2Encoding());
                 var enc = document.Encoding;
@@ -136,7 +136,7 @@ namespace EKonyvtarUW.Services
 
                 var book = new Book()
                 {
-                    Id = id,
+                    UrlId = id,
                     Url = url,
                     Collection = collection,
                     Title = title,

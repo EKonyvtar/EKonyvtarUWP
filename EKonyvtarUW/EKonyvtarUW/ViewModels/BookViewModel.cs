@@ -15,9 +15,20 @@ namespace EKonyvtarUW.ViewModels
 
         public BookViewModel()
         {
-            //IsInDesignMode
             IsLoading = true;
             GoBackCommand = new RelayCommand(() => _navigationService.GoBack());
+
+            // In design mode sample
+            if (IsInDesignMode)
+            {
+                IsLoading = false;
+                book = new Book()
+                {
+                    Title = "Teszt könyv",
+                    Creators = "Akos Murati",
+                    Summary = "Multiple \n Line \n Samples"
+                };
+            }            
         }
         public BookViewModel(INavigationService navigationService) : this()
         {

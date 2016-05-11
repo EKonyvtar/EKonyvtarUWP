@@ -33,9 +33,9 @@ namespace EKonyvtarUW.Views
         {
             var minBook = (Book)e.ClickedItem;
             //var target_uri = new ItemResolver(clicked_item.Link).Uri;
-            var book = await MekService.GetBookByUid(minBook.Id);
+            var book = await MekService.GetBookByUrlId(minBook.UrlId);
+            if (book == null) book = minBook; // To always show something
             Frame.Navigate(typeof(BookPage), book);
-
         }
     }
 }

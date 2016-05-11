@@ -19,7 +19,7 @@ namespace EKonyvtarUW.Views
         {
             var clicked_item = (Recommendation)e.ClickedItem;
             var target_uri = new ItemResolver(clicked_item.Link).Uri;
-            var book = await MekService.GetBookByUid(target_uri);
+            var book = await MekService.GetBookByUrlId(target_uri);
             Frame.Navigate(typeof(BookPage), book);
 
         }

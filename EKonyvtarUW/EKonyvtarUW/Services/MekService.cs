@@ -14,19 +14,20 @@ namespace EKonyvtarUW.Services
 {
     public class MekService
     {
-        public static async Task<Book> GetBookByUid(string uid)
+        public static async Task<Book> GetBookByUrlId(string urlId)
         {
-            List<Task<Book>> bookTasks = new List<Task<Book>>();
-            //bookTasks.Add(LocalMekService.GetBookByUid(uid));
-            bookTasks.Add(OnlineMekService.GetBookByUid(uid));
-            Task<Book> firstFinishedTask = await Task.WhenAny(bookTasks);
-            return firstFinishedTask.Result;
+            //var offlineBook = await LocalMekService.GetBookByUrlId(urlId);
+            //if (offlineBook != null)
+            //    return offlineBook;
+
+            var onlineBook = await OnlineMekService.GetBookByUrlId(urlId);
+            return onlineBook;
         }
 
         public static async Task<List<Book>> SearchBookAsync(string searchKeyword = "", string searchTitle = "", string searchCreator = "")
         {
             List<Task<List<Book>>> bookTasks = new List<Task<List<Book>>>();
-            //bookTasks.Add(LocalMekService.GetBookByUid(uid));
+            bookTasks.Add(LocalMekService.SearchBookAsync(searchKeyword));
             bookTasks.Add(OnlineMekService.SearchBookAsync(searchKeyword, searchTitle, searchCreator));
             Task<List<Book>> firstFinishedTask = await Task.WhenAny(bookTasks);
             return firstFinishedTask.Result;
