@@ -5,15 +5,15 @@
     xmlns:local="using:EKonyvtarUW.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" >
+    mc:Ignorable="d">
 
-    <Grid Margin="10">
+    <Grid Background="#E5FFFFFF">
         <Grid.RowDefinitions>
-            <RowDefinition Height="234"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <Border
+        <!--<Border
             Width="192"
             Height="234"
             CornerRadius="8"
@@ -24,17 +24,25 @@
                     <GradientStop Color="#33151414" Offset="1"/>
                     <GradientStop Color="#E0423C3C" Offset="0.008"/>
                 </LinearGradientBrush>
-            </Border.BorderBrush>
+            </Border.BorderBrush>-->
 
-            <!-- 160/130 -->
-            <Image
-                Source="{Binding ThumbnailUrl}"
-                Height="224"
-                Width="182"
-                Stretch="UniformToFill"
-                Grid.Row="0" />
-        </Border>
+        <!-- 160/130 -->
+        <Image
+            Source="{Binding ThumbnailUrl}"
+            Height="224"
+            Width="182"
+            Stretch="UniformToFill"
+            Grid.Row="0" 
+            VerticalAlignment="Center"
+        />
+        <!--</Border>-->
 
-        <TextBlock Text="{Binding Title}" Grid.Row="1" Width="182" />
+        <TextBlock
+            Text="{Binding Title}"
+            Grid.Row="1"
+            Width="178"
+            VerticalAlignment="Top"
+            Margin="2"
+        />
     </Grid>
 </UserControl>

@@ -11,19 +11,42 @@
             <Hub.Header>
                 <TextBlock x:Name="pageTitle" Text="{Binding book.Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
             </Hub.Header>
-            <HubSection Header="Kivonat" Margin="20,0,0,0" Width="500">
+            <HubSection Header="" Margin="20,0,0,0" Width="300">
                 <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Width="500">
-                            <Image Source="{Binding book.ThumbnailUrl}" Height="160" Width="130"/>
-                            <TextBlock Text="{Binding book.Contents}" TextWrapping="Wrap" Width="350"></TextBlock>
-                        </StackPanel>
-                        <TextBlock Text="Részlet" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding book.Summary}" TextWrapping="Wrap" Width="350"></TextBlock>
+                    <StackPanel Width="200">
+                        <Image
+                            Source="{Binding book.ThumbnailUrl}"
+                            Height="224"
+                            Width="182"
+                            HorizontalAlignment="Center"
+                            Stretch="UniformToFill"
+                        />
+                        
+                        <Button Content="Olvasás" HorizontalAlignment="Center"></Button>
                     </StackPanel>
                 </DataTemplate>
             </HubSection>
-            <HubSection Header="Kapcsolódó könyvek" Margin="20,0,0,0" Width="500">
+            <HubSection Header="Kivonat" Margin="20,0,0,0" Width="400">
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding book.Contents}" TextWrapping="Wrap" Width="400"></TextBlock>
+                        <TextBlock Text="{Binding book.Summary}" TextWrapping="Wrap" Width="400"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Részletek" Margin="20,0,0,0" Width="300">
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" Width="300"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Olvas" Margin="20,0,0,0" Width="500">
+                <DataTemplate>
+                    <WebView Source="{Binding book.ContentUri}" Width="500" Height="500"/>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Kapcsolódó könyvek" Margin="20,0,0,0" Width="500" Visibility="Collapsed">
                 <DataTemplate>
                     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
                         <StackPanel>
@@ -46,13 +69,6 @@
                             -->
                         </StackPanel>
                     </ScrollViewer>
-                </DataTemplate>
-            </HubSection>
-
-            <HubSection Header="Kategóriák" Margin="20,0,0,0" Width="300">
-                <DataTemplate>
-                    <GridView ItemsSource="{Binding Categories.Result}">
-                    </GridView>
                 </DataTemplate>
             </HubSection>
         </Hub>

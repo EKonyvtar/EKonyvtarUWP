@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Views;
 
 namespace EKonyvtarUW.ViewModels
 {
+    //Todo: fix class names for pages and views
     public class BookViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;

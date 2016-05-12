@@ -58,9 +58,17 @@ namespace EKonyvtarUW.Models
         public string Collection { get; set; }
 
 
-
         public string Abbreviation { get; set; }
         public List<string> Media { get; set; }
+        public string ContentUri
+        {
+            get
+            {
+                //return Media.FirstOrDefault();
+                return String.Format("https://docs.google.com/gview?url={0}&embedded=true", Media.FirstOrDefault());
+                //return String.Format("http://docs.google.com/viewer?url={0}", Media.FirstOrDefault());
+            }
+        }
 
         //public string BookTypeName { get; set; }
         //public string Published { get; set; }

@@ -30,23 +30,24 @@ namespace EKonyvtarUW.Services
             var converted = text;
             converted = converted.Replace("<br>", "\n");
             converted = TextManipulation.StripHTML(converted);
-            converted = new Regex("\\s+(Tartalom|Fülszöveg)\\n\\s+").Replace(converted, "");
+            converted = new Regex("\\s+(Tartalom|Fülszöveg|Leírás)\\n\\s+").Replace(converted, "");
+            converted = new Regex(@"\n+").Replace(converted, "\n");
+            converted = converted.Trim();
             return converted;
         }
 
         public static async Task<Book> GetBookByUrlId(string urlId)
         {
             // "http://vmek.oszk.hu/mobil/konyvoldal.phtml?id=12455";
+            var shortUrlId = urlId;
 
-            if (urlId.Contains("/"))
-            {
-                urlId = urlId.Split('/')[1];
-            }
-            var uri = String.Format("http://vmek.oszk.hu/mobil/konyvoldal.phtml?id={0}", urlId);
+            if (urlId.Contains("/")) shortUrlId = urlId.Split('/')[1];
+
+            var uri = String.Format("http://vmek.oszk.hu/mobil/konyvoldal.phtml?id={0}", shortUrlId);
 
             try
             {
-                var book = new Book() { UrlId = urlId };
+                var book = new Book() { UrlId = shortUrlId };
                 var webGet = new HtmlWeb();
                 var document = await webGet.LoadFromWebAsync(uri, new Latin2Encoding());
                 var enc = document.Encoding;
@@ -67,6 +68,18 @@ namespace EKonyvtarUW.Services
 
                 var img = elements.Where(n => n.GetAttributeValue("id", "").Equals("footer")).First().ChildNodes[1].ChildNodes.Where(n => n.Name == "img").First();
                 book.ThumbnailUrl = new Uri(domain + img.GetAttributeValue("src", ""));
+
+                //TODO populate list in a more smart way
+                HttpClient httpClient = new HttpClient();
+                book.Media = new List<string>();
+                foreach (var ext in new string[] { "pdf", "html", "htm" })
+                {
+                    var mediaUrl = String.Format("http://mek.oszk.hu/{0}/{1}.{2}", urlId, shortUrlId, ext);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Head, new Uri(mediaUrl));
+                    HttpResponseMessage response = await httpClient.SendAsync(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        book.Media.Add(mediaUrl);
+                }
 
                 return book;
             }
