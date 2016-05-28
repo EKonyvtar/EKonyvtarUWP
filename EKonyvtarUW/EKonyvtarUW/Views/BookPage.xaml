@@ -11,8 +11,8 @@
         <Hub >
             <Hub.Header>
                 <StackPanel>
-                    <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="True" Minimum="0" Maximum="100" Visibility="{Binding IsLoading}"/>
                     <TextBlock x:Name="pageTitle" Text="{Binding book.Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                    <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="True" Minimum="0" Maximum="100" Visibility="{Binding IsLoading}"/>
                 </StackPanel>
             </Hub.Header>
             <HubSection Width="230">
@@ -26,7 +26,7 @@
                             Stretch="UniformToFill"
                         />
 
-                        <Button Content="Olvasás" Margin="10" HorizontalAlignment="Center" Width="180"></Button>
+                        <Button Content="Olvasás" Margin="10" HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
 
                         <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" FontSize="10" Width="200" Margin="10,0,0,0"></TextBlock>
                     </StackPanel>
@@ -35,7 +35,7 @@
             <HubSection Header="Kivonat" Margin="10,0,0,0" Width="460">
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding book.Contents}" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify"></TextBlock>
+                        <!--<TextBlock Text="{Binding book.Contents}" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify"></TextBlock>-->
                         <TextBlock Text="{Binding book.Summary}" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
@@ -45,11 +45,6 @@
                     <StackPanel>
                         <TextBlock Text="{Binding book.Recommendation}" TextWrapping="Wrap" Width="300" FontSize="12" TextAlignment="Justify"></TextBlock>
                     </StackPanel>
-                </DataTemplate>
-            </HubSection>
-            <HubSection Header="Olvas" Margin="20,0,0,0" Width="500">
-                <DataTemplate>
-                    <WebView Source="{Binding book.ContentUri}" Width="500" Height="500"/>
                 </DataTemplate>
             </HubSection>
             <HubSection Header="Kapcsolódó könyvek" Margin="20,0,0,0" Width="500" Visibility="Collapsed">

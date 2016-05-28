@@ -30,5 +30,10 @@ namespace EKonyvtarUW.Views
                 vm.IsLoading = false;
             }
         }
+
+        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(BookReader), vm.book);
+        }
     }
 }

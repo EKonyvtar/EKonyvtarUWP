@@ -12,6 +12,7 @@ namespace EKonyvtarUW.ViewModels
         private readonly INavigationService _navigationService;
 
         private bool _IsLoading = true;
+        public bool IsReady { get { return !IsLoading; } }
         public bool IsLoading
         {
             get { return _IsLoading; }
@@ -19,6 +20,7 @@ namespace EKonyvtarUW.ViewModels
             {
                 _IsLoading = value;
                 NotifyPropertyChanged("IsLoading");
+                NotifyPropertyChanged("IsReady");
 
             }
         }
@@ -46,7 +48,7 @@ namespace EKonyvtarUW.ViewModels
         public BookViewModel()
         {
             IsLoading = true;
-            GoBackCommand = new RelayCommand(() => _navigationService.GoBack());
+            //ReadCommand = new RelayCommand(() => Frame.Navigate(typeof(BookPage), book););
 
             // In design mode sample
             if (IsInDesignMode)
@@ -59,6 +61,6 @@ namespace EKonyvtarUW.ViewModels
             _navigationService = navigationService;
         }
 
-        public RelayCommand GoBackCommand { get; private set; }
+        public RelayCommand ReadCommand { get; private set; }
     }
 }
