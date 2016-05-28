@@ -16,6 +16,7 @@ namespace EKonyvtarUW.Views
         {
             this.InitializeComponent();
             vm = new BookViewModel();
+            //http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://murati.hu
             this.DataContext = vm;
         }
 
@@ -25,6 +26,7 @@ namespace EKonyvtarUW.Views
             if (e != null && e.Parameter != null)
             {
                 vm.book = (Book)e.Parameter;
+                vm.book = await MekService.GetBookByUrlId(vm.book.UrlId);
                 vm.IsLoading = false;
             }
         }

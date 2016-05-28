@@ -1,4 +1,5 @@
-﻿using SQLite.Net.Attributes;
+﻿using EKonyvtarUW.Services;
+using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,7 @@ namespace EKonyvtarUW.Models
 
 
         public string Collection { get; set; }
+        public string Recommendation { get; set; }
 
 
         public string Abbreviation { get; set; }
@@ -64,9 +66,13 @@ namespace EKonyvtarUW.Models
         {
             get
             {
-                //return Media.FirstOrDefault();
-                return String.Format("https://docs.google.com/gview?url={0}&embedded=true", Media.FirstOrDefault());
-                //return String.Format("http://docs.google.com/viewer?url={0}", Media.FirstOrDefault());
+                try
+                { //return Media.FirstOrDefault();
+                    return String.Format("https://docs.google.com/gview?url={0}&embedded=true", Media.FirstOrDefault());
+                    //return String.Format("http://docs.google.com/viewer?url={0}", Media.FirstOrDefault());
+                }
+                catch { }
+                return null;
             }
         }
 

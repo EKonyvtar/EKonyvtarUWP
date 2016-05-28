@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bc="using:EKonyvtarUW.Views"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}" SizeChanged="Page_SizeChanged">
 
     <Grid Background="#33808080" >
         <Hub>
@@ -14,7 +14,7 @@
                 <!-- Back button and page title -->
                 <TextBlock x:Name="pageTitle" Text="Könyvtár" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
             </Hub.Header>
-            <HubSection Header="Ajánló" Height="Auto">
+            <HubSection Header="Ajánló" Height="Auto" Name="Recommendation">
                 <DataTemplate>
                     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
                         <StackPanel>

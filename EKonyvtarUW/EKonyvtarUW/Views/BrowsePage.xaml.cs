@@ -32,10 +32,7 @@ namespace EKonyvtarUW.Views
         private async void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var minBook = (Book)e.ClickedItem;
-            //var target_uri = new ItemResolver(clicked_item.Link).Uri;
-            var book = await MekService.GetBookByUrlId(minBook.UrlId);
-            if (book == null) book = minBook; // To always show something
-            Frame.Navigate(typeof(BookPage), book);
+            Frame.Navigate(typeof(BookPage), minBook);
         }
     }
 }

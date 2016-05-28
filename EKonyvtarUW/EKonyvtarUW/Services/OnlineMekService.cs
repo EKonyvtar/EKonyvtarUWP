@@ -162,5 +162,45 @@ namespace EKonyvtarUW.Services
             };
             return results;
         }
+
+        public static async Task<List<Book>> SearchBookAsync2(string searchKeyword = "", string searchTitle = "", string searchCreator = "")
+        {
+            // "http://vmek.oszk.hu/html/vgi/vkereses/mobilkereses.phtml?szerzo=&cim=&tema=horthy&formatum=%25#_talalat - 0";
+            // TODO: paging
+            var searchEndpoint = "http://vmek.oszk.hu/html/vgi/vkereses/mobilkereses.phtml?szerzo={0}&cim={1}&tema={2}&formatum=%25";
+            var uri = String.Format(searchEndpoint, searchCreator, searchTitle, searchKeyword);
+
+            var results = new List<Book>();
+            try
+            {
+                var webGet = new HtmlWeb();
+                var document = await webGet.LoadFromWebAsync(uri);
+                var elements = document.DocumentNode.Descendants();
+                var books = elements.Where(n => n.GetAttributeValue("class", "").Equals("sor"));
+
+                foreach (var row in books)
+                {
+                    var b = new Book();
+                    try
+                    {
+                        //TODO fill
+                        /*
+                         <li class="sor">[09484]<a target="_webapp" href=/mobil/konyvoldal.phtml?id=9484&tip=gyors&offset=0&szerzo=&cim=&tema=horthy&formatum=%>
+                            <img align="right" src=/09400/09484/borito.jpg height="40" />
+                            <span class="szogletes">[3]</span> A Zürichi Magyar Történelmi Egyesület és a Zrínyi Miklós Nemzetvédelmi Egyetem Kossuth Lajos Hadtudományi Kar közös tudományos tanácskozása  </a>
+                            <div class="formatum"> PDF</div>
+                          </li>
+                         */
+                    }
+                    finally
+                    {
+                    }
+                    results.Add(b);
+                }
+
+            }
+            catch { }
+            return results;
+        }
     }
 }

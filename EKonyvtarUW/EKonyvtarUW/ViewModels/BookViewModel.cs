@@ -2,17 +2,36 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using System.ComponentModel;
 
 namespace EKonyvtarUW.ViewModels
 {
     //Todo: fix class names for pages and views
-    public class BookViewModel : ViewModelBase
+    public class BookViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
 
         public bool IsLoading { get; set; }
 
-        public Book book { get; set; }
+        private Book _book;
+        public Book book
+        {
+            get { return _book; }
+            set
+            {
+                _book = value;
+                NotifyPropertyChanged("book");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
 
         public BookViewModel()
         {
@@ -22,14 +41,8 @@ namespace EKonyvtarUW.ViewModels
             // In design mode sample
             if (IsInDesignMode)
             {
-                IsLoading = false;
-                book = new Book()
-                {
-                    Title = "Teszt könyv",
-                    Creators = "Akos Murati",
-                    Summary = "Multiple \n Line \n Samples"
-                };
-            }            
+                //
+            }
         }
         public BookViewModel(INavigationService navigationService) : this()
         {

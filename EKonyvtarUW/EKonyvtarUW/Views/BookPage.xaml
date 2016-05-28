@@ -7,9 +7,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Hub>
+
+        <Hub >
             <Hub.Header>
-                <TextBlock x:Name="pageTitle" Text="{Binding book.Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                <StackPanel>
+                    <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="True" Minimum="0" Maximum="100"/>
+                    <TextBlock x:Name="pageTitle" Text="{Binding book.Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                </StackPanel>
             </Hub.Header>
             <HubSection Header="" Margin="20,0,0,0" Width="300">
                 <DataTemplate>
@@ -21,7 +25,7 @@
                             HorizontalAlignment="Center"
                             Stretch="UniformToFill"
                         />
-                        
+
                         <Button Content="Olvasás" HorizontalAlignment="Center"></Button>
                     </StackPanel>
                 </DataTemplate>
@@ -38,6 +42,13 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" Width="300"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Ajánló" Margin="20,0,0,0" Width="300">
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding book.Recommendation}" TextWrapping="Wrap" Width="300"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </HubSection>
