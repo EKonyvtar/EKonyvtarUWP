@@ -133,7 +133,7 @@ namespace EKonyvtarUW.Services
             JsonArray root = JsonValue.Parse(json).GetArray();
             for (uint i = 0; i < root.Count; i++)
             {
-                string collection = root.GetObjectAt(i).GetNamedString("collection");
+                //string collection = root.GetObjectAt(i).GetNamedString("collection");
                 string id = root.GetObjectAt(i).GetNamedString("id");
                 string url = root.GetObjectAt(i).GetNamedString("URL");
                 string title = root.GetObjectAt(i).GetNamedString("title");
@@ -151,7 +151,7 @@ namespace EKonyvtarUW.Services
                 {
                     UrlId = id,
                     Url = url,
-                    Collection = collection,
+                    //Collection = collection,
                     Title = title,
                     SubTitle = subtitle,
                     Creators = creators,

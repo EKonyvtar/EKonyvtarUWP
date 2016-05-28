@@ -11,10 +11,9 @@
     <Grid Background="#33808080" >
         <Hub>
             <Hub.Header>
-                <!-- Back button and page title -->
-                <TextBlock x:Name="pageTitle" Text="Könyvtár" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                <TextBlock x:Name="pageTitle" Text="Ajánló" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
             </Hub.Header>
-            <HubSection Header="Ajánló" Height="Auto" Name="Recommendation">
+            <HubSection Height="Auto" Name="Recommendation" HorizontalAlignment="Center" VerticalAlignment="Top"  >
                 <DataTemplate>
                     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
                         <StackPanel>

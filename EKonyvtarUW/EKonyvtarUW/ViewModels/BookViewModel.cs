@@ -11,7 +11,17 @@ namespace EKonyvtarUW.ViewModels
     {
         private readonly INavigationService _navigationService;
 
-        public bool IsLoading { get; set; }
+        private bool _IsLoading = true;
+        public bool IsLoading
+        {
+            get { return _IsLoading; }
+            set
+            {
+                _IsLoading = value;
+                NotifyPropertyChanged("IsLoading");
+
+            }
+        }
 
         private Book _book;
         public Book book

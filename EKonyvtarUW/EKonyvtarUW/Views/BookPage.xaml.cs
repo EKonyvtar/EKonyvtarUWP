@@ -26,7 +26,7 @@ namespace EKonyvtarUW.Views
             if (e != null && e.Parameter != null)
             {
                 vm.book = (Book)e.Parameter;
-                vm.book = await MekService.GetBookByUrlId(vm.book.UrlId);
+                vm.book.CopyFrom(await MekService.GetBookByUrlId(vm.book.UrlId));
                 vm.IsLoading = false;
             }
         }

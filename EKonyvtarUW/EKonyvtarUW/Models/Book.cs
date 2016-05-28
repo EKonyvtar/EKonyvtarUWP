@@ -2,6 +2,7 @@
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,17 @@ using System.Threading.Tasks;
 namespace EKonyvtarUW.Models
 {
     [Table("VIEW_BOOKS")]
-    public class Book
+    public class Book : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+
         private static string mekUrl = "http://mek.oszk.hu/{0}/borito.jpg";
 
         [Column("_id")]
@@ -36,8 +46,17 @@ namespace EKonyvtarUW.Models
             }
         }
 
+        private string _Title = String.Empty;
         [Column("title")]
-        public string Title { get; set; }
+        public string Title
+        {
+            get { return _Title; }
+            set
+            {
+                _Title = value;
+                NotifyPropertyChanged("Title");
+            }
+        }
 
         [Column("creator_name")]
         public string Creators { get; set; }
@@ -48,20 +67,37 @@ namespace EKonyvtarUW.Models
         [Column("year")]
         public string Year { get; set; }
 
-        //[Column("place")]
-        //public string Place { get; set; }
+        private string _Contents;
+        public string Contents
+        {
+            get { return _Contents; }
+            set
+            {
+                _Contents = value;
+                NotifyPropertyChanged("Contents");
+            }
+        }
 
-        public string Contents { get; set; }
+        private string _Summary;
+        public string Summary { get { return _Summary; } set { _Summary = value; NotifyPropertyChanged("Summary"); } }
 
-        public string Summary { get; set; }
 
+        private string _Abbreviation;
+        public string Abbreviation { get { return _Abbreviation; } set { _Abbreviation = value; NotifyPropertyChanged("Abbreviation"); } }
 
-        public string Collection { get; set; }
         public string Recommendation { get; set; }
 
-
-        public string Abbreviation { get; set; }
-        public List<string> Media { get; set; }
+        private List<string> _Media;
+        public List<string> Media
+        {
+            get { return _Media; }
+            set
+            {
+                _Media = value;
+                NotifyPropertyChanged("Media");
+                NotifyPropertyChanged("ContentUri");
+            }
+        }
         public string ContentUri
         {
             get
@@ -76,11 +112,17 @@ namespace EKonyvtarUW.Models
             }
         }
 
-        //public string BookTypeName { get; set; }
-        //public string Published { get; set; }
-        //public string TopicName { get; set; }
+        public void CopyFrom(Book book)
+        {
+            this.Title = book.Title;
+            this.Creators = book.Creators;
+            this.Media = book.Media;
 
-        //TODO: reviews
-        //TODO: Similar
+            //Textual content
+            this.Contents = book.Contents;
+            this.Summary = book.Summary;
+            this.Abbreviation = book.Abbreviation;
+            this.Recommendation = this.Recommendation ?? book.Recommendation;
+        }
     }
 }
