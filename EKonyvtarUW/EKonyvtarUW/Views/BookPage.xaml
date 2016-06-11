@@ -12,7 +12,7 @@
             <Hub.Header>
                 <StackPanel>
                     <TextBlock x:Name="pageTitle" Text="{Binding book.Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
-                    <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="True" Minimum="0" Maximum="100" Visibility="{Binding IsLoading}"/>
+                    <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="{Binding IsLoading}" Minimum="0" Maximum="100" />
                 </StackPanel>
             </Hub.Header>
             <HubSection Width="230">
@@ -26,7 +26,10 @@
                             Stretch="UniformToFill"
                         />
 
-                        <Button Content="Olvasás" Margin="10" HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
+                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="10"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="ComboBox_IsEnabledChanged" />
+                        <Button Content="Olvasás"  Margin="0,10,0,10"  HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
+
+                        <Button Content="Letöltés" HorizontalAlignment="Center" Width="180" Margin="0,10,0,10" IsEnabled="{Binding IsReady}" Click="Button_Click_1"></Button>
 
                         <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" FontSize="10" Width="200" Margin="10,0,0,0"></TextBlock>
                     </StackPanel>

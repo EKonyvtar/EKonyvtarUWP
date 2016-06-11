@@ -7,7 +7,11 @@
     mc:Ignorable="d" SizeChanged="Page_SizeChanged">
 
     <StackPanel>
-        <ProgressBar Name="progress" Minimum="0" Maximum="100" IsIndeterminate="True" />
-        <WebView Name="wv" Source="{Binding book.ContentUri}" Width="500" Height="500" DefaultBackgroundColor="#FFF7EFEF"/>
+        <StackPanel Name="progress"> <!-- Visibility="{Binding IsLoadingVisible}"> -->
+            <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" />
+            <ProgressRing IsActive="True" Width="60" Height="60" VerticalAlignment="Center" Margin="0,100,0,20" />
+            <TextBlock HorizontalAlignment="Center" FontWeight="Medium" FontSize="24">Könyv betöltése...</TextBlock>
+        </StackPanel>
+        <WebView Name="wv" Source="{Binding book.ContentUri}" Width="500" Height="500" />
     </StackPanel>
 </Page>

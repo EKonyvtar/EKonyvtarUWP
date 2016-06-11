@@ -24,9 +24,10 @@ namespace EKonyvtarUW.Views
         {
             if (e != null && e.Parameter != null)
             {
-                book = (Book)e.Parameter;
-                progress.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                wv.Navigate(new Uri(book.ContentUri));
+                // book = (Book)e.Parameter;
+                // progress.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                // wv.Navigate(new Uri(book.ContentUri));
+                wv.Navigate(new Uri((string)e.Parameter));
                 wv.NavigationCompleted += Wv_NavigationCompleted;
             }
         }
@@ -34,6 +35,7 @@ namespace EKonyvtarUW.Views
         private void Wv_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
             progress.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            
         }
 
         private void Page_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)

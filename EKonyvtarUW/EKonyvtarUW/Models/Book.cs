@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EKonyvtarUW.Models
@@ -96,16 +97,40 @@ namespace EKonyvtarUW.Models
                 _Media = value;
                 NotifyPropertyChanged("Media");
                 NotifyPropertyChanged("ContentUri");
+                NotifyPropertyChanged("MediaDictionary");
+            }
+        }
+
+        public IEnumerable<KeyValuePair<string,string>> MediaDictionary
+        {
+            get
+            {
+                
+                try
+                {
+                    var results = Media.Select(p => new KeyValuePair<string, string>(p.Split('.').LastOrDefault().ToUpper(),p));
+                    return results;
+                }
+                catch { }
+                return null;
             }
         }
         public string ContentUri
         {
             get
             {
+                String content = Media.FirstOrDefault() ?? "";
+
                 try
-                { //return Media.FirstOrDefault();
-                    return String.Format("https://docs.google.com/gview?url={0}&embedded=true", Media.FirstOrDefault());
-                    //return String.Format("http://docs.google.com/viewer?url={0}", Media.FirstOrDefault());
+                {
+                    if (Regex.IsMatch(content, "\\.pdf$"))
+                        return String.Format("https://docs.google.com/gview?url={0}&embedded=true", content);
+
+                    //
+                    if (Regex.IsMatch(content, "\\.doc[x]?$"))
+                        return String.Format("http://view.officeapps.live.com/op/view.aspx?src={0}", content);
+
+                    return content;
                 }
                 catch { }
                 return null;

@@ -1,6 +1,9 @@
 ﻿using EKonyvtarUW.Models;
 using EKonyvtarUW.Services;
 using EKonyvtarUW.ViewModels;
+using System.Collections.Generic;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -33,7 +36,26 @@ namespace EKonyvtarUW.Views
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(BookReader), vm.book);
+            Frame.Navigate(typeof(BookReader), vm.book.ContentUri);
+        }
+
+        private void ComboBox_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
+        {
+            var combo = (ComboBox)sender;
+            try
+            {
+                combo.SelectedIndex = 0;
+            }
+            catch {
+                //No formats available
+            }
+            vm.IsLoading = false;
+        }
+
+        private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var picker = new FileSavePicker();
+            //StorageFile file = picker.PickSaveFileAndContinue();
         }
     }
 }
