@@ -1,6 +1,7 @@
 ﻿using EKonyvtarUW.Models;
 using EKonyvtarUW.Services;
 using EKonyvtarUW.ViewModels;
+using System;
 using System.Collections.Generic;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -54,8 +55,19 @@ namespace EKonyvtarUW.Views
 
         private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var picker = new FileSavePicker();
+            //var picker = new FileSavePicker();
             //StorageFile file = picker.PickSaveFileAndContinue();
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.ActiveUrl));
+        }
+
+        private void SourceList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var combo = (ComboBox)sender;
+                var item = (KeyValuePair<string, string>)combo.SelectedItem;
+                vm.ActiveUrl = item.Value;
+            } catch { }
         }
     }
 }

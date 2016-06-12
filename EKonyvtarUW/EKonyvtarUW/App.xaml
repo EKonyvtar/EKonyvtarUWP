@@ -25,6 +25,8 @@
             <Setter Property="Margin" Value="0,1,0,34" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="TextAlignment" Value="Justify" />
         </Style>
 
         <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">

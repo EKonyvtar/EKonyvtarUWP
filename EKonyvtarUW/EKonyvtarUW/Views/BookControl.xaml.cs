@@ -19,6 +19,7 @@ namespace EKonyvtarUW.Views
 {
     public sealed partial class BookControl : UserControl
     {
+
         public BookControl()
         {
             this.InitializeComponent();

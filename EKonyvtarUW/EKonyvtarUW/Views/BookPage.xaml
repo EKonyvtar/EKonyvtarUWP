@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.75">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.80">
 
         <Hub >
             <Hub.Header>
@@ -26,7 +26,7 @@
                             Stretch="UniformToFill"
                         />
 
-                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="10"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="ComboBox_IsEnabledChanged" />
+                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="10"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="ComboBox_IsEnabledChanged" SelectionChanged="SourceList_SelectionChanged" />
                         <Button Content="Olvasás"  Margin="0,10,0,10"  HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
 
                         <Button Content="Letöltés" HorizontalAlignment="Center" Width="180" Margin="0,10,0,10" IsEnabled="{Binding IsReady}" Click="Button_Click_1"></Button>

@@ -25,6 +25,8 @@ namespace EKonyvtarUW.ViewModels
             }
         }
 
+        public string ActiveUrl { get; set; }
+
         private Book _book;
         public Book book
         {
