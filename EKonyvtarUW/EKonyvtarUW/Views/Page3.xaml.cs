@@ -20,24 +20,12 @@ namespace EKonyvtarUW.Views
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e != null && e.Parameter != null)
-            {
-                book = (Book)e.Parameter;
-                wv.Navigate(new Uri(book.ContentUri));
-            }
+           
         }
 
         private void Page_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
         {
-            try
-            {
-                wv.Width = this.ActualWidth;
-                wv.Height = this.ActualHeight;
-            }
-            catch
-            {
-
-            }
+           
         }
     }
 }

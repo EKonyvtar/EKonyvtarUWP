@@ -43,10 +43,10 @@
                     </StackPanel>
                 </DataTemplate>
             </HubSection>
-            <HubSection Header="Ajánló" Margin="10,0,0,0" Width="300">
+            <HubSection Header="Ajánló" Margin="10,0,0,0" Width="320">
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding book.Recommendation}" TextWrapping="Wrap" Width="300" FontSize="12" TextAlignment="Justify"></TextBlock>
+                        <TextBlock Text="{Binding book.Recommendation}" TextWrapping="Wrap" Width="280" FontSize="12" TextAlignment="Justify"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </HubSection>
