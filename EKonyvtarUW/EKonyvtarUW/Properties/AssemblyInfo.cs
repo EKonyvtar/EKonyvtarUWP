@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EKonyvtarUW")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Elektronikus Könyvtár")]
+[assembly: AssemblyDescription("Az Országos Széchenyi Könyvtár online katalógusának nem hivatalos böngésző és nem olvasó alkalmazása.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EKonyvtarUW")]
-[assembly: AssemblyCopyright("Copyright © CCross 2015")]
+[assembly: AssemblyCompany("murati.hu")]
+[assembly: AssemblyProduct("Elektronikus Könyvtár")]
+[assembly: AssemblyCopyright("Copyright © murati.hu 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
