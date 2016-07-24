@@ -18,15 +18,15 @@ namespace EKonyvtarUW.Services
         {
             var feed = await GetFeedAsync("http://mek.oszk.hu/mek2.rss");
             var list = new List<Book>();
-            list = feed?.Select(f => new Recommendation()
+            list = feed?.Select(f => new Book()
             {
                 Title = f.Title.Text,
                 Summary = f.Summary.Text,
-                Abbreviation = TextManipulation.StripHTML(f.Summary.Text).Replace(("^" + f.Title.Text), ""),
-                ThumbnailUrl = TextManipulation.GetImageUrl(f.Summary.Text),
+                Recommendation = TextManipulation.StripHTML(f.Summary.Text).Replace(("^" + f.Title.Text), ""),
+                ThumbnailUrl = new Uri(TextManipulation.GetImageUrl(f.Summary.Text)),
                 UrlId = f.Links[0].Uri.ToString()
 
-            }.ToBook()).ToList<Book>();
+            }).ToList<Book>();
 
             return list;
 

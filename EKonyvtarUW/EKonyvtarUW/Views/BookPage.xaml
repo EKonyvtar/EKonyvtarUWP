@@ -26,10 +26,10 @@
                             Stretch="UniformToFill"
                         />
 
-                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="10"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="ComboBox_IsEnabledChanged" SelectionChanged="SourceList_SelectionChanged" />
-                        <Button Content="Olvasás"  Margin="0,10,0,10"  HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
+                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="ComboBox_IsEnabledChanged" SelectionChanged="SourceList_SelectionChanged" />
+                        <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
 
-                        <Button Content="Letöltés" HorizontalAlignment="Center" Width="180" Margin="0,10,0,10" IsEnabled="{Binding IsReady}" Click="Button_Click_1"></Button>
+                        <Button Content="Letöltés" HorizontalAlignment="Center" Width="180" Margin="0,4,0,0" IsEnabled="{Binding IsReady}" Click="Button_Click_1"></Button>
 
                         <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" FontSize="10" Width="200" Margin="10,0,0,0"></TextBlock>
                     </StackPanel>
@@ -45,9 +45,7 @@
             </HubSection>
             <HubSection Header="Ajánló" Margin="10,0,0,0" Width="320">
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding book.Recommendation}" TextWrapping="Wrap" Width="280" FontSize="12" TextAlignment="Justify"></TextBlock>
-                    </StackPanel>
+                    <TextBlock Text="{Binding book.Recommendation}" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify"></TextBlock>
                 </DataTemplate>
             </HubSection>
             <HubSection Header="Kapcsolódó könyvek" Margin="20,0,0,0" Width="500" Visibility="Collapsed">

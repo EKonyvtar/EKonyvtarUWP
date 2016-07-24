@@ -35,8 +35,9 @@ namespace EKonyvtarUW.Models
 
         public static string StripHTML(string inputString)
         {
+            //TODO: implement proper HTML Text conversion 
             return Regex.Replace
-              (inputString, HTML_TAG_PATTERN, string.Empty);
+              (inputString.Replace("&quot;", "'"), HTML_TAG_PATTERN, string.Empty);
         }
 
         public static string StripJson(string json)

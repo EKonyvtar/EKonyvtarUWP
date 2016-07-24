@@ -102,7 +102,6 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ItemResolver.cs" />
     <Compile Include="Models\Latin2Encoding.cs" />
-    <Compile Include="Models\Recommendation.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\TextManipulation.cs" />
     <Compile Include="Models\Topic.cs" />
@@ -122,9 +121,6 @@
     </Compile>
     <Compile Include="Views\BookReader.xaml.cs">
       <DependentUpon>BookReader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BrowsePage.xaml.cs">
-      <DependentUpon>BrowsePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BookPage.xaml.cs">
       <DependentUpon>BookPage.xaml</DependentUpon>
@@ -177,10 +173,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BrowsePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\BookPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -202,9 +194,7 @@
       <Name>Microsoft Mobile Extension SDK for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SampleData\SampleRecommendation\SampleRecommendation_Files\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

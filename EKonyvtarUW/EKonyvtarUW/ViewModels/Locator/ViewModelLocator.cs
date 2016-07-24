@@ -34,7 +34,7 @@ namespace EKonyvtarUW.ViewModels
         private INavigationService CreateNavigationService()
         {
             var navigationService = new NavigationServiceUwp();
-            navigationService.Configure("Browse", typeof(BrowsePage));
+            navigationService.Configure("Browse", typeof(WelcomePage));
             navigationService.Configure("Book", typeof(BookPage));
 
             return navigationService;
