@@ -9,10 +9,10 @@ namespace EKonyvtarUW.Models
     public class Recommendation
     {
         public String Title { get; set; }
-        public String Link { get; set; }
+        public String UrlId { get; set; }
         public String Summary { get; set; }
 
-        public String Text { get; set;  }
+        public String Abbreviation { get; set; }
         public String ThumbnailUrl { get; set; }
 
         public Book ToBook()
@@ -21,7 +21,9 @@ namespace EKonyvtarUW.Models
             {
                 Title = this.Title,
                 ThumbnailUrl = new Uri(this.ThumbnailUrl),
-                Abbreviation = Text
+                Abbreviation = this.Abbreviation,
+                Summary = this.Summary,
+                UrlId = new ItemResolver(this.UrlId).Uri
             };
         }
     }

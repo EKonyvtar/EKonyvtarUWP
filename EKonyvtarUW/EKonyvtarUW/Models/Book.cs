@@ -139,15 +139,21 @@ namespace EKonyvtarUW.Models
 
         public void CopyFrom(Book book)
         {
-            this.Title = book.Title;
-            this.Creators = book.Creators;
-            this.Media = book.Media;
+            try
+            {
+                this.Title = book.Title;
+                this.Creators = book.Creators;
+                this.Media = book.Media;
 
-            //Textual content
-            this.Contents = book.Contents;
-            this.Summary = book.Summary;
-            this.Abbreviation = book.Abbreviation;
-            this.Recommendation = this.Recommendation ?? book.Recommendation;
+                //Textual content
+                this.Contents = book.Contents;
+                this.Summary = book.Summary;
+                this.Abbreviation = book.Abbreviation;
+                this.Recommendation = this.Recommendation ?? book.Recommendation;
+            } catch (Exception ex)
+            {
+                //Resolve offline page issues..
+            }
         }
     }
 }

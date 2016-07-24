@@ -11,13 +11,13 @@
     <Grid Background="#33808080" >
         <Hub>
             <Hub.Header>
-                <TextBlock x:Name="pageTitle" Text="Könyvajánló" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" FontWeight="Medium"/>
+                <TextBlock x:Name="pageTitle" Text="{Binding Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" FontWeight="Medium"/>
             </Hub.Header>
-            <HubSection Height="Auto" Name="Recommendation" HorizontalAlignment="Center" VerticalAlignment="Top"  >
+            <HubSection Height="Auto" Name="BookResults" HorizontalAlignment="Center" VerticalAlignment="Top"  >
                 <DataTemplate>
                     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
                         <StackPanel>
-                            <GridView ItemsSource="{Binding MekFeed.Result}" ItemClick="GridView_ItemClick"  IsItemClickEnabled="True" >
+                            <GridView ItemsSource="{Binding Books.Result}" ItemClick="GridView_ItemClick"  IsItemClickEnabled="True" >
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
                                         <bc:BookControl></bc:BookControl>
@@ -28,7 +28,6 @@
                     </ScrollViewer>
                 </DataTemplate>
             </HubSection>
-
             <HubSection Header="Kategóriák" Margin="20,0,0,0" Width="300" Visibility="Collapsed">
                 <DataTemplate>
                     <GridView ItemsSource="{Binding Categories.Result}"/>
