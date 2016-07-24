@@ -15,7 +15,6 @@ namespace EKonyvtarUW.ViewModels
         private readonly INavigationService _navigationService;
         public NotifyTaskCompletion<List<Book>> Books { get; set; }
         public NotifyTaskCompletion<List<string>> Categories { get; set; }
-        private string _resultTitle;
 
         public WelcomeViewModel(INavigationService navigationService)
         {
@@ -54,16 +53,5 @@ namespace EKonyvtarUW.ViewModels
                 return String.Format("'{0}' keresés találatai", _searchText);
             }
         }
-
-        public string SubTitle
-        {
-            get
-            {
-                return "Könyvek";
-            }
-        }
-
-        public RelayCommand GotoPage1Command { get; private set; }
-        public RelayCommand OpenBookPageCommand { get; private set; }
     }
 }
