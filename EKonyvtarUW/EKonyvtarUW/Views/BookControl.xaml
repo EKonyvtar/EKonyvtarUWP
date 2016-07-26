@@ -14,7 +14,14 @@
                 <VisualState x:Name="DefaultTitle"/>
                 <VisualState x:Name="FullTitle">
                     <Storyboard>
-                        <ColorAnimation Duration="0:0:0.5" To="#FFE83232" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="stackPanel" d:IsOptimized="True"/>
+                        <ColorAnimation To="#FFE83232" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="stackPanel" d:IsOptimized="True" Duration="0:0:0.3"/>
+                        <DoubleAnimation
+                            Duration="0:0:0.2"
+                            From="225"
+                            To="100"
+                            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                            Storyboard.TargetName="stackPanel"
+                                         />
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -29,12 +36,6 @@
                 <Core:GoToStateAction StateName="DefaultTitle"/>
             </Core:EventTriggerBehavior>
         </Interactivity:Interaction.Behaviors>
-
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="220"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
 
         <!--<Border
             Width="192"
@@ -54,11 +55,18 @@
             Height="224"
             Width="182"
             Stretch="UniformToFill"
-            Grid.Row="0" 
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
         />
         <!--</Border>-->
-        <StackPanel x:Name="stackPanel" Grid.Row="1" Background="Gray" d:LayoutOverrides="TopPosition, BottomPosition">
+        <StackPanel
+            x:Name="stackPanel"
+            Background="Gray"
+            Height="250"
+            VerticalAlignment="Bottom" d:LayoutOverrides="TopPosition, BottomPosition" Opacity="0.6"
+            >
+            <StackPanel.RenderTransform>
+                <CompositeTransform TranslateY="225"/>
+            </StackPanel.RenderTransform>
 
             <TextBlock
             Text="{Binding Title}"
