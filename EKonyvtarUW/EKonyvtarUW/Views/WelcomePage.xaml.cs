@@ -19,7 +19,6 @@ namespace EKonyvtarUW.Views
             this.InitializeComponent();
             vm = new WelcomeViewModel(null);
             this.DataContext = vm;
-
         }
 
         private async void GridView_ItemClick(object sender, ItemClickEventArgs e)
@@ -33,7 +32,6 @@ namespace EKonyvtarUW.Views
                 Recommendation = clicked_item.Recommendation
             };
             Frame.Navigate(typeof(BookPage), book);
-
         }
 
         private void Page_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)

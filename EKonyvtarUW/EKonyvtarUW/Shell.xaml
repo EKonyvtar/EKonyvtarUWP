@@ -24,15 +24,16 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <Button Content="&#xE700;" Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}" Style="{StaticResource IconButtonStyle}" Grid.Column="0"/>
+            <Button Content="&#xE700;" Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}" Style="{StaticResource IconButtonStyle}" Grid.Column="0" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="White" Margin="-8,-4" Width="64" Height="60" />
             <TextBlock Text="Elektronikus Könyvtár" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="1"/>
-            <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="10" Grid.Column="2" QuerySubmitted="Search_QuerySubmitted"/>
+            <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="10" Grid.Column="2" QuerySubmitted="Search_QuerySubmitted" PlaceholderText="Keresés" />
         </Grid>
 
-        <SplitView x:Name="SplitView" Grid.Row="1" IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}" >
+        <SplitView x:Name="SplitView" Grid.Row="1" IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}" OpenPaneLength="220">
             <SplitView.Pane>
                 <ListView ItemsSource="{x:Bind ViewModel.MenuItems}"
-                          SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}">
+                          SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}" Background="{ThemeResource TextBoxDisabledForegroundThemeBrush}" Foreground="White"
+                    >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="Padding" Value="0" />
@@ -41,8 +42,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="common:MenuItem">
                             <StackPanel Orientation="Horizontal" Height="48">
-                                <TextBlock Grid.RowSpan="2" Text="{x:Bind Icon, Mode=OneWay}" Style="{StaticResource IconTextBlockStyle}" />
-                                <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource MenuTitleTextBlockStyle}" />
+                                <TextBlock Grid.RowSpan="2" Text="{x:Bind Icon, Mode=OneWay}" Style="{StaticResource IconTextBlockStyle}" Foreground="White" />
+                                <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource MenuTitleTextBlockStyle}"  Foreground="White" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

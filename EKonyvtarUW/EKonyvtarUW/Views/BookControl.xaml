@@ -6,15 +6,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="EKonyvtarUW.Views.BookControl"
-    mc:Ignorable="d" Height="250" Width="182">
+    mc:Ignorable="d" Height="220" Width="178">
 
-    <Grid Background="#E5FFFFFF">
-        <VisualStateManager.VisualStateGroups>
+    <Grid Background="#E54B4444">
+        <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="TitleStateGroup">
                 <VisualState x:Name="DefaultTitle"/>
                 <VisualState x:Name="FullTitle">
                     <Storyboard>
-                        <ColorAnimation To="#FFE83232" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="stackPanel" d:IsOptimized="True" Duration="0:0:0.3"/>
                         <DoubleAnimation
                             Duration="0:0:0.2"
                             From="225"
@@ -22,20 +21,21 @@
                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
                             Storyboard.TargetName="stackPanel"
                                          />
+                        <DoubleAnimation Duration="0" To="0.8" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        </VisualStateManager.VisualStateGroups>-->
 
 
-        <Interactivity:Interaction.Behaviors>
+        <!--<Interactivity:Interaction.Behaviors>
             <Core:EventTriggerBehavior EventName="PointerEntered">
                 <Core:GoToStateAction StateName="FullTitle"/>
             </Core:EventTriggerBehavior>
             <Core:EventTriggerBehavior EventName="PointerExited">
                 <Core:GoToStateAction StateName="DefaultTitle"/>
             </Core:EventTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>
+        </Interactivity:Interaction.Behaviors>-->
 
         <!--<Border
             Width="192"
@@ -51,16 +51,16 @@
             </Border.BorderBrush>-->
         <!-- 160/130 -->
         <Image
+            x:Name="image"
             Source="{Binding ThumbnailUrl}"
             Height="224"
             Width="182"
             Stretch="UniformToFill"
             VerticalAlignment="Top"
+            Margin="-4,-4,0,0"
         />
-        <!--</Border>-->
-        <StackPanel
+        <!--<StackPanel
             x:Name="stackPanel"
-            Background="Gray"
             Height="250"
             VerticalAlignment="Bottom" d:LayoutOverrides="TopPosition, BottomPosition" Opacity="0.6"
             >
@@ -69,14 +69,13 @@
             </StackPanel.RenderTransform>
 
             <TextBlock
-            Text="{Binding Title}"
-            Width="178"
-            Height="Auto"
-            VerticalAlignment="Top"
-            Margin="2"
-            TextWrapping="WrapWholeWords"
-        />
-        </StackPanel>
-
+                Text="{Binding Title}"
+                Width="178"
+                Height="220"
+                Margin="2"
+                TextWrapping="WrapWholeWords"
+                TextAlignment="Center" FontWeight="Bold" FontSize="17.333"
+            />
+        </StackPanel>-->
     </Grid>
 </UserControl>

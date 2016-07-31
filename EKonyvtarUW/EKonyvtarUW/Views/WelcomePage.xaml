@@ -11,21 +11,40 @@
     <Grid Background="#33808080" >
         <Hub>
             <Hub.Header>
-                <TextBlock x:Name="pageTitle" Text="{Binding Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" FontWeight="Medium"/>
+                <TextBlock x:Name="pageTitle" Text="{Binding Title, Mode=OneWay}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top" TextLineBounds="TrimToBaseline" OpticalMarginAlignment="TrimSideBearings" FontSize="20" FontWeight="Medium"/>
             </Hub.Header>
-            <HubSection Height="Auto" Name="BookResults" HorizontalAlignment="Center" VerticalAlignment="Top"  >
+            <HubSection Name="BookResults">
                 <DataTemplate>
-                    <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
-                        <StackPanel>
-                            <GridView ItemsSource="{Binding Books.Result}" ItemClick="GridView_ItemClick"  IsItemClickEnabled="True" >
-                                <GridView.ItemTemplate>
-                                    <DataTemplate>
-                                        <bc:BookControl></bc:BookControl>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                            </GridView>
-                        </StackPanel>
-                    </ScrollViewer>
+                    <GridView
+                        ItemsSource="{Binding Books.Result, Mode=OneWay}"
+                        ItemClick="GridView_ItemClick" 
+                        IsItemClickEnabled="True"
+                        IsSwipeEnabled="False"
+                        
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.HorizontalScrollMode="Enabled"
+                        
+                        ScrollViewer.VerticalScrollMode="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                     >
+                        <GridView.Transitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition/>
+                            </TransitionCollection>
+                        </GridView.Transitions>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <bc:BookControl
+                                    Margin="10"
+                                />
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
                 </DataTemplate>
             </HubSection>
             <HubSection Header="Kategóriák" Margin="20,0,0,0" Width="300" Visibility="Collapsed">
