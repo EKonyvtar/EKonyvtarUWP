@@ -72,8 +72,11 @@ namespace EKonyvtarUW
                 UpdateBackButtonVisibility();
             }
 
-            // Ensure the current window is active
-            Window.Current.Activate();
+            if (!e.PrelaunchActivated)
+            {
+                // Ensure the current window is active
+                Window.Current.Activate();
+            }
         }
 
         // handle hardware back button press

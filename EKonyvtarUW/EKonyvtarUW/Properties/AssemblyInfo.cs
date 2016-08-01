@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Az Országos Széchenyi Könyvtár online katalógusának nem hivatalos böngésző és nem olvasó alkalmazása.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("murati.hu")]
-[assembly: AssemblyProduct("Elektronikus Könyvtár")]
+[assembly: AssemblyProduct("Magyar Elektronikus Könyvtár")]
 [assembly: AssemblyCopyright("Copyright © murati.hu 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
