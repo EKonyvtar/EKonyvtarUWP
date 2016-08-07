@@ -4,6 +4,7 @@ using EKonyvtarUW.Common;
 using EKonyvtarUW.Views;
 using EKonyvtarUW.Services;
 using System.Threading.Tasks;
+using EKonyvtarUW.ViewModels;
 
 namespace EKonyvtarUW
 {
@@ -14,7 +15,8 @@ namespace EKonyvtarUW
             InitializeComponent();
 
             var vm = new ShellViewModel();
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Könyvajánló", PageType = typeof(WelcomePage) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Könyvajánló", PageType = typeof(HomePage) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Kedvencek", PageType = typeof(FavoritPage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Névjegy", PageType = typeof(AboutPage) });
 
             // select the first menu item
@@ -29,7 +31,7 @@ namespace EKonyvtarUW
 
         private async void Search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            Frame.Navigate(typeof(WelcomePage), sender.Text);
+            Frame.Navigate(typeof(HomePage), sender.Text);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace EKonyvtarUW.Common
         private Type _pageType;
         private string _title;
 
-
         public string Icon
         {
             get { return _icon; }

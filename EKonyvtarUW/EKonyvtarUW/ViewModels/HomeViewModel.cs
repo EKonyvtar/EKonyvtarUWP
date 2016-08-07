@@ -12,7 +12,7 @@ namespace EKonyvtarUW.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private const string PAGE_FAVORITE = "ekonyvtar:page:favorite";
+        public static string PAGE_FAVORITE = "ekonyvtar:page:favorite";
 
         private readonly INavigationService _navigationService;
         public NotifyTaskCompletion<List<Book>> Favorites { get; set; }
@@ -38,18 +38,15 @@ namespace EKonyvtarUW.ViewModels
                 {
                     Books = new NotifyTaskCompletion<List<Book>>(RssFeedService.GetMekFeedAsync());
                     //TODO: Categories = new NotifyTaskCompletion<List<string>>(LocalMekService.GetCategories());
-                    Favorites = new NotifyTaskCompletion<List<Book>>(FavoriteService.SearchFavoriteAsync(""));
                 }
                 else if (_searchText == PAGE_FAVORITE)
                 {
                     Books = new NotifyTaskCompletion<List<Book>>(FavoriteService.SearchFavoriteAsync(""));
-                    Favorites = new NotifyTaskCompletion<List<Book>>(FavoriteService.SearchFavoriteAsync(_searchText));
                 }
                 else
                 {
                     //Regenerate Async results
                     Books = new NotifyTaskCompletion<List<Book>>(MekService.SearchBookAsync(_searchText));
-                    Favorites = new NotifyTaskCompletion<List<Book>>(FavoriteService.SearchFavoriteAsync(_searchText));
                 }
 
             }

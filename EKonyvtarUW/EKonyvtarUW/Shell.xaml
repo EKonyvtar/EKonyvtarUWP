@@ -32,7 +32,7 @@
         <SplitView x:Name="SplitView" Grid.Row="1" IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}" OpenPaneLength="220">
             <SplitView.Pane>
                 <ListView ItemsSource="{x:Bind ViewModel.MenuItems}"
-                          SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}" Background="{ThemeResource TextBoxDisabledForegroundThemeBrush}" Foreground="White"
+                          SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}" Background="{ThemeResource CheckBoxContentDisabledForegroundThemeBrush}" Foreground="White"
                     >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

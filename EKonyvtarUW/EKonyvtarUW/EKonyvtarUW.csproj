@@ -104,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\NavigationServiceUwp.cs" />
+    <Compile Include="Common\FavoriteColorConverter.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ItemResolver.cs" />
@@ -135,8 +136,11 @@
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WelcomePage.xaml.cs">
-      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    <Compile Include="Views\FavoritPage.xaml.cs">
+      <DependentUpon>FavoritPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\MenuItem.cs" />
     <Compile Include="Common\ObjectToMenuItemConverter.cs" />
@@ -188,7 +192,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\WelcomePage.xaml">
+    <Page Include="Views\FavoritPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
