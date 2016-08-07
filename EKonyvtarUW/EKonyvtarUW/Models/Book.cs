@@ -101,14 +101,14 @@ namespace EKonyvtarUW.Models
             }
         }
 
-        public IEnumerable<KeyValuePair<string,string>> MediaDictionary
+        public IEnumerable<KeyValuePair<string, string>> MediaDictionary
         {
             get
             {
-                
+
                 try
                 {
-                    var results = Media.Select(p => new KeyValuePair<string, string>(p.Split('.').LastOrDefault().ToUpper(),p));
+                    var results = Media.Select(p => new KeyValuePair<string, string>(p.Split('.').LastOrDefault().ToUpper(), p));
                     return results;
                 }
                 catch { }
@@ -119,10 +119,9 @@ namespace EKonyvtarUW.Models
         {
             get
             {
-                String content = Media.FirstOrDefault() ?? "";
-
                 try
                 {
+                    String content = Media.FirstOrDefault() ?? "";
                     if (Regex.IsMatch(content, "\\.pdf$"))
                         return String.Format("https://docs.google.com/gview?url={0}&embedded=true", content);
 
@@ -135,6 +134,20 @@ namespace EKonyvtarUW.Models
                 catch { }
                 return null;
             }
+        }
+
+        public bool IsFavorite
+        {
+            get
+            {
+                return FavoriteService.IsBookFavorited(this);
+            }
+        }
+
+        public void AddToFavorites()
+        {
+            FavoriteService.AddBook(this);
+            NotifyPropertyChanged("IsFavorite");
         }
 
         public void CopyFrom(Book book)
@@ -150,7 +163,8 @@ namespace EKonyvtarUW.Models
                 this.Summary = book.Summary;
                 this.Abbreviation = book.Abbreviation;
                 this.Recommendation = this.Recommendation ?? book.Recommendation;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 //Resolve offline page issues..
             }

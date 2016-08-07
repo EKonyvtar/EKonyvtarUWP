@@ -35,39 +35,49 @@ namespace EKonyvtarUW.Views
             }
         }
 
-        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ReadButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             Frame.Navigate(typeof(BookReader), vm.book.ContentUri);
         }
 
-        private void ComboBox_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
+        private void FileType_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
         {
             var combo = (ComboBox)sender;
             try
             {
                 combo.SelectedIndex = 0;
             }
-            catch {
+            catch
+            {
                 //No formats available
             }
             vm.IsLoading = false;
         }
 
-        private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             //var picker = new FileSavePicker();
             //StorageFile file = picker.PickSaveFileAndContinue();
             await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.ActiveUrl));
         }
 
-        private void SourceList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FileType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 var combo = (ComboBox)sender;
+                if (combo.Items.Count > 2)
+                    combo.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
                 var item = (KeyValuePair<string, string>)combo.SelectedItem;
                 vm.ActiveUrl = item.Value;
-            } catch { }
+            }
+            catch { }
+        }
+
+        private void FavoriteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            vm.book.AddToFavorites();
         }
     }
 }

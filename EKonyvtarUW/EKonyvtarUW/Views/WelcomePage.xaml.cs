@@ -2,6 +2,7 @@
 using EKonyvtarUW.Services;
 using EKonyvtarUW.ViewModels;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -12,16 +13,16 @@ namespace EKonyvtarUW.Views
     /// </summary>
     public sealed partial class WelcomePage : Page
     {
-        private WelcomeViewModel vm;
+        private HomeViewModel vm;
 
         public WelcomePage()
         {
             this.InitializeComponent();
-            vm = new WelcomeViewModel(null);
+            vm = new HomeViewModel(null);
             this.DataContext = vm;
         }
 
-        private async void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void Book_Click(object sender, ItemClickEventArgs e)
         {
             var clicked_item = (Book)e.ClickedItem;
             var target_uri = new ItemResolver(clicked_item.UrlId).Uri;

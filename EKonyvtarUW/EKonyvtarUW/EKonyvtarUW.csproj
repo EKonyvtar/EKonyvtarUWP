@@ -111,6 +111,7 @@
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\TextManipulation.cs" />
     <Compile Include="Models\Topic.cs" />
+    <Compile Include="Services\FavoriteService.cs" />
     <Compile Include="Services\MekService.cs" />
     <Compile Include="Services\OnlineMekService.cs" />
     <Compile Include="Services\LocalMekService.cs" />
@@ -134,9 +135,6 @@
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
@@ -144,7 +142,7 @@
     <Compile Include="Common\ObjectToMenuItemConverter.cs" />
     <Compile Include="Common\ShellViewModel.cs" />
     <Compile Include="ViewModels\Locator\ViewModelLocator.cs" />
-    <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -189,10 +187,6 @@
     <Page Include="Views\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\HomePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WelcomePage.xaml">
       <Generator>MSBuild:Compile</Generator>

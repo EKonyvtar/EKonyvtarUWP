@@ -4,11 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    >
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.80">
-
-        <Hub >
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.80">
+        <Hub Height="Auto"
+             ScrollViewer.VerticalScrollBarVisibility="Auto"
+        >
             <Hub.Header>
                 <StackPanel>
                     <TextBlock x:Name="pageTitle" Text="{Binding book.Title}" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
@@ -26,11 +28,12 @@
                             Stretch="UniformToFill"
                         />
 
-                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="ComboBox_IsEnabledChanged" SelectionChanged="SourceList_SelectionChanged" />
-                        <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="Button_Click" IsEnabled="{Binding IsReady}"></Button>
-
-                        <Button Content="Letöltés" HorizontalAlignment="Center" Width="180" Margin="0,4,0,0" IsEnabled="{Binding IsReady}" Click="Button_Click_1"></Button>
-
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <AppBarToggleButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" IsChecked="{Binding book.IsFavorite}"/>
+                            <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
+                        </StackPanel>
+                        <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="FileType_IsEnabledChanged" SelectionChanged="FileType_SelectionChanged" Visibility="Collapsed"/>
+                        <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"></Button>
                         <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" FontSize="10" Width="200" Margin="10,0,0,0"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
@@ -74,5 +77,6 @@
                 </DataTemplate>
             </HubSection>
         </Hub>
-    </Grid>
+
+    </StackPanel>
 </Page>
