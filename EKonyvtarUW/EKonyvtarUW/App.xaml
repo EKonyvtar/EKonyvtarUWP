@@ -15,6 +15,7 @@
         <Style x:Key="AppTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="Margin" Value="12,6,0,6" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
         </Style>
 
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
@@ -37,17 +38,19 @@
             <Setter Property="Height" Value="48" />
         </Style>
 
-        <Style x:Key="IconTextBlockStyle" TargetType="TextBlock">
+        <!-- MENU -->
+        <Style x:Key="MenuIconTextBlockStyle" TargetType="TextBlock"  BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-            <Setter Property="FontSize" Value="24" />
             <Setter Property="Width" Value="48" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
 
         <Style x:Key="MenuTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
 
         <Style x:Key="PageScrollViewerStyle" TargetType="ScrollViewer">

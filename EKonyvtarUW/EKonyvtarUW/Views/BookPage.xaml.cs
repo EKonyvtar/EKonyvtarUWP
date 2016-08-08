@@ -79,5 +79,10 @@ namespace EKonyvtarUW.Views
         {
             vm.book.AddToFavorites();
         }
+
+        private void Share_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+        }
     }
 }

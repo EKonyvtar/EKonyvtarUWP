@@ -8,8 +8,26 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}" >
 
+
     <Grid Background="#33808080" >
-        <Hub>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0">
+            <CommandBar.Content>
+                <TextBlock Text="Kedvencek" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="0"/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Delete" Label="Kiválasztottak törlése" />
+            <AppBarButton Icon="Accept" Label="Szerkesztés vége" />
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Kedvencek szerkesztése"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+
+        <Hub Grid.Row="1">
             <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
                 <DataTemplate>
                     <GridView
@@ -44,12 +62,6 @@
                     </GridView>
                 </DataTemplate>
             </HubSection>
-            <HubSection Header="Kategóriák" Margin="20,0,0,0" Width="300" Visibility="Collapsed">
-                <DataTemplate>
-                    <GridView ItemsSource="{Binding Categories.Result}"/>
-                </DataTemplate>
-            </HubSection>
         </Hub>
-
     </Grid>
 </Page>

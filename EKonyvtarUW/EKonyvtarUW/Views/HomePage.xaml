@@ -6,11 +6,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bc="using:EKonyvtarUW.Views"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}"
-    SizeChanged="Page_SizeChanged">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}">
 
     <Grid Background="#33808080" >
-        <Hub>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Background="AliceBlue" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Elektronikus Könyvtár" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="0"/>
+            <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="8" Grid.Column="1" QuerySubmitted="Search_QuerySubmitted" PlaceholderText="Keresés" />
+        </Grid>
+
+        <Hub Grid.Row="1">
             <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
                 <DataTemplate>
                     <GridView

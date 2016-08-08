@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
 
 namespace EKonyvtarUW.Common
 {
@@ -8,12 +9,14 @@ namespace EKonyvtarUW.Common
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return null;
+            if ((bool)value)
+                return new SolidColorBrush(Colors.OrangeRed);
+            return new SolidColorBrush(Colors.Black);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return null;
+            return false;
         }
     }
 }

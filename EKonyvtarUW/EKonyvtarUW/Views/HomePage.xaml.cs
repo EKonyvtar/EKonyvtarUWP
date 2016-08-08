@@ -35,25 +35,17 @@ namespace EKonyvtarUW.Views
             Frame.Navigate(typeof(BookPage), book);
         }
 
-        private void Page_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
-        {
-            try
-            {
-                BookResults.Width = this.ActualWidth;
-                // BookResults.Height = this.ActualHeight - 200;
-            }
-            catch
-            {
-                //Leave broken
-            }
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e != null && e.Parameter != null)
             {
                 vm.SearchText = e.Parameter.ToString();
             }
+        }
+
+        private void Search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            Frame.Navigate(typeof(HomePage), sender.Text);
         }
     }
 }
