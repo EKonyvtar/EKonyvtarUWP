@@ -180,7 +180,7 @@ namespace EKonyvtarUW.Models
             }
             catch (Exception ex)
             {
-                //Resolve offline page issues..
+                //TODO: Resolve offline page issues..
             }
         }
     }
