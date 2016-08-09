@@ -1,81 +1,38 @@
 ﻿<UserControl
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:EKonyvtarUW.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="EKonyvtarUW.Views.BookControl"
-    mc:Ignorable="d" Height="220" Width="178">
+    mc:Ignorable="d" Height="230" Width="190"
+    >
 
-    <Grid Background="#E54B4444">
-        <!--<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="TitleStateGroup">
-                <VisualState x:Name="DefaultTitle"/>
-                <VisualState x:Name="FullTitle">
-                    <Storyboard>
-                        <DoubleAnimation
-                            Duration="0:0:0.2"
-                            From="225"
-                            To="100"
-                            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
-                            Storyboard.TargetName="stackPanel"
-                                         />
-                        <DoubleAnimation Duration="0" To="0.8" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image" d:IsOptimized="True"/>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
+    <Grid>
+        <Grid Width="188" Height="230">
+            <Rectangle Stroke="Black" Margin="5" RadiusX="7" RadiusY="7" Opacity="0.22" StrokeThickness="2"/>
+            <Rectangle Stroke="Black" Margin="4" RadiusX="8" RadiusY="8" Opacity="0.2"/>
+            <Rectangle Stroke="Black" Margin="3" RadiusX="9" RadiusY="9" Opacity="0.15"/>
+            <Rectangle Stroke="Black" Margin="2" RadiusX="10" RadiusY="10" Opacity="0.1"/>
+            <Rectangle Stroke="Black" Margin="1" RadiusX="11" RadiusY="11" Opacity="0.05"/>
+            <Rectangle Stroke="Black" Margin="0" RadiusX="12" RadiusY="12" Opacity="0.01"/>
+        </Grid>
 
-
-        <!--<Interactivity:Interaction.Behaviors>
-            <Core:EventTriggerBehavior EventName="PointerEntered">
-                <Core:GoToStateAction StateName="FullTitle"/>
-            </Core:EventTriggerBehavior>
-            <Core:EventTriggerBehavior EventName="PointerExited">
-                <Core:GoToStateAction StateName="DefaultTitle"/>
-            </Core:EventTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>-->
-
-        <!--<Border
-            Width="192"
-            Height="234"
-            CornerRadius="8"
-            BorderThickness="5" >
-            <Border.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#CC000000" Offset="0.561"/>
-                    <GradientStop Color="#33151414" Offset="1"/>
-                    <GradientStop Color="#E0423C3C" Offset="0.008"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>-->
-        <!-- 160/130 -->
-        <Image
+        <Grid Height="216" Width="174">
+            <!--<Image
             x:Name="image"
             Source="{Binding ThumbnailUrl}"
             Height="224"
             Width="182"
             Stretch="UniformToFill"
-            VerticalAlignment="Top"
-            Margin="-4,-4,0,0"
-        />
-        <!--<StackPanel
-            x:Name="stackPanel"
-            Height="250"
-            VerticalAlignment="Bottom" d:LayoutOverrides="TopPosition, BottomPosition" Opacity="0.6"
-            >
-            <StackPanel.RenderTransform>
-                <CompositeTransform TranslateY="225"/>
-            </StackPanel.RenderTransform>
-
-            <TextBlock
-                Text="{Binding Title}"
-                Width="178"
-                Height="220"
-                Margin="2"
-                TextWrapping="WrapWholeWords"
-                TextAlignment="Center" FontWeight="Bold" FontSize="17.333"
-            />
-        </StackPanel>-->
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+        >
+            </Image>-->
+            <Border Height="224" Width="182" CornerRadius="17" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding ThumbnailUrl}" />
+                </Border.Background>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
