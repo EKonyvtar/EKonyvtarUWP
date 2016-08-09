@@ -22,14 +22,24 @@ namespace EKonyvtarUW.Models
             }
         }
 
-        private static string mekUrl = "http://mek.oszk.hu/{0}/borito.jpg";
+        private static string mekThumbnailUrl = "http://mek.oszk.hu/{0}/borito.jpg";
+        private static string mekUrl = "http://mek.oszk.hu/{0}";
 
         [Column("_id")]
         public string DbId { get; set; }
 
         [Column("url")]
         public string UrlId { get; set; }
-        public string Url { get; set; }
+
+        private string _url = null;
+        public string Url
+        {
+            get
+            {
+                return _url ?? String.Format(mekUrl, UrlId);
+            }
+            set { _url = value; }
+        }
 
         private Uri _ThumbnailUrl = null;
         public Uri ThumbnailUrl
@@ -39,7 +49,7 @@ namespace EKonyvtarUW.Models
                 if (_ThumbnailUrl != null)
                     return _ThumbnailUrl;
 
-                return new Uri(String.Format(mekUrl, UrlId));
+                return new Uri(String.Format(mekThumbnailUrl, UrlId));
             }
             set
             {
@@ -144,9 +154,13 @@ namespace EKonyvtarUW.Models
             }
         }
 
-        public void AddToFavorites()
+        public void ToggleFavorite()
         {
-            FavoriteService.AddBook(this);
+            if (IsFavorite)
+                FavoriteService.RemoveBook(this);
+            else
+                FavoriteService.AddBook(this);
+
             NotifyPropertyChanged("IsFavorite");
         }
 

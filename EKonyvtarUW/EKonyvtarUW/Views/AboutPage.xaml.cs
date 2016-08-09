@@ -18,22 +18,12 @@ namespace EKonyvtarUW.Views
             book = new Book();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-           
-        }
-
-        private void Page_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
-        {
-           
-        }
-
-        private async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OpenMekHu_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("http://mek.oszk.hu"));
         }
 
-        private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OpenMuratiHu_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("http://murati.hu"));
         }

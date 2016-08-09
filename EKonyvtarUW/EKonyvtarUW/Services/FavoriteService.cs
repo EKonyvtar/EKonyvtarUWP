@@ -43,6 +43,14 @@ namespace EKonyvtarUW.Services
             SaveFavorites();
         }
 
+        public static void RemoveBook(Book book)
+        {
+            var filtered = GetBook(book);
+            if (filtered != null)
+                _favorites.Remove(filtered);
+            SaveFavorites();
+        }
+
         public static Book GetBook(Book book)
         {
             return Favorites?.Where(t => t.UrlId == book.UrlId).FirstOrDefault();

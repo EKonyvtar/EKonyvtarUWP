@@ -77,12 +77,17 @@ namespace EKonyvtarUW.Views
 
         private void FavoriteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            vm.book.AddToFavorites();
+            vm.book.ToggleFavorite();
         }
 
         private void Share_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            //TODO: Share
+        }
 
+        private async void OpenMek_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.Url));
         }
     }
 }

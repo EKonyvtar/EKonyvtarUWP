@@ -13,7 +13,7 @@
         <Common:FavoriteColorConverter x:Key="FavoriteColorConverter"/>
     </Page.Resources>
 
-    <Grid Background="#33808080" >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -29,80 +29,65 @@
                 <AppBarButton Label="Olvasás" Icon="Read" Click="ReadButton_Click"/>
                 <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}"/>
                 <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
+                <AppBarButton Label="Honlap" Icon="World" Click="OpenMek_Click"/>
                 <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
+        <!-- TODO: Disable all other actions -->
         <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="{Binding IsLoading}" Minimum="0" Maximum="100" Grid.Row="0" VerticalAlignment="Bottom"/>
+        
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="500"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="AliceBlue" Opacity="0.5"></SolidColorBrush>
+            </Grid.Background>
+            <Hub>
+                <HubSection>
+                    <DataTemplate>
+                        <StackPanel Width="200">
+                            <Views:BookControl DataContext="{Binding book}"></Views:BookControl>
 
-
-            <StackPanel Width="200" Grid.Column="0">
-                <Views:BookControl DataContext="{Binding book}"></Views:BookControl>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}"/>
-                    <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
-                    <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click"/>
-                </StackPanel>
-                <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="FileType_IsEnabledChanged" SelectionChanged="FileType_SelectionChanged" Visibility="Collapsed"/>
-                <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>
-                <TextBlock Text="{Binding book.Abbreviation}" TextWrapping="Wrap" FontSize="10" Width="200" Margin="10,0,0,0"/>
-            </StackPanel>
-
-            <TextBlock Grid.Column="1" Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"/>
-
-            <TextBlock Grid.Column="2" Text="{Binding book.Recommendation}"  TextWrapping="Wrap" FontSize="12" TextAlignment="Justify"/>
-        </Grid>
-        <!--<Hub Grid.Row="1">
-            <HubSection Width="230">
-                <DataTemplate>
-                   
-                </DataTemplate>
-            </HubSection>
-            <HubSection Header="Kivonat" Margin="10,0,0,0" Width="460">
-                <DataTemplate>
-                    <StackPanel>
-                        --><!--<TextBlock Text="{Binding book.Contents}" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify"></TextBlock>--><!--
-                        
-                    </StackPanel>
-                </DataTemplate>
-            </HubSection>
-            <HubSection Header="Ajánló" Margin="10,0,0,0" Width="320">
-                <DataTemplate>
-                    
-                </DataTemplate>
-            </HubSection>
-            <HubSection Header="Kapcsolódó könyvek" Margin="20,0,0,0" Width="500" Visibility="Collapsed">
-                <DataTemplate>
-                    <ScrollViewer">
-                        <StackPanel>
-                            <GridView ItemsSource="{Binding MekFeed.Result}" IsItemClickEnabled="True" >
-                                <GridView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                                            <TextBlock Text="{Binding Title}" />
-                                            <Image Source="{Binding ImageUrl}" Height="160" Width="130"/>
-                                            <TextBlock Text="{Binding Text}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                            </GridView>
-                            --><!-- 
-                            <TextBlock Text="{Binding HelloWorld}"></TextBlock>
-                            <TextBlock Text="Happy coding!" />
-
-                            <Button Content="Goto Page1" Command="{Binding GotoPage1Command}"></Button>
-                            --><!--
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}"/>
+                                <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
+                                <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click"/>
+                            </StackPanel>
+                            <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="FileType_IsEnabledChanged" SelectionChanged="FileType_SelectionChanged" Visibility="Collapsed"/>
+                            <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>
                         </StackPanel>
-                    </ScrollViewer>
-                </DataTemplate>
-            </HubSection>
-        </Hub>-->
+                    </DataTemplate>
+                </HubSection>
+                <HubSection Header="Bevezető és tartalom" MaxWidth="420">
+                    <DataTemplate>
+                        <ScrollViewer
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+                            <StackPanel Margin="0,0,14,40">
+                                <TextBlock Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"/>
+                                <TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </HubSection>
+                <HubSection Header="Ajánló" MaxWidth="420">
+                    <DataTemplate>
+                        <ScrollViewer
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+                            <StackPanel Margin="0,0,14,40">
+                                <!--<TextBlock Text="{Binding book.Abbreviation}" Style="{StaticResource ContentBodyTextBlockStyle}" />-->
+                                <TextBlock Text="{Binding book.Recommendation}" Style="{StaticResource ContentBodyTextBlockStyle}" />
+                                <!--<TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}" />-->
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </HubSection>
 
+                <HubSection Header="Adatlap" MaxWidth="420">
+                    <DataTemplate>
+                        <TextBlock Text="{Binding book.Abbreviation}" Style="{StaticResource ContentBodyTextBlockStyle}" />
+                    </DataTemplate>
+                </HubSection>
+            </Hub>
+        </Grid>
     </Grid>
 </Page>

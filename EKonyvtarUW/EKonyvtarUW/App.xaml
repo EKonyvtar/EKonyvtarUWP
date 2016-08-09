@@ -49,6 +49,7 @@
         <Style x:Key="AppHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
             <Setter Property="Margin" Value="10,0,0,0" />
             <Setter Property="FontSize" Value="22" />
+            <Setter Property="Foreground" Value="Black" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
@@ -56,15 +57,15 @@
 
         <!-- Content Style -->
         <Style x:Key="ContentBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
-            <Setter Property="Margin" Value="5" />
+            <Setter Property="Margin" Value="0,5,5,5" />
             <Setter Property="TextWrapping" Value="WrapWholeWords" />
             <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontSize" Value="13" />
             <Setter Property="TextAlignment" Value="Justify" />
         </Style>
 
         <Style x:Key="ContentSubTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ContentBodyTextBlockStyle}">
-            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontSize" Value="15" />
             <Setter Property="FontWeight" Value="Medium" />
         </Style>
 

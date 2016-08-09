@@ -14,7 +14,6 @@
             <ImageBrush
                 Stretch="UniformToFill"
                 ImageSource="Assets/oszk_blur.jpg"
-                Opacity="0.75"
                 />
         </Grid.Background>
         <Grid.ColumnDefinitions>
