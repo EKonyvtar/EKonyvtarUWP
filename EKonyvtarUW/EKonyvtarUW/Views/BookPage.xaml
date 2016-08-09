@@ -35,7 +35,7 @@
         </CommandBar>
         <!-- TODO: Disable all other actions -->
         <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="{Binding IsLoading}" Minimum="0" Maximum="100" Grid.Row="0" VerticalAlignment="Bottom"/>
-        
+
         <Grid Grid.Row="1">
             <Grid.Background>
                 <SolidColorBrush Color="AliceBlue" Opacity="0.5"></SolidColorBrush>
@@ -49,7 +49,11 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}"/>
                                 <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
-                                <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click"/>
+                                <AppBarButton Label="Megosztás" Click="Share_Click">
+                                    <AppBarButton.Icon>
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;"/>
+                                    </AppBarButton.Icon>
+                                </AppBarButton>
                             </StackPanel>
                             <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="FileType_IsEnabledChanged" SelectionChanged="FileType_SelectionChanged" Visibility="Collapsed"/>
                             <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>

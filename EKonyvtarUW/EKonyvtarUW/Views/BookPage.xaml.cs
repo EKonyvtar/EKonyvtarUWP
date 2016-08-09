@@ -22,6 +22,21 @@ namespace EKonyvtarUW.Views
             vm = new BookViewModel();
             //http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://murati.hu
             this.DataContext = vm;
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView().DataRequested += BookPage_DataRequested;
+        }
+
+        private void BookPage_DataRequested(Windows.ApplicationModel.DataTransfer.DataTransferManager sender, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args)
+        {
+            if (vm !=null && !string.IsNullOrWhiteSpace(vm.book.Url))
+            {
+                var shareInfo = String.Format("{0} {1}",vm.book.Title, vm.book.Url);
+                args.Request.Data.SetText(shareInfo);
+                args.Request.Data.Properties.Title = Windows.ApplicationModel.Package.Current.DisplayName;
+            }
+            else
+            {
+                args.Request.FailWithDisplayText("Hiba a könyv megosztásakor.");
+            }
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -82,7 +97,7 @@ namespace EKonyvtarUW.Views
 
         private void Share_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //TODO: Share
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
         }
 
         private async void OpenMek_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
