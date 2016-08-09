@@ -37,5 +37,10 @@ namespace EKonyvtarUW.Views
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("http://murati.hu"));
         }
+
+        private void AboutSearch_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            Frame.Navigate(typeof(HomePage), sender.Text);
+        }
     }
 }

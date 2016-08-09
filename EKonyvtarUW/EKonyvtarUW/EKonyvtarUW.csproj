@@ -103,6 +103,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\EmptyStateToVisibilityConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\NavigationServiceUwp.cs" />
     <Compile Include="Common\FavoriteColorConverter.cs" />
     <Compile Include="Models\Book.cs" />

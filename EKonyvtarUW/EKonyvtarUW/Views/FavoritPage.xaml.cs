@@ -23,7 +23,7 @@ namespace EKonyvtarUW.Views
             this.DataContext = vm;
         }
 
-        private async void Book_Click(object sender, ItemClickEventArgs e)
+        private async void FavoriteBook_Click(object sender, ItemClickEventArgs e)
         {
             var book = (Book)e.ClickedItem;
             Frame.Navigate(typeof(BookPage), book);

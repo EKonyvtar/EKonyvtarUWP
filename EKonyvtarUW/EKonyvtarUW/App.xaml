@@ -12,25 +12,8 @@
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
 
-        <Style x:Key="AppTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-            <Setter Property="Margin" Value="12,6,0,6" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="20" />
-        </Style>
-
-        <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
-            <Setter Property="Margin" Value="0,1,0,18" />
-        </Style>
-
-        <Style x:Key="ParagraphTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
-            <Setter Property="Margin" Value="0,1,0,34" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-            <Setter Property="FontSize" Value="11" />
-            <Setter Property="TextAlignment" Value="Justify" />
-        </Style>
-
-        <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">
+        <!-- Menu Style -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
             <Setter Property="FontWeight" Value="Light" />
             <Setter Property="FontSize" Value="22" />
@@ -38,7 +21,6 @@
             <Setter Property="Height" Value="48" />
         </Style>
 
-        <!-- MENU -->
         <Style x:Key="MenuIconTextBlockStyle" TargetType="TextBlock"  BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
             <Setter Property="Width" Value="48" />
@@ -53,10 +35,45 @@
             <Setter Property="Foreground" Value="White" />
         </Style>
 
-        <Style x:Key="PageScrollViewerStyle" TargetType="ScrollViewer">
-            <Setter Property="Padding" Value="24,20,24,24" />
+        <!-- Top bar -->
+        <Style x:Key="AppToolbarGridStyle" TargetType="Grid">
+            <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+            <Setter Property="Opacity" Value="0.75" />
+        </Style>
+
+        <Style x:Key="AppToolbarCommandBarStyle" TargetType="CommandBar">
+            <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+            <Setter Property="Opacity" Value="0.75" />
+        </Style>
+
+        <Style x:Key="AppHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+
+        <!-- Content Style -->
+        <Style x:Key="ContentBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="TextWrapping" Value="WrapWholeWords" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextAlignment" Value="Justify" />
+        </Style>
+
+        <Style x:Key="ContentSubTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ContentBodyTextBlockStyle}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Medium" />
         </Style>
 
         <common:ObjectToMenuItemConverter x:Key="ObjectToMenuItemConverter"/>
+
+        <common:BooleanToVisibilityConverter x:Key="TrueToVisibleConverter"/>
+        <common:BooleanToVisibilityConverter x:Key="FalseToVisibleConverter" IsReversed="True"/>
+
+        <common:EmptyStateToVisibilityConverter x:Key="EmptytoVisibleConverter" />
+        <common:EmptyStateToVisibilityConverter x:Key="EmptytoHiddenConverter" IsReversed="True"/>
     </Application.Resources>
 </Application>

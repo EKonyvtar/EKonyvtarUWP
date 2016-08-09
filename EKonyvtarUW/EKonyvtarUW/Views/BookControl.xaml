@@ -28,9 +28,15 @@
             VerticalAlignment="Center"
         >
             </Image>-->
-            <Border Height="224" Width="182" CornerRadius="17" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border
+                Height="224"
+                Width="182"
+                CornerRadius="17"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            >
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding ThumbnailUrl}" />
+                    <ImageBrush ImageSource="{Binding ThumbnailUrl, Mode=OneTime}" />
                 </Border.Background>
             </Border>
         </Grid>

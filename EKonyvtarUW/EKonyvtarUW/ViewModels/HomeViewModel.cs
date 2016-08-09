@@ -58,7 +58,7 @@ namespace EKonyvtarUW.ViewModels
                 if (string.IsNullOrEmpty(_searchText))
                     return "Könyvajánló";
                 else if (_searchText == PAGE_FAVORITE)
-                    return "Kedvencek";
+                    return "Kedvenc Könyvek";
                 return String.Format("'{0}' keresés találatai", _searchText);
             }
         }

@@ -8,21 +8,25 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}">
 
-    <Grid Background="#33808080" >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Background="AliceBlue" Grid.Row="0">
+        <Grid Grid.Row="0" Style="{StaticResource AppToolbarGridStyle}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Elektronikus Könyvtár" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="0"/>
+            <TextBlock Text="Elektronikus Könyvtár" Style="{StaticResource AppHeaderTextBlockStyle}" Grid.Column="0"/>
             <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="8" Grid.Column="1" QuerySubmitted="Search_QuerySubmitted" PlaceholderText="Keresés" />
         </Grid>
+
+        <ProgressRing IsActive="True" Width="60" Height="60" VerticalAlignment="Center" Grid.Row="1" Visibility="{Binding Path=Books.IsNotCompleted, Converter={StaticResource TrueToVisibleConverter},Mode=OneWay}"/>
+
+        <!-- TODO: EMPTY page -->
 
         <Hub Grid.Row="1">
             <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
@@ -53,6 +57,7 @@
                             <DataTemplate>
                                 <bc:BookControl
                                     Margin="10"
+                                    BorderBrush="AntiqueWhite"
                                 />
                             </DataTemplate>
                         </GridView.ItemTemplate>
