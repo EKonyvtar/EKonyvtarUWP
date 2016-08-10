@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bc="using:EKonyvtarUW.Views"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Home}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,11 +24,59 @@
             <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="8" Grid.Column="1" QuerySubmitted="Search_QuerySubmitted" PlaceholderText="Keresés" />
         </Grid>
 
-        <ProgressRing IsActive="True" Width="60" Height="60" VerticalAlignment="Center" Grid.Row="1" Visibility="{Binding Path=Books.IsNotCompleted, Converter={StaticResource TrueToVisibleConverter},Mode=OneWay}"/>
+        <!-- Empty Result Pane -->
+        <Grid Grid.Row="1"
+              Visibility="{Binding Books.Result, Mode=OneWay,Converter={StaticResource EmptyToVisibleConverter}}"
+              Style="{StaticResource ContentContainer}"
+              >
 
-        <!-- TODO: EMPTY page -->
+            <!-- LOADING Progress -->
+            <ProgressRing
+                IsActive="True" Width="60" Height="60" VerticalAlignment="Center"
+                Visibility="{Binding Books.IsNotCompleted, Converter={StaticResource TrueToVisibleConverter}}"
+            />
 
-        <Hub Grid.Row="1">
+            <!-- DONE Loading -->
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="60"
+                Visibility="{Binding Books.IsCompleted, Converter={StaticResource TrueToVisibleConverter}}"
+            >
+                <!-- HomePage empty result-->
+                <StackPanel
+                    Visibility="{Binding SearchText, Mode=OneWay, Converter={StaticResource EmptyToVisibleConverter}}"
+                    >
+                    <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}">A Könyvajánlót nem tudtam betölteni</TextBlock>
+                    <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                    A könyvajánló tartalmát valami miatt nem tudtam betölteni. Győződj meg róla, hogy van működő internetkapcsolatod.
+                    </TextBlock>
+                    <AppBarButton Icon="Refresh" Label="Próbáljuk újra" HorizontalAlignment="Center" Click="Refresh_Click"/>
+                </StackPanel>
+
+                <!-- Search Page empty result-->
+                <StackPanel
+                    Visibility="{Binding SearchText, Mode=OneWay, Converter={StaticResource EmptyToHiddenConverter}}"
+                    >
+                    <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}" Text="{Binding Title}"></TextBlock>
+                    <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}">nem hozott eredményt</TextBlock>
+                    <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                    A keresésed nem hozott eredményt, próbáld újra más keresőszavakkal.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}">Tipp</TextBlock>
+                    <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                    Régebbi könyveknél előfordulhat hogy az ékezeteket nem, vagy csak hibásan vették fel, ezért kereséseidnél próbálkozz
+                        többféleképpen - ékezetek nélkül is - keresni.
+                    </TextBlock>
+                </StackPanel>
+                
+            </StackPanel>
+        </Grid>
+
+        <!-- Result Pane -->
+        <Hub Grid.Row="1"
+             Visibility="{Binding Books.Result, Mode=OneWay, Converter={StaticResource EmptyToHiddenConverter}}"
+        >
             <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
                 <DataTemplate>
                     <GridView
@@ -64,12 +112,6 @@
                     </GridView>
                 </DataTemplate>
             </HubSection>
-            <HubSection Header="Kategóriák" Margin="20,0,0,0" Width="300" Visibility="Collapsed">
-                <DataTemplate>
-                    <GridView ItemsSource="{Binding Categories.Result}"/>
-                </DataTemplate>
-            </HubSection>
         </Hub>
-
     </Grid>
 </Page>

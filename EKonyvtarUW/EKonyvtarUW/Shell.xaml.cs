@@ -28,10 +28,5 @@ namespace EKonyvtarUW
         public ShellViewModel ViewModel { get; private set; }
 
         public Frame RootFrame => Frame;
-
-        private async void Search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-            Frame.Navigate(typeof(HomePage), sender.Text);
-        }
     }
 }

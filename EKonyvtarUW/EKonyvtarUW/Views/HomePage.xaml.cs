@@ -39,13 +39,21 @@ namespace EKonyvtarUW.Views
         {
             if (e != null && e.Parameter != null)
             {
-                vm.SearchText = e.Parameter.ToString();
+                vm = new HomeViewModel(null) {
+                   SearchText = e.Parameter.ToString()
+                };
+                this.DataContext = vm;
             }
         }
 
         private void Search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             Frame.Navigate(typeof(HomePage), sender.Text);
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(HomePage), "");
         }
     }
 }

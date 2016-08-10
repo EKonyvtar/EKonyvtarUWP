@@ -57,20 +57,7 @@
                         </StackPanel>
                     </DataTemplate>
                 </HubSection>
-                <HubSection Header="Bevezető és tartalom" MaxWidth="420" 
-                            Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}">
-                    <DataTemplate>
-                        <ScrollViewer
-                            VerticalScrollBarVisibility="Auto"
-                            VerticalScrollMode="Auto">
-                            <StackPanel Margin="0,0,14,40">
-                                <TextBlock Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"/>
-                                <!--<TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}" />-->
-                            </StackPanel>
-                        </ScrollViewer>
-                    </DataTemplate>
-                </HubSection>
-                <HubSection Header="Ajánló" MaxWidth="420"
+                <HubSection Header="Ajánló" MaxWidth="400"
                             Visibility="{Binding Path=book.Recommendation, Converter={StaticResource EmptyToHiddenConverter}}" >
                     <DataTemplate>
                         <ScrollViewer
@@ -84,7 +71,19 @@
                         </ScrollViewer>
                     </DataTemplate>
                 </HubSection>
-
+                <HubSection Header="Bevezető és tartalom" MaxWidth="420" 
+                            Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}">
+                    <DataTemplate>
+                        <ScrollViewer
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+                            <StackPanel Margin="0,0,14,40">
+                                <TextBlock Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"/>
+                                <!--<TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}" />-->
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </HubSection>
                 <HubSection Header="Adatlap" MaxWidth="420"
                             Visibility="{Binding Path=book.Abbreviation, Converter={StaticResource EmptyToHiddenConverter}}" >
                     <DataTemplate>

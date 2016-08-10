@@ -13,8 +13,6 @@ namespace EKonyvtarUW.ViewModels
 {
     public class HomeViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public static string PAGE_FAVORITE = "ekonyvtar:page:favorite";
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string info)
         {
@@ -25,9 +23,7 @@ namespace EKonyvtarUW.ViewModels
         }
 
         private readonly INavigationService _navigationService;
-        public NotifyTaskCompletion<List<Book>> Favorites { get; set; }
         public NotifyTaskCompletion<List<Book>> Books { get; set; }
-        public NotifyTaskCompletion<List<string>> Categories { get; set; }
 
         public HomeViewModel(INavigationService navigationService)
         {
@@ -44,21 +40,20 @@ namespace EKonyvtarUW.ViewModels
             set
             {
                 _searchText = value;
+                NotifyPropertyChanged("SearchText");
+                NotifyPropertyChanged("Title");
+
                 if (string.IsNullOrEmpty(_searchText))
                 {
                     Books = new NotifyTaskCompletion<List<Book>>(RssFeedService.GetMekFeedAsync());
                     //TODO: Categories = new NotifyTaskCompletion<List<string>>(LocalMekService.GetCategories());
-                }
-                else if (_searchText == PAGE_FAVORITE)
-                {
-                    Books = new NotifyTaskCompletion<List<Book>>(FavoriteService.SearchFavoriteAsync(""));
                 }
                 else
                 {
                     //Regenerate Async results
                     Books = new NotifyTaskCompletion<List<Book>>(MekService.SearchBookAsync(_searchText));
                 }
-                NotifyPropertyChanged("SearchText");
+
             }
         }
         public string Title
@@ -67,9 +62,7 @@ namespace EKonyvtarUW.ViewModels
             {
                 if (string.IsNullOrEmpty(_searchText))
                     return "Könyvajánló";
-                else if (_searchText == PAGE_FAVORITE)
-                    return "Kedvenc Könyvek";
-                return String.Format("'{0}' keresés találatai", _searchText);
+                return String.Format("'{0}' keresés", _searchText);
             }
         }
     }

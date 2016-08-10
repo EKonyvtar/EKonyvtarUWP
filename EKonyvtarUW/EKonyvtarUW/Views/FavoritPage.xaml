@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bc="using:EKonyvtarUW.Views"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}" >
+    DataContext="{Binding Source={StaticResource Locator}, Path=Favorit}" >
     <!--  Background="#33808080" -->
     <Grid>
         <Grid.RowDefinitions>
