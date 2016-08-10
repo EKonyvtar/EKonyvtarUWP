@@ -24,11 +24,9 @@ namespace EKonyvtarUW.ViewModels
             }
 
             SimpleIoc.Default.Register<HomeViewModel>();
-            SimpleIoc.Default.Register<BrowseViewModel>();
         }
 
         public HomeViewModel Welcome => ServiceLocator.Current.GetInstance<HomeViewModel>();
-        public BrowseViewModel Browse => ServiceLocator.Current.GetInstance<BrowseViewModel>();
         public BookViewModel Book => ServiceLocator.Current.GetInstance<BookViewModel>();
 
         private INavigationService CreateNavigationService()
