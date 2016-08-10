@@ -86,9 +86,14 @@ namespace EKonyvtarUW.Services
             {
                 // Swallow unathorized exception
             }
+            catch (FileNotFoundException)
+            {
+                _favorites = new List<Book>();
+                SaveFavorites(); //Create the empty file
+            }
             catch (Exception ex)
             {
-                // File not found exception
+                //Unknown exception yet
                 _favorites = new List<Book>();
             }
         }
