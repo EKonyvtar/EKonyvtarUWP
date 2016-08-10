@@ -27,9 +27,9 @@ namespace EKonyvtarUW.Views
 
         private void BookPage_DataRequested(Windows.ApplicationModel.DataTransfer.DataTransferManager sender, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args)
         {
-            if (vm !=null && !string.IsNullOrWhiteSpace(vm.book.Url))
+            if (vm != null && !string.IsNullOrWhiteSpace(vm.book.Url))
             {
-                var shareInfo = String.Format("{0} {1}",vm.book.Title, vm.book.Url);
+                var shareInfo = String.Format("{0}\n{1}\n\n", vm.book.Title, vm.book.Url);
                 args.Request.Data.SetText(shareInfo);
                 args.Request.Data.Properties.Title = Windows.ApplicationModel.Package.Current.DisplayName;
             }
