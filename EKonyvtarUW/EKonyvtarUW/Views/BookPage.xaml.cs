@@ -52,7 +52,7 @@ namespace EKonyvtarUW.Views
 
         private void ReadButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(BookReader), vm.book.ContentUri);
+            Frame.Navigate(typeof(BookReader), vm.book.ContentUri); //vm.ActiveUrl
         }
 
         private void FileType_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
@@ -61,6 +61,8 @@ namespace EKonyvtarUW.Views
             try
             {
                 combo.SelectedIndex = 0;
+                if (combo.Items.Count > 1)
+                    combo.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
             catch
             {
@@ -81,9 +83,6 @@ namespace EKonyvtarUW.Views
             try
             {
                 var combo = (ComboBox)sender;
-                if (combo.Items.Count > 2)
-                    combo.Visibility = Windows.UI.Xaml.Visibility.Visible;
-
                 var item = (KeyValuePair<string, string>)combo.SelectedItem;
                 vm.ActiveUrl = item.Value;
             }
