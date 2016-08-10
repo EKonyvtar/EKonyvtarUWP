@@ -20,13 +20,25 @@
                     <TextBlock Text="Kedvencek" Style="{StaticResource AppHeaderTextBlockStyle}" />
                 </Grid>
             </CommandBar.Content>
-            <AppBarButton Icon="Delete" Label="Kiválasztottak törlése" x:Name="delete" Visibility="{Binding ElementName=edit, Path=IsChecked, Converter={StaticResource TrueToVisibleConverter}}" Click="DeleteFavorite_Click" />
+            <AppBarButton Icon="Delete" Label="Kiválasztott törlése" x:Name="delete" Visibility="{Binding ElementName=edit, Path=IsChecked, Converter={StaticResource TrueToVisibleConverter}}" Click="DeleteFavorite_Click" />
             <AppBarToggleButton Icon="Edit" Label="Kedvencek szerkesztése" x:Name="edit" />
         </CommandBar>
 
         <ProgressRing IsActive="True" Width="60" Height="60" VerticalAlignment="Center" Grid.Row="1" Visibility="{Binding Path=Books.IsNotCompleted, Converter={StaticResource TrueToVisibleConverter},Mode=OneWay}"/>
-        <!-- TODO: EMPTY page -->
-        <Hub Grid.Row="1">
+
+        <Grid Grid.Row="1"
+              Visibility="{Binding Books.Result, Mode=OneWay,Converter={StaticResource EmptyToVisibleConverter}}"
+              Style="{StaticResource ContentContainer}"
+              >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="60">
+                <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}">Nincsenek Kedvencek</TextBlock>
+                <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                Jelenleg nincsenek kedvenceid felvéve. Keress egy könyvet és az adatlapján add a kedvenceidhez.
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Hub Grid.Row="1" Visibility="{Binding Books.Result, Mode=OneWay,Converter={StaticResource EmptyToHiddenConverter}}">
             <HubSection Header="{Binding Title, Mode=OneWay}">
                 <DataTemplate>
                     <GridView
@@ -47,7 +59,7 @@
                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      >
                         <!-- TODO: move this to common style -->
-                        
+
                         <GridView.Transitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition/>

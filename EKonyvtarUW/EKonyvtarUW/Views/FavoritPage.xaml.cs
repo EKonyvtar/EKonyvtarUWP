@@ -14,7 +14,7 @@ namespace EKonyvtarUW.Views
     /// </summary>
     public sealed partial class FavoritPage : Page
     {
-        private HomeViewModel vm;
+        private FavoritViewModel vm;
         private List<Book> selectedBookList;
 
         public FavoritPage()
@@ -25,8 +25,7 @@ namespace EKonyvtarUW.Views
 
         private void Refresh()
         {
-            vm = new HomeViewModel(null);
-            vm.SearchText = HomeViewModel.PAGE_FAVORITE;
+            vm = new FavoritViewModel(null);
             this.DataContext = vm;
         }
 
@@ -39,6 +38,7 @@ namespace EKonyvtarUW.Views
         private void DeleteFavorite_Click(object sender, RoutedEventArgs e)
         {
             //TODO: notify observable collection change
+            if (selectedBookList == null) return;
             foreach (var book in selectedBookList)
                 FavoriteService.RemoveBook(book);
             Refresh();
