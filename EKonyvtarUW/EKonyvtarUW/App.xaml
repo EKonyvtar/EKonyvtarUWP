@@ -56,6 +56,13 @@
 
 
         <!-- Content Style -->
+        <Style x:Key="ContentContainer" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="AliceBlue" Opacity="0.5"></SolidColorBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="ContentBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="Margin" Value="0,5,5,5" />
             <Setter Property="TextWrapping" Value="WrapWholeWords" />
@@ -75,7 +82,7 @@
         <common:BooleanToVisibilityConverter x:Key="TrueToVisibleConverter"/>
         <common:BooleanToVisibilityConverter x:Key="FalseToVisibleConverter" IsReversed="True"/>
 
-        <common:EmptyStateToVisibilityConverter x:Key="EmptytoVisibleConverter" />
-        <common:EmptyStateToVisibilityConverter x:Key="EmptytoHiddenConverter" IsReversed="True"/>
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToHiddenConverter" />
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToVisibleConverter" IsReversed="True"/>
     </Application.Resources>
 </Application>
