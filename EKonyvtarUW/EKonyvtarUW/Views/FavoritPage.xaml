@@ -20,21 +20,25 @@
                     <TextBlock Text="Kedvencek" Style="{StaticResource AppHeaderTextBlockStyle}" />
                 </Grid>
             </CommandBar.Content>
-            <AppBarButton Icon="Delete" Label="Kiválasztottak törlése" x:Name="delete" Visibility="{Binding ElementName=edit, Path=IsChecked, Converter={StaticResource TrueToVisibleConverter}}" />
+            <AppBarButton Icon="Delete" Label="Kiválasztottak törlése" x:Name="delete" Visibility="{Binding ElementName=edit, Path=IsChecked, Converter={StaticResource TrueToVisibleConverter}}" Click="DeleteFavorite_Click" />
             <AppBarToggleButton Icon="Edit" Label="Kedvencek szerkesztése" x:Name="edit" />
         </CommandBar>
 
         <ProgressRing IsActive="True" Width="60" Height="60" VerticalAlignment="Center" Grid.Row="1" Visibility="{Binding Path=Books.IsNotCompleted, Converter={StaticResource TrueToVisibleConverter},Mode=OneWay}"/>
         <!-- TODO: EMPTY page -->
         <Hub Grid.Row="1">
-            <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
+            <HubSection Header="{Binding Title, Mode=OneWay}">
                 <DataTemplate>
                     <GridView
                         ItemsSource="{Binding Books.Result, Mode=OneWay}"
-                        ItemClick="FavoriteBook_Click" 
-                        IsItemClickEnabled="True"
-                        IsMultiSelectCheckBoxEnabled="{Binding ElementName=edit, Path=IsChecked, Mode=OneWay}"
                         IsSwipeEnabled="False"
+                        
+                        ItemClick="FavoriteBook_Click" 
+                        IsItemClickEnabled="{Binding ElementName=edit, Path=IsChecked, Mode=OneWay, Converter={StaticResource BooleanInverterConverter}}"
+                        
+                        SelectionChanged="FavoriteGridView_SelectionChanged"
+                        SelectionMode="Multiple"
+                        IsMultiSelectCheckBoxEnabled="{Binding ElementName=edit, Path=IsChecked, Mode=OneWay}"
                         
                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                         ScrollViewer.HorizontalScrollMode="Enabled"
@@ -42,6 +46,8 @@
                         ScrollViewer.VerticalScrollMode="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      >
+                        <!-- TODO: move this to common style -->
+                        
                         <GridView.Transitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition/>

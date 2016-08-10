@@ -73,16 +73,14 @@ namespace EKonyvtarUW.ViewModels
         {
             get
             {
-                return (Exception == null) ?
-    null : Exception.InnerException;
+                return (Exception == null) ? null : Exception.InnerException;
             }
         }
         public string ErrorMessage
         {
             get
             {
-                return (InnerException == null) ?
-    null : InnerException.Message;
+                return (InnerException == null) ? null : InnerException.Message;
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

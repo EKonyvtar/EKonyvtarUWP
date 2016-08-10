@@ -70,6 +70,7 @@
         </Style>
 
         <common:ObjectToMenuItemConverter x:Key="ObjectToMenuItemConverter"/>
+        <common:BooleanInverterConverter x:Key="BooleanInverterConverter"/>
 
         <common:BooleanToVisibilityConverter x:Key="TrueToVisibleConverter"/>
         <common:BooleanToVisibilityConverter x:Key="FalseToVisibleConverter" IsReversed="True"/>

@@ -13,17 +13,21 @@ namespace EKonyvtarUW.Services
     public class FavoriteService
     {
 
+        static FavoriteService()
+        {
+            LoadFavorites();
+        }
+
         private static string favoriteFileName = "favorites.json";
 
         private static List<Book> _favorites = null;
-        public static IList<Book> Favorites
+        public static List<Book> Favorites
         {
             get
             {
                 if (_favorites == null)
-                {
                     LoadFavorites();
-                }
+
                 return _favorites;
             }
         }
@@ -58,6 +62,8 @@ namespace EKonyvtarUW.Services
 
         public static async Task<List<Book>> SearchFavoriteAsync(string text)
         {
+            if (Favorites == null)
+                await LoadFavorites();
 
             var filtered = Favorites?.Where(t =>
                 t.Title.Contains(text) ||
@@ -67,7 +73,7 @@ namespace EKonyvtarUW.Services
             return filtered.ToList();
         }
 
-        private static async void LoadFavorites()
+        private static async Task LoadFavorites()
         {
             try
             {
@@ -75,6 +81,10 @@ namespace EKonyvtarUW.Services
                 StorageFile favoriteFile = await ApplicationData.Current.LocalFolder.GetFileAsync(favoriteFileName);
                 string json = await Windows.Storage.FileIO.ReadTextAsync(favoriteFile);
                 _favorites = JsonConvert.DeserializeObject<List<Book>>(json);
+            }
+            catch (UnauthorizedAccessException uex)
+            {
+                // Swallow unathorized exception
             }
             catch (Exception ex)
             {

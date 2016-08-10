@@ -7,12 +7,22 @@ using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace EKonyvtarUW.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : ViewModelBase, INotifyPropertyChanged
     {
         public static string PAGE_FAVORITE = "ekonyvtar:page:favorite";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
 
         private readonly INavigationService _navigationService;
         public NotifyTaskCompletion<List<Book>> Favorites { get; set; }
@@ -48,7 +58,7 @@ namespace EKonyvtarUW.ViewModels
                     //Regenerate Async results
                     Books = new NotifyTaskCompletion<List<Book>>(MekService.SearchBookAsync(_searchText));
                 }
-
+                NotifyPropertyChanged("SearchText");
             }
         }
         public string Title
