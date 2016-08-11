@@ -26,15 +26,24 @@
                 </Grid>
             </CommandBar.Content>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Olvasás" Icon="Read" Click="ReadButton_Click"/>
-                <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}"/>
-                <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
+                <AppBarButton Label="Olvasás" Icon="Read" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>
+                <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}" IsEnabled="{Binding IsReady}"/>
+                <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click" IsEnabled="{Binding IsReady}"/>
                 <AppBarButton Label="Honlap" Icon="World" Click="OpenMek_Click"/>
-                <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click"/>
+                <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click" IsEnabled="{Binding IsReady}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <!-- TODO: Disable all other actions -->
-        <ProgressBar IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsIndeterminate="{Binding IsLoading}" Minimum="0" Maximum="100" Grid.Row="0" VerticalAlignment="Bottom"/>
+        <ProgressBar
+            Grid.Row="0" 
+            VerticalAlignment="Bottom"
+            Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
+            IsIndeterminate="True" Minimum="0" Maximum="100" 
+            IsDoubleTapEnabled="False"
+            IsHoldingEnabled="False"
+            IsRightTapEnabled="False"
+            IsTapEnabled="False"
+        />
 
         <Grid Grid.Row="1" Style="{StaticResource ContentContainer}">
             <Hub>
@@ -45,8 +54,8 @@
 
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <AppBarButton Label="Kedvenc" Icon="Favorite" Click="FavoriteButton_Click" Foreground="{Binding book.IsFavorite, Converter={StaticResource FavoriteColorConverter}}"/>
-                                <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click"/>
-                                <AppBarButton Label="Megosztás" Click="Share_Click">
+                                <AppBarButton Label="Letöltés" Icon="Download" Click="SaveButton_Click" IsEnabled="{Binding IsReady}"/>
+                                <AppBarButton Label="Megosztás" Click="Share_Click" IsEnabled="{Binding IsReady}" >
                                     <AppBarButton.Icon>
                                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;"/>
                                     </AppBarButton.Icon>

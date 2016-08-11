@@ -106,11 +106,12 @@ namespace EKonyvtarUW.Models
             {
                 _Media = value;
                 NotifyPropertyChanged("Media");
-                NotifyPropertyChanged("ContentUri");
+                NotifyPropertyChanged("PreferedMedia");
                 NotifyPropertyChanged("MediaDictionary");
             }
         }
 
+        //TODO: switch this to human readable
         public IEnumerable<KeyValuePair<string, string>> MediaDictionary
         {
             get
@@ -124,6 +125,19 @@ namespace EKonyvtarUW.Models
                 catch { }
                 return null;
             }
+        }
+
+        private string _preferedMedia = null;
+        public string PreferedMedia
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_preferedMedia))
+                    return Media.FirstOrDefault() ?? "";
+
+                return _preferedMedia;
+            }
+            set { _preferedMedia = value; }
         }
         public string ContentUri
         {
