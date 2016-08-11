@@ -133,7 +133,7 @@ namespace EKonyvtarUW.Models
             get
             {
                 if (string.IsNullOrWhiteSpace(_preferedMedia))
-                    return Media.FirstOrDefault() ?? "";
+                    return Media?.FirstOrDefault() ?? "";
 
                 return _preferedMedia;
             }
@@ -145,15 +145,7 @@ namespace EKonyvtarUW.Models
             {
                 try
                 {
-                    String content = Media.FirstOrDefault() ?? "";
-                    if (Regex.IsMatch(content, "\\.pdf$"))
-                        return String.Format("https://docs.google.com/gview?url={0}&embedded=true", content);
-
-                    //
-                    if (Regex.IsMatch(content, "\\.doc[x]?$"))
-                        return String.Format("http://view.officeapps.live.com/op/view.aspx?src={0}", content);
-
-                    return content;
+                   
                 }
                 catch { }
                 return null;

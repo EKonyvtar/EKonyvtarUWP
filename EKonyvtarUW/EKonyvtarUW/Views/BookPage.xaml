@@ -33,7 +33,7 @@
                 <AppBarButton Label="Megosztás" Icon="ReShare" Click="Share_Click" IsEnabled="{Binding IsReady}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-        <!-- TODO: Disable all other actions -->
+        
         <ProgressBar
             Grid.Row="0" 
             VerticalAlignment="Bottom"
@@ -61,7 +61,15 @@
                                     </AppBarButton.Icon>
                                 </AppBarButton>
                             </StackPanel>
-                            <ComboBox x:Name="SourceList" ItemsSource="{Binding book.MediaDictionary}"  Margin="8"  Width="180" HorizontalAlignment="Center" DisplayMemberPath="Key" IsEnabled="{Binding IsReady}" IsEnabledChanged="FileType_IsEnabledChanged" SelectionChanged="FileType_SelectionChanged" Visibility="Collapsed"/>
+                            <ComboBox HorizontalAlignment="Center"
+                                      Margin="8"  Width="180"
+                                      DisplayMemberPath="Key"
+                                      ItemsSource="{Binding book.MediaDictionary}"
+                                      IsEnabled="{Binding IsReady}"
+                                      IsEnabledChanged="MediaSelector_IsEnabledChanged"
+                                      SelectionChanged="MediaSelector_SelectionChanged"
+                                      Visibility="Collapsed"
+                            />
                             <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>
                         </StackPanel>
                     </DataTemplate>

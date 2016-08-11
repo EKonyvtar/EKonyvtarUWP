@@ -4,14 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
+    mc:Ignorable="d">
 
-    <StackPanel>
-        <StackPanel Name="progress"> <!-- Visibility="{Binding IsLoadingVisible}"> -->
-            <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" />
-            <ProgressRing IsActive="True" Width="60" Height="60" VerticalAlignment="Center" Margin="0,100,0,20" />
-            <TextBlock HorizontalAlignment="Center" FontWeight="Medium" FontSize="24">Könyv betöltése...</TextBlock>
+    <Grid Style="{StaticResource ContentContainer}">
+        <WebView Source="{Binding MediaUri}" x:Name="WebView"/>
+        <StackPanel x:Name="Progress" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ProgressRing IsActive="True" Width="60" Height="60" HorizontalAlignment="Center" />
+            <TextBlock FontWeight="Medium" FontSize="24">Könyv betöltése...</TextBlock>
         </StackPanel>
-        <WebView Name="wv" Source="{Binding book.ContentUri}" Width="500" Height="500" />
-    </StackPanel>
+    </Grid>
 </Page>

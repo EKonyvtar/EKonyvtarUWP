@@ -2,6 +2,7 @@
 using EKonyvtarUW.Services;
 using EKonyvtarUW.ViewModels;
 using System;
+using System.Text.RegularExpressions;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -12,43 +13,41 @@ namespace EKonyvtarUW.Views
     /// </summary>
     public sealed partial class BookReader : Page
     {
-        public Book book;
+        private Book book;
+
         public BookReader()
         {
             this.InitializeComponent();
             book = new Book();
-            wv.Navigate(new Uri("about:blank"));
+            WebView.Navigate(new Uri("about:blank"));
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e != null && e.Parameter != null)
             {
-                // book = (Book)e.Parameter;
-                // progress.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                // wv.Navigate(new Uri(book.ContentUri));
-                wv.Navigate(new Uri((string)e.Parameter));
-                wv.NavigationCompleted += Wv_NavigationCompleted;
+                book = (Book)e.Parameter;
+                var MediaUri = new Uri(GetMediaUri(book.PreferedMedia));
+                WebView.Navigate(MediaUri);
+                WebView.NavigationCompleted += WebView_NavigationCompleted;
             }
         }
 
-        private void Wv_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        private string GetMediaUri(string content)
         {
-            progress.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            
+            if (Regex.IsMatch(content, "\\.pdf$"))
+                return String.Format("https://docs.google.com/gview?url={0}&embedded=true", content);
+
+            if (Regex.IsMatch(content, "\\.doc[x]?$"))
+                return String.Format("http://view.officeapps.live.com/op/view.aspx?src={0}", content);
+
+            return content;
         }
 
-        private void Page_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
+        private void WebView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
-            try
-            {
-                wv.Width = this.ActualWidth;
-                wv.Height = this.ActualHeight;
-            }
-            catch
-            {
+            Progress.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
-            }
         }
     }
 }

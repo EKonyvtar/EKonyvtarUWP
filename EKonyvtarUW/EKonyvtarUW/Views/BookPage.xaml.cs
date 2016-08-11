@@ -52,10 +52,17 @@ namespace EKonyvtarUW.Views
 
         private void ReadButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(BookReader), vm.book.ContentUri); //vm.ActiveUrl
+            Frame.Navigate(typeof(BookReader), vm.book);
         }
 
-        private void FileType_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
+        private async void SaveButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            //var picker = new FileSavePicker();
+            //StorageFile file = picker.PickSaveFileAndContinue();
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.PreferedMedia));
+        }
+
+        private void MediaSelector_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
         {
             var combo = (ComboBox)sender;
             try
@@ -71,20 +78,13 @@ namespace EKonyvtarUW.Views
             vm.IsLoading = false;
         }
 
-        private async void SaveButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            //var picker = new FileSavePicker();
-            //StorageFile file = picker.PickSaveFileAndContinue();
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.ActiveUrl));
-        }
-
-        private void FileType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MediaSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 var combo = (ComboBox)sender;
                 var item = (KeyValuePair<string, string>)combo.SelectedItem;
-                vm.ActiveUrl = item.Value;
+                vm.book.PreferedMedia = item.Value;
             }
             catch { }
         }
