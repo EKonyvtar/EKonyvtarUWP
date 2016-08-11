@@ -41,6 +41,9 @@ namespace EKonyvtarUW.Views
             if (Regex.IsMatch(content, "\\.doc[x]?$"))
                 return String.Format("http://view.officeapps.live.com/op/view.aspx?src={0}", content);
 
+            if (Regex.IsMatch(content, "\\.rtf[x]?$"))
+                return String.Format("http://view.officeapps.live.com/op/view.aspx?src={0}", content);
+
             return content;
         }
 
