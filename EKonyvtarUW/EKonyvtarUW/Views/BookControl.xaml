@@ -19,22 +19,11 @@
         </Grid>
 
         <Grid Height="216" Width="174">
-            <!--<Image
-            x:Name="image"
-            Source="{Binding ThumbnailUrl}"
-            Height="224"
-            Width="182"
-            Stretch="UniformToFill"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-        >
-            </Image>-->
-
             <!--Visibility="{Binding DbId, Converter={StaticResource EmptyToHiddenConverter}}"-->
             <Border
-                Height="224"
-                Width="182"
-                CornerRadius="18"
+                Height="216"
+                Width="174"
+                CornerRadius="6"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Background="LightGoldenrodYellow"
@@ -50,7 +39,7 @@
                     Text="{Binding Title, Mode=OneTime}"
                 />
             </Border>
-            
+
             <Border
                 Height="224"
                 Width="182"
@@ -62,8 +51,6 @@
                     <ImageBrush ImageSource="{Binding ThumbnailUrl, Mode=OneTime}" />
                 </Border.Background>
             </Border>
-
-            
         </Grid>
     </Grid>
 </UserControl>
