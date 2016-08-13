@@ -89,7 +89,7 @@
                     </DataTemplate>
                 </HubSection>
                 <HubSection Header="Bevezető és tartalom"
-                            Width="400"
+                            MaxWidth="400"
                             Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}">
                     <DataTemplate>
                         <ScrollViewer
@@ -102,7 +102,7 @@
                         </ScrollViewer>
                     </DataTemplate>
                 </HubSection>
-                <HubSection Header="Adatlap" MaxWidth="420"
+                <HubSection Header="Adatlap" MaxWidth="450"
                             Visibility="{Binding Path=book.Abbreviation, Converter={StaticResource EmptyToHiddenConverter}}" >
                     <DataTemplate>
                         <TextBlock Text="{Binding book.Abbreviation}" Style="{StaticResource ContentBodyTextBlockStyle}" />

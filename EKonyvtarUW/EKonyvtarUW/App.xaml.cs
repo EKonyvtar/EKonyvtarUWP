@@ -4,8 +4,11 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Phone.UI.Input;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace EKonyvtarUW
@@ -76,6 +79,38 @@ namespace EKonyvtarUW
             {
                 // Ensure the current window is active
                 Window.Current.Activate();
+
+                var titleColor = (Color)App.Current.Resources.ThemeDictionaries["SystemAccentColor"];
+                //PC customization
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+                {
+                    var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                    if (titleBar != null)
+                    {
+
+                        titleBar.ForegroundColor = Colors.White;
+                        titleBar.ButtonForegroundColor = Colors.White;
+                        titleBar.InactiveForegroundColor = Colors.LightGray;
+
+                        titleBar.BackgroundColor = titleColor;
+                        titleBar.ButtonBackgroundColor = titleColor;
+                        titleBar.ButtonHoverBackgroundColor = titleColor;
+                        titleBar.ButtonInactiveBackgroundColor = titleColor;
+                        titleBar.InactiveBackgroundColor = titleColor;
+                    }
+                }
+
+                //Mobile customization
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    var statusBar = StatusBar.GetForCurrentView();
+                    if (statusBar != null)
+                    {
+                        statusBar.BackgroundOpacity = 1;
+                        statusBar.BackgroundColor = titleColor;
+                        statusBar.ForegroundColor = Colors.White;
+                    }
+                }
             }
         }
 

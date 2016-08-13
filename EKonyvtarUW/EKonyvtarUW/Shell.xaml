@@ -28,7 +28,6 @@
                             Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}"
                             Style="{StaticResource MenuButtonStyle}"
                             Background="{ThemeResource SystemControlBackgroundAccentBrush}"
-                            Foreground="White"
                             Margin="-8,-4"
                             Width="64"
                             Height="56"

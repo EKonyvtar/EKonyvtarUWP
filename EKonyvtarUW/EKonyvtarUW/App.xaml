@@ -9,8 +9,16 @@
     mc:Ignorable="d"
     RequestedTheme="Light">
 
+
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+
+        <!-- Theme and color -->
+        <Color x:Key="SystemAccentColor">#2990CC</Color>
+        <Color x:Key="AppTitleBarColor">AliceBlue</Color>
+        <SolidColorBrush x:Key="AppTitleBarBrush" Color="{StaticResource SystemAccentColor}" Opacity="0.2"></SolidColorBrush>
+
+
 
         <!-- Menu Style -->
         <Style x:Key="MenuButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">
@@ -19,6 +27,8 @@
             <Setter Property="FontSize" Value="22" />
             <Setter Property="Width" Value="48" />
             <Setter Property="Height" Value="48" />
+            <Setter Property="Background" Value="#4783B7" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
 
         <Style x:Key="MenuIconTextBlockStyle" TargetType="TextBlock"  BasedOn="{StaticResource BodyTextBlockStyle}">
@@ -37,21 +47,13 @@
 
         <!-- Top bar -->
         <Style x:Key="AppToolbarGridStyle" TargetType="Grid">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <SolidColorBrush Color="AliceBlue" Opacity="0.3"></SolidColorBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Opacity" Value="0.75" />
+            <Setter Property="Background" Value="{StaticResource AppTitleBarBrush}" />
+            <Setter Property="Opacity" Value="0.8" />
         </Style>
 
         <Style x:Key="AppToolbarCommandBarStyle" TargetType="CommandBar">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <SolidColorBrush Color="AliceBlue" Opacity="0.3"></SolidColorBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Opacity" Value="0.75" />
+            <Setter Property="Background" Value="{StaticResource AppTitleBarBrush}" />
+            <Setter Property="Opacity" Value="0.8" />
         </Style>
 
         <Style x:Key="AppHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
