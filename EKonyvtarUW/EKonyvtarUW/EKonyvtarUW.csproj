@@ -94,6 +94,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\BookControl.png" />
     <Content Include="Assets\mek.sqlite" />
     <None Include="EKonyvtarUW_StoreKey.pfx" />
     <None Include="EKonyvtarUW_TemporaryKey.pfx" />

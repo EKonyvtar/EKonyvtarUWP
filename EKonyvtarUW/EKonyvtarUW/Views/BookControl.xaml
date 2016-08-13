@@ -26,16 +26,20 @@
                 CornerRadius="6"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="LightGoldenrodYellow"
                 >
+                <Border.Background>
+                    <ImageBrush ImageSource="/Assets/BookControl.png" />
+                </Border.Background>
                 <TextBlock
-                    Margin="10,40,10,10"
+                    Margin="30,50,30,50"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     MaxWidth="160"
                     TextWrapping="WrapWholeWords"
                     Style="{StaticResource ContentSubTitleTextBlockStyle}"
-                    TextAlignment="Left"
+                    TextAlignment="Center"
+                    FontWeight="Light"
+                    Foreground="#EED2B8"
                     Text="{Binding Title, Mode=OneTime}"
                 />
             </Border>
