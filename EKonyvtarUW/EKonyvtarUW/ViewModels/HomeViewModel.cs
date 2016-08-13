@@ -62,7 +62,7 @@ namespace EKonyvtarUW.ViewModels
             {
                 if (string.IsNullOrEmpty(_searchText))
                     return "Könyvajánló";
-                return String.Format("'{0}' keresés", _searchText);
+                return String.Format("'{0}' keresés találatai", _searchText);
             }
         }
     }

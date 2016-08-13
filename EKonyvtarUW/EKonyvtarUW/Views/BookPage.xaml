@@ -88,7 +88,8 @@
                         </ScrollViewer>
                     </DataTemplate>
                 </HubSection>
-                <HubSection Header="Bevezető és tartalom" MaxWidth="420" 
+                <HubSection Header="Bevezető és tartalom"
+                            Width="400"
                             Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}">
                     <DataTemplate>
                         <ScrollViewer

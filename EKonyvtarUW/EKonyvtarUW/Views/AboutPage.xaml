@@ -21,45 +21,48 @@
             <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="8" Grid.Column="1" QuerySubmitted="AboutSearch_QuerySubmitted" PlaceholderText="Keresés" />
         </Grid>
 
-
-        <Hub Grid.Row="1">
-            <Hub.Background>
-                <SolidColorBrush Color="AliceBlue" Opacity="0.5"></SolidColorBrush>
-            </Hub.Background>
-            <HubSection Width="300" Header="E-könyvtár">
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+        <Grid Grid.Row="1" Style="{StaticResource ContentContainer}">
+            <Hub>
+                <HubSection Width="340" Header="E-könyvtár alkalmazás">
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                             Az E-könyvtár alkalmazás az Országos Széchenyi Könyvtár - Magyar Elektronikus Könyvtár
                             (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
-                        </TextBlock>
+                            </TextBlock>
 
-                        <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                            <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                             Az alkalmazás fejlesztése ugyanakkor semmilyen módon nem áll kapcsolatban az
                             Országos Széchenyi Könyvtár projektjeivel és az esetleges szoftver hibákért
                             a szervezet nem tartozik felelősséggel.
-                        </TextBlock>
+                            </TextBlock>
 
-                        <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                            <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                             Az alkalmazást fejlesztette: Muráti Ákos
-                        </TextBlock>
+                            </TextBlock>
 
-                        <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}">
+                            <TextBlock Style="{StaticResource ContentSubTitleTextBlockStyle}">
                             Hivatkozások
-                        </TextBlock>
+                            </TextBlock>
 
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="Országos Széchenyi Könyvtár" Click="OpenMekHu_Click" FontSize="10" Margin="10"></Button>
-                            <Button Content="Muráti Ákos" Click="OpenMuratiHu_Click" FontSize="10" Margin="10"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Országos Széchenyi Könyvtár" Click="OpenMekHu_Click" FontSize="10" Margin="10"></Button>
+                                <Button Content="Muráti Ákos" Click="OpenMuratiHu_Click" FontSize="10" Margin="10"></Button>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </HubSection>
+                    </DataTemplate>
+                </HubSection>
 
-            <HubSection Width="400" Header="A MEK küldetésnyilatkozata" >
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                <HubSection
+                MinWidth="320"
+                MaxWidth="420"
+                Header="A MEK küldetésnyilatkozata" >
+                    <DataTemplate>
+                        <ScrollViewer
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Auto">
+                            <StackPanel Margin="0,0,14,40">
+                                <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                             Az Országos Széchényi Könyvtár keretében működő E-könyvtári Szolgáltatások Osztály célja a "könyvtár",
                             mint archiváló és szolgáltató intézmény fogalmának újraértelmezése az Internet virtuális közegében.
                             Ennek érdekében gyűjteményeket épít és gondoz, szolgáltatásokat fejleszt és üzemeltet,
@@ -67,19 +70,21 @@
                             könyvtári jellegű felhasználásával. Kiemelten foglalkozik az elektronikus publikálás problémáival és a
                             digitális megőrzés módszertani kérdéseivel, régi nyomtatványok, ritkaságok digitalizálásával, valamint
                             tapasztalatok és technológiák átadásával ösztönzi egy - együttműködésen alapuló - magyar e-könyvtári hálózat létrejöttét.
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                         A kutatás és fejlesztés mellett a magyarországi Internet egyik jelentős tartalomszolgáltatójaként ingyenes és nyilvános
                             "közkönyvtárként" működteti az egyedi és az időszaki digitális kiadványok, valamint a digitális képek archívumait (MEK, EPA és DKA),
                             melyek elsősorban oktatási, kutatási és kulturális célokra alkalmas dokumentumokat tartalmaznak. A gyűjtemények gyarapítása partnerintézmények valamint külső munkatársak és önkéntesek bevonásával történik. A szolgáltatások kialakításánál külön hangsúlyt kap a fogyatékkal élők és a határokon túli magyarok könyvtári ellátása, valamint az információkat kereső olvasók segítése, és kéréseik, javaslataik figyelembevétele. A gyűjtemények nyitottak és összekapcsolhatók más hazai vagy külföldi rendszerekkel, hozzájárulva ezzel egy jövőbeli világméretű digitális tudástár kialakulásához.
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                         Az OSZK E-könyvtári Szolgáltatások Osztálya tehát a "könyvtár" és a "könyvtáros" fogalom és arculat megújításán dolgozik,
                         olyan szolgáltatások kialakításán, amelyek megfelelnek a 3. évezred tudástársadalma igényeinek.
-                        </TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </HubSection>
-        </Hub>
+                                </TextBlock>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </HubSection>
+            </Hub>
+        </Grid>
     </Grid>
 </Page>
