@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Elektronikus Könyvtár")]
-[assembly: AssemblyDescription("Az Országos Széchenyi Könyvtár online katalógusának nem hivatalos böngésző és nem olvasó alkalmazása.")]
+[assembly: AssemblyDescription("Az Országos Széchenyi Könyvtár online katalógusának nem hivatalos böngésző és olvasó alkalmazása.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("murati.hu")]
 [assembly: AssemblyProduct("Magyar Elektronikus Könyvtár")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
