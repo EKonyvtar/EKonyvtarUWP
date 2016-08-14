@@ -13,7 +13,7 @@
         <Grid.Background>
             <ImageBrush
                 Stretch="UniformToFill"
-                ImageSource="Assets/oszk_blur.jpg"
+                ImageSource="Assets/oszk_background.png"
                 />
         </Grid.Background>
         <Grid.ColumnDefinitions>
@@ -26,8 +26,7 @@
         <!-- TODO: move all styles to single place -->
         <Button Content="&#xE700;"
                             Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}"
-                            Style="{StaticResource MenuButtonStyle}"
-                            Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                            Style="{StaticResource HamburgerButtonStyle}"
                             Margin="-8,-4"
                             Width="64"
                             Height="56"
@@ -43,7 +42,7 @@
                    Margin="0,48,0,0"
             >
             <SplitView.Pane>
-                <Grid Background="#FF2B2B2B">
+                <Grid Background="{StaticResource MenuBackgroundBrush}">
                     <ListView
                         ItemsSource="{x:Bind ViewModel.MenuItems}"
                         SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}"

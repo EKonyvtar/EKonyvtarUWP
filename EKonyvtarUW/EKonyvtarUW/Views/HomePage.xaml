@@ -74,12 +74,14 @@
         </Grid>
 
         <!-- Result Pane -->
-        <Hub Grid.Row="1"
-             Visibility="{Binding Books.Result, Mode=OneWay, Converter={StaticResource EmptyToHiddenConverter}}"
-        >
-            <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
-                <DataTemplate>
-                    <GridView
+        <Grid
+            Grid.Row="1" Style="{StaticResource ContentContainer}"
+            Visibility="{Binding Books.Result, Mode=OneWay, Converter={StaticResource EmptyToHiddenConverter}}"
+         >
+            <Hub>
+                <HubSection Name="BookResults" Header="{Binding Title, Mode=OneWay}">
+                    <DataTemplate>
+                        <GridView
                         ItemsSource="{Binding Books.Result, Mode=OneWay}"
                         ItemClick="Book_Click" 
                         IsItemClickEnabled="True"
@@ -91,27 +93,28 @@
                         ScrollViewer.VerticalScrollMode="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      >
-                        <GridView.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition/>
-                            </TransitionCollection>
-                        </GridView.Transitions>
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <bc:BookControl
+                            <GridView.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition/>
+                                </TransitionCollection>
+                            </GridView.Transitions>
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <bc:BookControl
                                     Margin="10"
                                     BorderBrush="AntiqueWhite"
                                 />
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
-                </DataTemplate>
-            </HubSection>
-        </Hub>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </DataTemplate>
+                </HubSection>
+            </Hub>
+        </Grid>
     </Grid>
 </Page>

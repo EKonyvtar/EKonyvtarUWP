@@ -105,9 +105,9 @@
 
         <ProgressRing
             Grid.Row="1"
-            IsActive="True" Width="60" Height="60" Margin="200,200,0,0"
+            IsActive="True" Width="60" Height="60" Margin="360,180,0,0"
             VerticalAlignment="Top"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Left"
             Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
         />
     </Grid>

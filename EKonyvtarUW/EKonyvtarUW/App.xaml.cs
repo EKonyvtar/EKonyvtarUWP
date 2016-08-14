@@ -101,6 +101,11 @@ namespace EKonyvtarUW
                 }
 
                 //Mobile customization
+                if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+                {
+                    var statusBar = StatusBar.GetForCurrentView();
+                    statusBar.HideAsync();
+                }
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {
                     var statusBar = StatusBar.GetForCurrentView();

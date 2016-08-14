@@ -94,6 +94,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\background.png" />
     <Content Include="Assets\BookControl.png" />
     <Content Include="Assets\mek.sqlite" />
     <None Include="EKonyvtarUW_StoreKey.pfx" />
@@ -158,6 +159,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\oszk_background.png" />
     <Content Include="Assets\oszk_blur.jpg" />
     <Content Include="Assets\Square620x620Logo.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
