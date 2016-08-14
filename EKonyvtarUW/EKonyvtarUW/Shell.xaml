@@ -21,7 +21,12 @@
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Frame x:Name="Frame" SourcePageType="{x:Bind ViewModel.SelectedPageType, Mode=TwoWay}" Grid.Column="1" />
+        <Frame
+            x:Name="Frame"
+            SourcePageType="{x:Bind ViewModel.SelectedPageType, Mode=TwoWay}"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+        />
 
         <!-- TODO: move all styles to single place -->
         <Button Content="&#xE700;"
@@ -70,12 +75,22 @@
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
+                <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="SplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="Frame.Margin" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
                         <Setter Target="SplitView.DisplayMode" Value="CompactInline" />
+                        <Setter Target="Frame.Margin" Value="48,0,0,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

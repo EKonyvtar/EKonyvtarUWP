@@ -14,6 +14,26 @@
     </Page.Resources>
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HomePageStates">
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppHeader.Margin" Value="58,16,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppHeader.Margin" Value="10,16,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -21,9 +41,7 @@
 
         <CommandBar Grid.Row="0" Style="{StaticResource AppToolbarCommandBarStyle}">
             <CommandBar.Content>
-                <Grid Margin="10">
-                    <TextBlock Text="{Binding book.Title}"  Style="{StaticResource AppHeaderTextBlockStyle}" TextWrapping="NoWrap" />
-                </Grid>
+                <TextBlock x:Name="AppHeader"  Text="{Binding book.Title}"  Style="{StaticResource AppHeaderTextBlockStyle}" TextWrapping="NoWrap" />
             </CommandBar.Content>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Olvasás" Icon="Read" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>
@@ -76,7 +94,7 @@
                     </DataTemplate>
                 </HubSection>
                 <HubSection Header="Ajánló és tartalom"
-                            MaxWidth="400"
+                            MaxWidth="360"
                             Visibility="{Binding Path=book.HasContent, Converter={StaticResource TrueToVisibleConverter}}">
                     <DataTemplate>
                         <ScrollViewer
@@ -94,21 +112,23 @@
                         </ScrollViewer>
                     </DataTemplate>
                 </HubSection>
-                <HubSection Header="Adatlap" MaxWidth="450"
+                <HubSection Header="Adatlap" MaxWidth="360"
                             Visibility="{Binding Path=book.Abbreviation, Converter={StaticResource EmptyToHiddenConverter}}" >
                     <DataTemplate>
                         <TextBlock Text="{Binding book.Abbreviation}" Style="{StaticResource ContentBodyTextBlockStyle}" />
                     </DataTemplate>
                 </HubSection>
             </Hub>
-        </Grid>
+        
 
         <ProgressRing
             Grid.Row="1"
-            IsActive="True" Width="60" Height="60" Margin="360,180,0,0"
+            IsActive="True" Width="60" Height="60" Margin="340,180,0,0"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
             Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
         />
+            
+        </Grid>
     </Grid>
 </Page>

@@ -80,6 +80,7 @@ namespace EKonyvtarUW
                 // Ensure the current window is active
                 Window.Current.Activate();
 
+
                 var titleColor = (Color)App.Current.Resources.ThemeDictionaries["SystemAccentColor"];
                 //PC customization
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
@@ -87,7 +88,6 @@ namespace EKonyvtarUW
                     var titleBar = ApplicationView.GetForCurrentView().TitleBar;
                     if (titleBar != null)
                     {
-
                         titleBar.ForegroundColor = Colors.White;
                         titleBar.ButtonForegroundColor = Colors.White;
                         titleBar.InactiveForegroundColor = Colors.LightGray;

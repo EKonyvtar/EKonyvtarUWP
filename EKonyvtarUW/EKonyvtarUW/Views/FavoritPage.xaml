@@ -7,8 +7,28 @@
     xmlns:bc="using:EKonyvtarUW.Views"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Favorit}" >
-    <!--  Background="#33808080" -->
+
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HomePageStates">
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppHeader.Margin" Value="58,16,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppHeader.Margin" Value="10,16,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -16,9 +36,7 @@
 
         <CommandBar Grid.Row="0" Style="{StaticResource AppToolbarCommandBarStyle}">
             <CommandBar.Content>
-                <Grid Margin="10,8">
-                    <TextBlock Text="Kedvencek" Style="{StaticResource AppHeaderTextBlockStyle}" />
-                </Grid>
+                <TextBlock x:Name="AppHeader"  Text="Kedvencek" Style="{StaticResource AppHeaderTextBlockStyle}" />
             </CommandBar.Content>
             <AppBarButton Icon="Delete" Label="Kiválasztott törlése" x:Name="delete" Visibility="{Binding ElementName=edit, Path=IsChecked, Converter={StaticResource TrueToVisibleConverter}}" Click="DeleteFavorite_Click" />
             <AppBarToggleButton Icon="Edit" Label="Kedvencek szerkesztése" x:Name="edit" />
@@ -38,10 +56,16 @@
             </StackPanel>
         </Grid>
 
-        <Hub Grid.Row="1" Visibility="{Binding Books.Result, Mode=OneWay,Converter={StaticResource EmptyToHiddenConverter}}">
-            <HubSection Header="{Binding Title, Mode=OneWay}">
-                <DataTemplate>
-                    <GridView
+        <!-- Result Pane -->
+        <Grid
+            Grid.Row="1" Style="{StaticResource ContentContainer}"
+            Visibility="{Binding Books.Result, Mode=OneWay, Converter={StaticResource EmptyToHiddenConverter}}"
+         >
+            <Hub
+             Visibility="{Binding Books.Result, Mode=OneWay,Converter={StaticResource EmptyToHiddenConverter}}">
+                <HubSection Header="{Binding Title, Mode=OneWay}">
+                    <DataTemplate>
+                        <GridView
                         ItemsSource="{Binding Books.Result, Mode=OneWay}"
                         IsSwipeEnabled="False"
                         
@@ -58,28 +82,29 @@
                         ScrollViewer.VerticalScrollMode="Disabled"
                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
                      >
-                        <!-- TODO: move this to common style -->
+                            <!-- TODO: move this to common style -->
 
-                        <GridView.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition/>
-                            </TransitionCollection>
-                        </GridView.Transitions>
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <bc:BookControl
+                            <GridView.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition/>
+                                </TransitionCollection>
+                            </GridView.Transitions>
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <bc:BookControl
                                     Margin="10"
                                 />
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
-                </DataTemplate>
-            </HubSection>
-        </Hub>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </DataTemplate>
+                </HubSection>
+            </Hub>
+        </Grid>
     </Grid>
 </Page>

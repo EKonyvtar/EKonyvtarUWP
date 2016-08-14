@@ -6,6 +6,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HomePageStates">
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppHeader.Margin" Value="58,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppHeader.Margin" Value="10,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -13,17 +34,17 @@
 
         <Grid Grid.Row="0" Style="{StaticResource AppToolbarGridStyle}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Névjegy" Style="{StaticResource AppHeaderTextBlockStyle}" Grid.Column="0"/>
+            <TextBlock x:Name="AppHeader"  Text="Névjegy" Style="{StaticResource AppHeaderTextBlockStyle}" Grid.Column="0"/>
             <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="8" Grid.Column="1" QuerySubmitted="AboutSearch_QuerySubmitted" PlaceholderText="Keresés" />
         </Grid>
 
         <Grid Grid.Row="1" Style="{StaticResource ContentContainer}">
-            <Hub Margin="20">
-                <HubSection Width="340" Header="E-könyvtár alkalmazás">
+            <Hub Margin="5">
+                <HubSection MaxWidth="360" Header="E-könyvtár alkalmazás">
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
@@ -54,8 +75,7 @@
                 </HubSection>
 
                 <HubSection
-                MinWidth="320"
-                MaxWidth="420"
+                MaxWidth="360"
                 Header="A MEK küldetésnyilatkozata" >
                     <DataTemplate>
                         <ScrollViewer
