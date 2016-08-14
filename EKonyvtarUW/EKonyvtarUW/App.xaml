@@ -14,7 +14,7 @@
         <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
 
         <!-- Theme and color -->
-        <Color x:Key="SystemAccentColor">#2990CC</Color>
+        <!--<Color x:Key="SystemAccentColor">#2990CC</Color>-->
 
         <Color x:Key="AppTitleBarColor">#b12324</Color>
         <Color x:Key="AppToolBarColor">#f5f5f5</Color>
@@ -79,11 +79,11 @@
 
         <!-- Content Style -->
         <Style x:Key="ContentContainer" TargetType="Grid">
-            <Setter Property="Background">
+            <!--<Setter Property="Background">
                 <Setter.Value>
                     <SolidColorBrush Color="{StaticResource ContentBackground}" Opacity="0.65"></SolidColorBrush>
                 </Setter.Value>
-            </Setter>
+            </Setter>-->
         </Style>
         <Style x:Key="ContentBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="Margin" Value="0,5,5,5" />

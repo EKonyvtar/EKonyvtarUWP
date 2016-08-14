@@ -13,7 +13,7 @@
         <Grid.Background>
             <ImageBrush
                 Stretch="UniformToFill"
-                ImageSource="Assets/oszk_blur.jpg"
+                ImageSource="Assets/background.png"
                 />
         </Grid.Background>
         <Grid.ColumnDefinitions>
