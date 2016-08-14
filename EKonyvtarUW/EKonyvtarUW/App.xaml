@@ -14,16 +14,16 @@
         <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
 
         <!-- Theme and color -->
-        <Color x:Key="SystemAccentColor">#b12324</Color>
+        <Color x:Key="SystemAccentColor">#2990CC</Color>
 
         <Color x:Key="AppTitleBarColor">#b12324</Color>
         <Color x:Key="AppToolBarColor">#f5f5f5</Color>
         <Color x:Key="HamburgerButtonColor">#d75247</Color>
         <Color x:Key="MenuBackgroundColor">#1f1f22</Color>
         <Color x:Key="MenuSelectedColor">#2c2c30r</Color>
-        <Color x:Key="ContentBackground">White</Color>
+        <Color x:Key="ContentBackground">AliceBlue</Color>
 
-        <SolidColorBrush x:Key="AppTitleBarBrush" Color="{StaticResource AppToolBarColor}" Opacity="0.95"></SolidColorBrush>
+        <SolidColorBrush x:Key="AppTitleBarBrush" Color="{StaticResource AppToolBarColor}" Opacity="0.75"></SolidColorBrush>
 
         <!-- Menu Style -->
         <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}"></SolidColorBrush>
@@ -37,7 +37,7 @@
             <Setter Property="FontSize" Value="22" />
             <Setter Property="Width" Value="48" />
             <Setter Property="Height" Value="48" />
-            <Setter Property="Background" Value="{StaticResource HamburgerButtonColor}" />
+            <Setter Property="Background" Value="{StaticResource SystemAccentColor}" />
             <Setter Property="Foreground" Value="White" />
         </Style>
 
@@ -79,7 +79,7 @@
         <Style x:Key="ContentContainer" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
-                    <SolidColorBrush Color="{StaticResource ContentBackground}" Opacity="0.75"></SolidColorBrush>
+                    <SolidColorBrush Color="{StaticResource ContentBackground}" Opacity="0.5"></SolidColorBrush>
                 </Setter.Value>
             </Setter>
         </Style>
