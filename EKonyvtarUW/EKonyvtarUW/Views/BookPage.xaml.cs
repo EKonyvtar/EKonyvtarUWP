@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -50,9 +51,15 @@ namespace EKonyvtarUW.Views
             }
         }
 
-        private void ReadButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ReadButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(BookReader), vm.book);
+            if (string.IsNullOrWhiteSpace(vm.book.PreferedMedia))
+            {
+                var dialog = new MessageDialog("A kiadvány jelenleg nem elérhető. Kérem próbálja meg újra később.");
+                await dialog.ShowAsync();
+            }
+            else
+                Frame.Navigate(typeof(BookReader), vm.book);
         }
 
         private async void SaveButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -102,6 +109,11 @@ namespace EKonyvtarUW.Views
         private async void OpenMek_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.Url));
+        }
+
+        private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(BookPage), vm.book);
         }
     }
 }

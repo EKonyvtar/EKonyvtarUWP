@@ -10,7 +10,7 @@ namespace EKonyvtarUW.Common
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if ((bool)value)
-                return new SolidColorBrush(Colors.OrangeRed);
+                return new SolidColorBrush((Color)App.Current.Resources.ThemeDictionaries["SystemAccentColor"]);
             return new SolidColorBrush(Colors.Black);
         }
 

@@ -59,6 +59,7 @@
         <Style x:Key="AppHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
             <Setter Property="Margin" Value="10,0,0,0" />
             <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="Medium" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -69,7 +70,7 @@
         <Style x:Key="ContentContainer" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
-                    <SolidColorBrush Color="AliceBlue" Opacity="0.5"></SolidColorBrush>
+                    <SolidColorBrush Color="AliceBlue" Opacity="0.75"></SolidColorBrush>
                 </Setter.Value>
             </Setter>
         </Style>

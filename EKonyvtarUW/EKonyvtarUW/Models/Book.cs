@@ -90,13 +90,30 @@ namespace EKonyvtarUW.Models
         }
 
         private string _Summary;
-        public string Summary { get { return _Summary; } set { _Summary = value; NotifyPropertyChanged("Summary"); } }
+        public string Summary
+        {
+            get { return _Summary; }
+            set
+            {
+                _Summary = value;
+                NotifyPropertyChanged("Summary");
+                NotifyPropertyChanged("HasContent");
+            }
+        }
 
 
         private string _Abbreviation;
         public string Abbreviation { get { return _Abbreviation; } set { _Abbreviation = value; NotifyPropertyChanged("Abbreviation"); } }
 
         public string Recommendation { get; set; }
+
+        public bool HasContent
+        {
+            get
+            {
+                return (!string.IsNullOrWhiteSpace(Summary) && !string.IsNullOrWhiteSpace(Recommendation));
+            }
+        }
 
         private List<string> _Media;
         public List<string> Media
@@ -145,7 +162,7 @@ namespace EKonyvtarUW.Models
             {
                 try
                 {
-                   
+
                 }
                 catch { }
                 return null;

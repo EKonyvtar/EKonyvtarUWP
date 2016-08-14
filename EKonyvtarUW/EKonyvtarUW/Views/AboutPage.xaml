@@ -22,7 +22,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Style="{StaticResource ContentContainer}">
-            <Hub>
+            <Hub Margin="20">
                 <HubSection Width="340" Header="E-könyvtár alkalmazás">
                     <DataTemplate>
                         <StackPanel>

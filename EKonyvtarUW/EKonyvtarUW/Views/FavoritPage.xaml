@@ -16,7 +16,7 @@
 
         <CommandBar Grid.Row="0" Style="{StaticResource AppToolbarCommandBarStyle}">
             <CommandBar.Content>
-                <Grid Margin="10">
+                <Grid Margin="10,8">
                     <TextBlock Text="Kedvencek" Style="{StaticResource AppHeaderTextBlockStyle}" />
                 </Grid>
             </CommandBar.Content>
