@@ -64,22 +64,12 @@ namespace EKonyvtarUW.Services
             }
         }
 
-        public static async Task<Book> GetBookByDbId(string dbId)
-        {
-            //TODO: cache toplevel
-            using (var db = DbConnection)
-            {
-                var topicList = db.Table<Book>().Where(t => t.DbId == dbId).First();
-                return topicList;
-            }
-        }
-
         public static async Task<List<Book>> SearchBookAsync(string text)
         {
             //TODO: select unique
             using (var db = DbConnection)
             {
-                var topicList = db.Table<Book>().Where(t => t.Title.Contains(text)).GroupBy(x => x.DbId).Select(x => x.First());//.Distinct();
+                var topicList = db.Table<Book>().Where(t => t.Title.Contains(text)).GroupBy(x => x.DbId).Select(x => x.First());
                 return topicList.ToList();
             }
         }

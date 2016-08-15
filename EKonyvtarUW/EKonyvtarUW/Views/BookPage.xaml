@@ -103,9 +103,11 @@
                             <StackPanel Margin="0,0,14,40">
                                 <TextBlock Text="{Binding book.Recommendation}" Style="{StaticResource ContentBodyTextBlockStyle}"
                                            Visibility="{Binding Path=book.Recommendation, Converter={StaticResource EmptyToHiddenConverter}}"/>
+                                <TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}"
+                                           Visibility="{Binding Path=book.Contents, Converter={StaticResource EmptyToHiddenConverter}}"/>
                                 <TextBlock Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"
                                            Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}"/>
-                                <!--<TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}" />-->
+                               
                             </StackPanel>
                         </ScrollViewer>
                     </DataTemplate>

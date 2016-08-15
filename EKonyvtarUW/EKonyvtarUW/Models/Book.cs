@@ -86,6 +86,7 @@ namespace EKonyvtarUW.Models
             {
                 _Contents = value;
                 NotifyPropertyChanged("Contents");
+                NotifyPropertyChanged("HasContent");
             }
         }
 
@@ -111,7 +112,7 @@ namespace EKonyvtarUW.Models
         {
             get
             {
-                return (!string.IsNullOrWhiteSpace(Summary) || !string.IsNullOrWhiteSpace(Recommendation));
+                return (!string.IsNullOrWhiteSpace(Summary) || (!string.IsNullOrWhiteSpace(Contents) || !string.IsNullOrWhiteSpace(Recommendation)));
             }
         }
 
