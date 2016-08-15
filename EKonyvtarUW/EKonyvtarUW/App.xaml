@@ -23,7 +23,7 @@
         <Color x:Key="MenuSelectedColor">#2c2c30r</Color>
         <Color x:Key="ContentBackground">AliceBlue</Color>
 
-        <SolidColorBrush x:Key="AppTitleBarBrush" Color="{StaticResource AppToolBarColor}" Opacity="0.75"></SolidColorBrush>
+        <SolidColorBrush x:Key="AppTitleBarBrush" Color="#dbdcdd" Opacity="1"></SolidColorBrush>
 
         <!-- Menu Style -->
         <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}"></SolidColorBrush>

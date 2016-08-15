@@ -68,7 +68,7 @@ namespace EKonyvtarUW.Services
             var filtered = Favorites?.Where(t =>
                 t.Title.Contains(text) ||
                 t.Summary.Contains(text) ||
-                t.Abbreviation.Contains(text)
+                t.Labels.Contains(text)
             );
             return filtered.ToList();
         }

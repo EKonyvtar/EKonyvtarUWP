@@ -24,15 +24,7 @@ namespace EKonyvtarUW.Views
 
         private async void Book_Click(object sender, ItemClickEventArgs e)
         {
-            var clicked_item = (Book)e.ClickedItem;
-            var target_uri = new ItemResolver(clicked_item.UrlId).Uri;
-            var book = new Book()
-            {
-                Title = clicked_item.Title,
-                UrlId = target_uri,
-                Recommendation = clicked_item.Recommendation
-            };
-            Frame.Navigate(typeof(BookPage), book);
+            Frame.Navigate(typeof(BookPage), (Book)e.ClickedItem);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

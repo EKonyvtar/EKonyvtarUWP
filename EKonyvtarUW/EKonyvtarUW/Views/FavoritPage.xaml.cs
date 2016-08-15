@@ -31,8 +31,7 @@ namespace EKonyvtarUW.Views
 
         private async void FavoriteBook_Click(object sender, ItemClickEventArgs e)
         {
-            var book = (Book)e.ClickedItem;
-            Frame.Navigate(typeof(BookPage), book);
+            Frame.Navigate(typeof(BookPage), (Book)e.ClickedItem);
         }
 
         private void DeleteFavorite_Click(object sender, RoutedEventArgs e)

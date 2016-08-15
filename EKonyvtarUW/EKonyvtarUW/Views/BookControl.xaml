@@ -9,7 +9,7 @@
     >
 
     <Grid>
-        <Grid Width="188" Height="230">
+        <Grid Width="188" Height="230" Opacity="0.8">
             <Rectangle Stroke="Black" Margin="5" RadiusX="7" RadiusY="7" Opacity="0.22" StrokeThickness="2"/>
             <Rectangle Stroke="Black" Margin="4" RadiusX="8" RadiusY="8" Opacity="0.2"/>
             <Rectangle Stroke="Black" Margin="3" RadiusX="9" RadiusY="9" Opacity="0.15"/>

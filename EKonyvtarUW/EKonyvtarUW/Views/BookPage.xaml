@@ -101,34 +101,32 @@
                             VerticalScrollBarVisibility="Auto"
                             VerticalScrollMode="Auto">
                             <StackPanel Margin="0,0,14,40">
-                                <TextBlock Text="{Binding book.Recommendation}" Style="{StaticResource ContentBodyTextBlockStyle}" />
-                                <TextBlock
-                                    Style="{StaticResource ContentSubTitleTextBlockStyle}"
-                                    Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}"
-                                 >Tartalom</TextBlock>
-                                <TextBlock Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"/>
+                                <TextBlock Text="{Binding book.Recommendation}" Style="{StaticResource ContentBodyTextBlockStyle}"
+                                           Visibility="{Binding Path=book.Recommendation, Converter={StaticResource EmptyToHiddenConverter}}"/>
+                                <TextBlock Text="{Binding book.Summary}" Style="{StaticResource ContentBodyTextBlockStyle}"
+                                           Visibility="{Binding Path=book.Summary, Converter={StaticResource EmptyToHiddenConverter}}"/>
                                 <!--<TextBlock Text="{Binding book.Contents}" Style="{StaticResource ContentBodyTextBlockStyle}" />-->
                             </StackPanel>
                         </ScrollViewer>
                     </DataTemplate>
                 </HubSection>
                 <HubSection Header="Adatlap" MaxWidth="360"
-                            Visibility="{Binding Path=book.Abbreviation, Converter={StaticResource EmptyToHiddenConverter}}" >
+                            Visibility="{Binding Path=book.Labels, Converter={StaticResource EmptyToHiddenConverter}}" >
                     <DataTemplate>
-                        <TextBlock Text="{Binding book.Abbreviation}" Style="{StaticResource ContentBodyTextBlockStyle}" />
+                        <TextBlock Text="{Binding book.Labels}" Style="{StaticResource ContentBodyTextBlockStyle}" />
                     </DataTemplate>
                 </HubSection>
             </Hub>
-        
 
-        <ProgressRing
-            Grid.Row="1"
-            IsActive="True" Width="60" Height="60" Margin="340,180,0,0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Left"
-            Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
-        />
-            
+
+            <ProgressRing
+                Grid.Row="1"
+                IsActive="True" Width="60" Height="60" Margin="340,180,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
+            />
+
         </Grid>
     </Grid>
 </Page>

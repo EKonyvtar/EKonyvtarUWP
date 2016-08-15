@@ -102,8 +102,8 @@ namespace EKonyvtarUW.Models
         }
 
 
-        private string _Abbreviation;
-        public string Abbreviation { get { return _Abbreviation; } set { _Abbreviation = value; NotifyPropertyChanged("Abbreviation"); } }
+        private string _Labels;
+        public string Labels { get { return _Labels; } set { _Labels = value; NotifyPropertyChanged("Labels"); } }
 
         public string Recommendation { get; set; }
 
@@ -111,7 +111,7 @@ namespace EKonyvtarUW.Models
         {
             get
             {
-                return (!string.IsNullOrWhiteSpace(Summary) && !string.IsNullOrWhiteSpace(Recommendation));
+                return (!string.IsNullOrWhiteSpace(Summary) || !string.IsNullOrWhiteSpace(Recommendation));
             }
         }
 
@@ -198,12 +198,20 @@ namespace EKonyvtarUW.Models
                 //Textual content
                 this.Contents = book.Contents;
                 this.Summary = book.Summary;
-                this.Abbreviation = book.Abbreviation;
+                this.Labels = book.Labels;
                 this.Recommendation = this.Recommendation ?? book.Recommendation;
             }
             catch (Exception ex)
             {
                 //TODO: Resolve offline page issues..
+            }
+        }
+
+        public string ShareInfo
+        {
+            get
+            {
+                return String.Format("{0}\n{1}\n\n", Title, Url);
             }
         }
     }

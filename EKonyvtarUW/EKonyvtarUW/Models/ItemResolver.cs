@@ -9,20 +9,32 @@ namespace EKonyvtarUW.Models
 {
     public class ItemResolver
     {
+        public static ItemResolver Resolve(string id)
+        {
+            return new ItemResolver(id);
+        }
+
         public Type ItemType { get; private set; }
-        public string Uri { get; private set; }
+        public string UrlId { get; private set; }
         public string Url { get; private set; }
 
 
-        public ItemResolver(string url)
+        public ItemResolver(string id)
         {
-            Url = url;
+            ItemType = typeof(Book);
+            Match matches = null;
 
-            var matches = Regex.Match(url, "(\\d+[\\\\/]\\d+)");
-            if(matches != null)
+            if (Regex.IsMatch(id, "^https?://"))
+                Url = id;
+
+            matches = Regex.Match(id, "(\\d+[\\\\/]\\d+)");
+            if (matches != null)
+                UrlId = matches.Groups[1].Value;
+
+
+            if (Regex.IsMatch(id,"\\d"))
             {
-                ItemType = typeof(Book);
-                Uri = matches.Groups[1].Value;
+                //TODO: resolve by ID only
             }
         }
     }

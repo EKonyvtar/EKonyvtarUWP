@@ -23,12 +23,12 @@ namespace EKonyvtarUW.Services
                 Select(f => new Book()
                 {
                     Title = f.Title.Text,
-                    Summary = f.Summary.Text,
-                    Recommendation = TextManipulation.StripHTML(f.Summary.Text).Replace(("^" + f.Title.Text), ""),
+                    Recommendation = TextManipulation.StripHTML(f.Summary.Text).Replace(("^" + f.Title.Text), ""), //TODO: create proper filter
                     ThumbnailUrl = new Uri(TextManipulation.GetImageUrl(f.Summary.Text)),
-                    UrlId = f.Links[0].Uri.ToString()
+                    Url = f.Links[0].Uri.ToString(),
+                    UrlId = ItemResolver.Resolve(f.Links[0].Uri.ToString()).UrlId
 
-                }).ToList<Book>();
+                }).ToList();
 
             return list;
 

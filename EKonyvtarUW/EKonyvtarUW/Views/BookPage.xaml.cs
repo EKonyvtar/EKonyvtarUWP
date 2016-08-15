@@ -21,7 +21,7 @@ namespace EKonyvtarUW.Views
         {
             this.InitializeComponent();
             vm = new BookViewModel();
-            //http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://murati.hu
+
             this.DataContext = vm;
             Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView().DataRequested += BookPage_DataRequested;
         }
@@ -30,8 +30,8 @@ namespace EKonyvtarUW.Views
         {
             if (vm != null && !string.IsNullOrWhiteSpace(vm.book.Url))
             {
-                var shareInfo = String.Format("{0}\n{1}\n\n", vm.book.Title, vm.book.Url);
-                args.Request.Data.SetText(shareInfo);
+                //http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://murati.hu
+                args.Request.Data.SetText(vm.book.ShareInfo);
                 args.Request.Data.Properties.Title = Windows.ApplicationModel.Package.Current.DisplayName;
             }
             else
@@ -42,7 +42,6 @@ namespace EKonyvtarUW.Views
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            //target_item.Uri
             if (e != null && e.Parameter != null)
             {
                 vm.book = (Book)e.Parameter;
@@ -55,7 +54,7 @@ namespace EKonyvtarUW.Views
         {
             if (string.IsNullOrWhiteSpace(vm.book.PreferedMedia))
             {
-                var dialog = new MessageDialog("A kiadvány jelenleg nem elérhető. Kérem próbálja meg újra később.");
+                var dialog = new MessageDialog(BookViewModel.BookErrorString);
                 await dialog.ShowAsync();
             }
             else
@@ -64,9 +63,13 @@ namespace EKonyvtarUW.Views
 
         private async void SaveButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //var picker = new FileSavePicker();
-            //StorageFile file = picker.PickSaveFileAndContinue();
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.PreferedMedia));
+            if (string.IsNullOrWhiteSpace(vm.book.PreferedMedia))
+            {
+                var dialog = new MessageDialog(BookViewModel.BookErrorString);
+                await dialog.ShowAsync();
+            }
+            else
+                await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.PreferedMedia));
         }
 
         private void MediaSelector_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)

@@ -11,6 +11,7 @@ namespace EKonyvtarUW.ViewModels
     {
         private readonly INavigationService _navigationService;
 
+        public static string BookErrorString = "A kiadvány jelenleg nem elérhető. Kérem próbálja meg újra később.";
         public bool IsReady { get { return !IsLoading; } }
 
         private bool _IsLoading = true;
