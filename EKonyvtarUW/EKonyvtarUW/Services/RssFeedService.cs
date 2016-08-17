@@ -31,7 +31,6 @@ namespace EKonyvtarUW.Services
                 }).ToList();
 
             return list;
-
         }
 
         public static async Task<IList<SyndicationItem>> GetFeedAsync(string url)

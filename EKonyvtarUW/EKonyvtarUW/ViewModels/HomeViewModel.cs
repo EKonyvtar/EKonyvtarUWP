@@ -45,7 +45,8 @@ namespace EKonyvtarUW.ViewModels
 
                 if (string.IsNullOrEmpty(_searchText))
                 {
-                    Books = new NotifyTaskCompletion<List<Book>>(RssFeedService.GetMekFeedAsync());
+                    //Books = new NotifyTaskCompletion<List<Book>>(RssFeedService.GetMekFeedAsync());
+                    Books = new NotifyTaskCompletion<List<Book>>(RecommendationService.GetRecommendation());
                     //TODO: Categories = new NotifyTaskCompletion<List<string>>(LocalMekService.GetCategories());
                 }
                 else

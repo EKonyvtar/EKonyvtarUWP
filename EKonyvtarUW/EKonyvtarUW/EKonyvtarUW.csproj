@@ -97,6 +97,7 @@
     <Content Include="Assets\background.png" />
     <Content Include="Assets\BookControl.png" />
     <Content Include="Assets\mek.sqlite" />
+    <Content Include="Assets\recommendation.json" />
     <None Include="EKonyvtarUW_StoreKey.pfx" />
     <None Include="EKonyvtarUW_TemporaryKey.pfx" />
     <None Include="project.json" />
@@ -118,6 +119,7 @@
     <Compile Include="Models\TextManipulation.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Services\FavoriteService.cs" />
+    <Compile Include="Services\RecommendationService.cs" />
     <Compile Include="Services\MekService.cs" />
     <Compile Include="Services\OnlineMekService.cs" />
     <Compile Include="Services\LocalMekService.cs" />
@@ -205,6 +207,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
     <SDKReference Include="SQLite.UWP.2015, Version=3.13.0">
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>

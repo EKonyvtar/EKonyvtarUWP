@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:admin="http://webns.net/mvcb/"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+>
+
+  <channel rdf:about="http://mek.oszk.hu/">
+    <title><![CDATA[MEK]]></title>
+    <link>http://mek.oszk.hu/</link>
+    <description><![CDATA[Magyar Elektronikus Könyvtár]]></description>
+    <dc:language>hu</dc:language>
+    <dc:date>2016-08-16T13:20:03+00:00</dc:date>
+    <dc:creator><![CDATA[Országos Széchenyi Könyvtár]]></dc:creator>
+    <syn:updateBase>1901-01-01T00:00+00:00</syn:updateBase>
+    <syn:updateFrequency>1</syn:updateFrequency>
+    <syn:updatePeriod>daily</syn:updatePeriod>
+    <items>
+      <rdf:Seq>
+        <rdf:li rdf:resource="http://mek.oszk.hu/15800/15851/?from=rss" />
+        
+      </rdf:Seq>
+    </items>
+  </channel>
+  <item rdf:about="http://mek.oszk.hu/15800/15851/?from=rss">
+    <title><![CDATA[]]></title>
+    <link>http://mek.oszk.hu/15800/15851/?from=rss</link>
+    <description><![CDATA[<img src="http://mek.oszk.hu/15800/15851/borito.jpg" />]]></description>
+    <dc:date>2016-08-16T00:00:00+00:00</dc:date>
+  </item>
+</rdf:RDF>

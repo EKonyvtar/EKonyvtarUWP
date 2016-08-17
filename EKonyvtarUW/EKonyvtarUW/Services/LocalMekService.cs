@@ -21,8 +21,8 @@ namespace EKonyvtarUW.Services
             //Test file if exists
             try
             {
-                StorageFile file2 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/mek.sqlite"));
-                await file2.CopyAsync(ApplicationData.Current.LocalFolder, dbFile);
+                StorageFile mekDb = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/mek.sqlite"));
+                await mekDb.CopyAsync(ApplicationData.Current.LocalFolder, dbFile);
             }
             catch
             {

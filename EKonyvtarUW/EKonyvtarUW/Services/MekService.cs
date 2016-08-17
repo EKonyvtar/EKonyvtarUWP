@@ -67,7 +67,7 @@ namespace EKonyvtarUW.Services
                 if (offline != null)
                     result.AddRange(offline);
             }
-            catch
+            catch (Exception ex)
             {
                 fault = true;
             }
