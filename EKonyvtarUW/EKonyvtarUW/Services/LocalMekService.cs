@@ -38,8 +38,6 @@ namespace EKonyvtarUW.Services
                 var db_path = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbFile);
                 if (!File.Exists(db_path))
                     CopyDatabaseFile().RunSynchronously();
-
-
                 return new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), db_path);
             }
         }
@@ -59,17 +57,21 @@ namespace EKonyvtarUW.Services
         {
             using (var db = DbConnection)
             {
-                var topicList = db.Table<Book>().Where(t => t.UrlId == uriId).FirstOrDefault();
+                var topicList = db.Table<Book>().Where(b => b.UrlId == uriId).FirstOrDefault();
                 return topicList;
             }
         }
 
         public static async Task<List<Book>> SearchBookAsync(string text)
         {
-            //TODO: select unique
             using (var db = DbConnection)
             {
-                var topicList = db.Table<Book>().Where(t => t.Title.Contains(text)).GroupBy(x => x.DbId).Select(x => x.First());
+                var topicList = db.Table<Book>().Where(b =>
+                    b.Title.Contains(text) ||
+                    b.Creators.Contains(text) ||
+                    b.SubTitle.Contains(text) ||
+                    b.Creators.Contains(text)
+                ).GroupBy(x => x.DbId).Select(x => x.First());
                 return topicList.ToList();
             }
         }
