@@ -41,7 +41,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="AppHeader" Text="Elektronikus Könyvtár" Style="{StaticResource AppHeaderTextBlockStyle}" Grid.Column="0"/>
-            <AutoSuggestBox x:Name="Search" QueryIcon="Find" Margin="4,8,4,8" Grid.Column="1" QuerySubmitted="Search_QuerySubmitted" PlaceholderText="Keresés" />
+            <AutoSuggestBox x:Name="Search" QueryIcon="Find" Margin="4,8,4,8" Grid.Column="1" QuerySubmitted="Search_QuerySubmitted" PlaceholderText="Keresés" Text="{Binding SearchText, Mode=OneWay}"/>
         </Grid>
 
         <!-- Empty Result Pane -->

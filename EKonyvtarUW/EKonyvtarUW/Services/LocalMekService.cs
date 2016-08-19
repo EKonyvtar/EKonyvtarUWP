@@ -21,6 +21,7 @@ namespace EKonyvtarUW.Services
             //Test file if exists
             try
             {
+                //C:\Users\akos.murati\AppData\Local\Packages\25172murati.hu.MagyarElektronikusKonyvtar_9w49m19w6vm4w\LocalState
                 StorageFile mekDb = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/mek.sqlite"));
                 await mekDb.CopyAsync(ApplicationData.Current.LocalFolder, dbFile);
             }
