@@ -38,7 +38,9 @@ namespace EKonyvtarUW.Models
             //TODO: implement proper HTML Text conversion 
             return Regex.Replace
               (inputString.Replace(
-                  "&quot;", "'").Replace(
+                "&ucirc;", "ű").Replace(
+                "&otilde;", "ő").Replace(
+                "&quot;", "'").Replace(
                   "õ", "ő").Replace(
                   "û", "ű"),
                   HTML_TAG_PATTERN, string.Empty);
