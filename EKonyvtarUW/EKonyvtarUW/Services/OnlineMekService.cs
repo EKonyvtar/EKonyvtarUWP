@@ -72,7 +72,7 @@ namespace EKonyvtarUW.Services
                 //TODO populate list in a more smart way
                 HttpClient httpClient = new HttpClient();
                 book.Media = new List<string>();
-                foreach (var ext in new string[] { "{1}.pdf", "{1}.html", "{1}.htm", "pdf/{1}.pdf", "pdf/{1}_1.pdf", "pdf/{1}_2.pdf", "{1}.doc", "html/" }) //"{1}.rtf"
+                foreach (var ext in new string[] { "{1}.pdf", "{1}.html", "{1}.htm", "pdf/{1}.pdf", "pdf/{1}_1.pdf", "pdf/{1}_2.pdf", "{1}.doc", "html/", "pdf/" }) //"{1}.rtf"
                 {
                     if (book.Media.Count > 2) break;
                     var mediaUrl = String.Format(("http://mek.oszk.hu/{0}/" + ext), urlId, shortUrlId);

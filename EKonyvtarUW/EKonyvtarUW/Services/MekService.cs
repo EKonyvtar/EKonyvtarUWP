@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 
 namespace EKonyvtarUW.Services
@@ -75,6 +76,11 @@ namespace EKonyvtarUW.Services
             if (result.Count > 1)
             {
                 result = result.GroupBy(b => b.UrlId).Select(grp => grp.First()).ToList();
+            }
+
+            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+            {
+                result = result.Take(30).ToList();
             }
             return result;
         }
