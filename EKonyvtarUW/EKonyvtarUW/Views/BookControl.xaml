@@ -5,11 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:common="using:EKonyvtarUW.Common"
     x:Class="EKonyvtarUW.Views.BookControl"
-    mc:Ignorable="d" Height="230" Width="190"
+    mc:Ignorable="d" Height="300" Width="190"
     >
 
-    <Grid>
-        <Grid Width="188" Height="230" Opacity="0.8">
+    <Grid Width="188" Height="300">
+        <Grid Width="188" Height="230" Opacity="0.8" VerticalAlignment="Top">
             <Rectangle Stroke="Black" Margin="5" RadiusX="7" RadiusY="7" Opacity="0.22" StrokeThickness="2"/>
             <Rectangle Stroke="Black" Margin="4" RadiusX="8" RadiusY="8" Opacity="0.2"/>
             <Rectangle Stroke="Black" Margin="3" RadiusX="9" RadiusY="9" Opacity="0.15"/>
@@ -18,7 +18,7 @@
             <Rectangle Stroke="Black" Margin="0" RadiusX="12" RadiusY="12" Opacity="0.01"/>
         </Grid>
 
-        <Grid Height="216" Width="174">
+        <Grid Height="216" Width="174" VerticalAlignment="Top" Margin="0,7,0,0">
             <!--Visibility="{Binding DbId, Converter={StaticResource EmptyToHiddenConverter}}"-->
             <Border
                 Height="216"
@@ -56,5 +56,17 @@
                 </Border.Background>
             </Border>
         </Grid>
+        <TextBlock
+                    Margin="30,230,30,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    MaxWidth="160"
+                    TextWrapping="WrapWholeWords"
+                    Style="{StaticResource ContentSubTitleTextBlockStyle}"
+                    TextAlignment="Center"
+                    FontWeight="Light"
+                    Foreground="Black"
+                    Text="{Binding Title, Mode=OneTime}"
+                />
     </Grid>
 </UserControl>

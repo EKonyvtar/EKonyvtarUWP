@@ -16,6 +16,7 @@ namespace EKonyvtarUW
 
             var vm = new ShellViewModel();
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Könyvajánló", PageType = typeof(HomePage) });
+            //vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Legújabb könyvek", PageType = typeof(HomePage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Kedvencek", PageType = typeof(FavoritPage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Névjegy", PageType = typeof(AboutPage) });
 

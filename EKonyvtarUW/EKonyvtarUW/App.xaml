@@ -104,6 +104,9 @@
         <common:BooleanToVisibilityConverter x:Key="TrueToVisibleConverter"/>
         <common:BooleanToVisibilityConverter x:Key="FalseToVisibleConverter" IsReversed="True"/>
 
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToFalseConverter" />
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToTrueConverter" IsReversed="True"/>
+        
         <common:EmptyStateToVisibilityConverter x:Key="EmptyToHiddenConverter" />
         <common:EmptyStateToVisibilityConverter x:Key="EmptyToVisibleConverter" IsReversed="True"/>
     </Application.Resources>

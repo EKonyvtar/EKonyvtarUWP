@@ -89,7 +89,7 @@
                                       SelectionChanged="MediaSelector_SelectionChanged"
                                       Visibility="Collapsed"
                             />
-                            <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding IsReady}"/>
+                            <Button Content="Olvasás"  Margin="0,4,0,4"  HorizontalAlignment="Center" Width="180" Click="ReadButton_Click" IsEnabled="{Binding book.PreferedMedia, Converter={StaticResource EmptyToFalseConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </HubSection>

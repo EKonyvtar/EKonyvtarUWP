@@ -155,7 +155,10 @@ namespace EKonyvtarUW.Models
 
                 return _preferedMedia;
             }
-            set { _preferedMedia = value; }
+            set {
+                _preferedMedia = value;
+                NotifyPropertyChanged("PreferedMedia");
+            }
         }
         public string ContentUri
         {

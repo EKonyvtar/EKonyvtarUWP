@@ -7,26 +7,21 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Storage;
 using System.Linq;
+using System.Threading;
 
 namespace EKonyvtarUW.Services
 {
-    public class FavoriteService
+    public static class FavoriteService
     {
-
-        static FavoriteService()
-        {
-            LoadFavorites();
-        }
-
-        private static string favoriteFileName = "favorites.json";
+        private const string favoriteFileName = "favorites.json";
+        static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private static List<Book> _favorites = null;
         public static List<Book> Favorites
         {
             get
             {
-                if (_favorites == null)
-                    LoadFavorites();
+                CheckInitialized();
 
                 return _favorites;
             }
@@ -34,36 +29,54 @@ namespace EKonyvtarUW.Services
 
         public static bool IsBookFavorited(Book book)
         {
+            CheckInitialized();
+
             var filtered = GetBook(book);
             return (filtered != null);
         }
 
-        public static void AddBook(Book book)
+        private static void CheckInitialized()
         {
-            //TODO: save stripped
+            if (_favorites == null)
+            {
+                LoadFavorites();
+            }
+        }
+
+        public static async Task AddBook(Book book)
+        {
+            CheckInitialized();
+
             if (!IsBookFavorited(book))
-                _favorites.Add(book);
+                Favorites.Add(book);
 
             SaveFavorites();
         }
 
         public static void RemoveBook(Book book)
         {
+            CheckInitialized();
+
             var filtered = GetBook(book);
             if (filtered != null)
-                _favorites.Remove(filtered);
+                Favorites.Remove(filtered);
             SaveFavorites();
         }
 
         public static Book GetBook(Book book)
         {
+            CheckInitialized();
+
             return Favorites?.Where(t => t.UrlId == book.UrlId).FirstOrDefault();
         }
 
         public static async Task<List<Book>> SearchFavoriteAsync(string text)
         {
+            CheckInitialized();
+
             if (Favorites == null)
                 await LoadFavorites();
+
 
             var filtered = Favorites?.Where(t =>
                 t.Title.Contains(text) ||
@@ -75,6 +88,7 @@ namespace EKonyvtarUW.Services
 
         private static async Task LoadFavorites()
         {
+            await semaphoreSlim.WaitAsync();
             try
             {
                 //CheatSheet: https://msdn.microsoft.com/en-us/windows/uwp/files/quickstart-reading-and-writing-files
@@ -88,18 +102,26 @@ namespace EKonyvtarUW.Services
             }
             catch (FileNotFoundException)
             {
-                _favorites = new List<Book>();
-                SaveFavorites(); //Create the empty file
             }
             catch (Exception ex)
             {
                 //Unknown exception yet
+
+            }
+            finally
+            {
+                semaphoreSlim.Release();
+            }
+
+            if (_favorites == null)
+            {
                 _favorites = new List<Book>();
             }
         }
 
         private static async void SaveFavorites()
         {
+            await semaphoreSlim.WaitAsync();
             try
             {
                 var json = JsonConvert.SerializeObject(_favorites);
@@ -111,6 +133,10 @@ namespace EKonyvtarUW.Services
             catch (Exception ex)
             {
                 // File not found exception 
+            }
+            finally
+            {
+                semaphoreSlim.Release();
             }
         }
     }

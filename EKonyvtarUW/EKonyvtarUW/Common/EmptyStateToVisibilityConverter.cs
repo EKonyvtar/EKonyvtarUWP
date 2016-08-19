@@ -15,24 +15,7 @@ namespace EKonyvtarUW.Common
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var returnValue = (value != null);
-
-            if (value != null)
-            {
-                try // to get meaningful results from various types
-                {
-                    Type valueType = value.GetType();
-                    if (valueType == typeof(List<Book>))
-                        returnValue = (((List<Book>)value).Count > 0);
-
-                    else if (valueType == typeof(string))
-                        returnValue = !string.IsNullOrWhiteSpace((string)value);
-                }
-                catch { }
-            }
-
-            if (this.IsReversed) returnValue = !returnValue;
-            return returnValue ? Visibility.Visible : Visibility.Collapsed;
+            return EmptyStateToBooleanConverter.ConvertBoolean(value, this.IsReversed) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
