@@ -48,13 +48,13 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
-                            Az E-könyvtár alkalmazás az Országos Széchenyi Könyvtár - Magyar Elektronikus Könyvtár
+                            Az E-könyvtár alkalmazás az Országos Széchényi Könyvtár - Magyar Elektronikus Könyvtár
                             (MEK) nyilvános adatbázisára épül, amely üzemeltetőinek ez úton is köszönetet szeretnénk mondani.
                             </TextBlock>
 
                             <TextBlock Style="{StaticResource ContentBodyTextBlockStyle}">
                             Az alkalmazás fejlesztése ugyanakkor semmilyen módon nem áll kapcsolatban az
-                            Országos Széchenyi Könyvtár projektjeivel és az esetleges szoftver hibákért
+                            Országos Széchényi Könyvtár projektjeivel és az esetleges szoftver hibákért
                             a szervezet nem tartozik felelősséggel.
                             </TextBlock>
 
@@ -67,7 +67,7 @@
                             </TextBlock>
 
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Országos Széchenyi Könyvtár" Click="OpenMekHu_Click" FontSize="10" Margin="10"></Button>
+                                <Button Content="Országos Széchényi Könyvtár" Click="OpenMekHu_Click" FontSize="10" Margin="10"></Button>
                                 <Button Content="Muráti Ákos" Click="OpenMuratiHu_Click" FontSize="10" Margin="10"></Button>
                             </StackPanel>
                         </StackPanel>

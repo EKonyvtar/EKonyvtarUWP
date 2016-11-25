@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Elektronikus Könyvtár")]
-[assembly: AssemblyDescription("Az Országos Széchenyi Könyvtár online katalógusának nem hivatalos böngésző és olvasó alkalmazása.")]
+[assembly: AssemblyDescription("Az Országos Széchényi Könyvtár online katalógusának nem hivatalos böngésző és olvasó alkalmazása.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("murati.hu")]
 [assembly: AssemblyProduct("Magyar Elektronikus Könyvtár")]
