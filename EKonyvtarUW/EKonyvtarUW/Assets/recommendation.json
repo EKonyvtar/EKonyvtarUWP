@@ -332,40 +332,6 @@
     "ShareInfo": "Frank, Anne: Anne Frank naplója  / A hátsó traktus\nhttp://mek.oszk.hu/00200/00261\n\n"
   },
   {
-    "Title": "Orwell, George: 1984",
-    "ThumbnailUrl": "http://mek.oszk.hu/00800/00896/borito.jpg",
-    "DbId": "827",
-    "UrlId": "00800/00896",
-    "Url": "http://mek.oszk.hu/00800/00896",
-    "Creators": null,
-    "SubTitle": null,
-    "Year": "",
-    "Contents": "A szatírikus regény 20. századi antiutópia. A prófécia úgy    tűnik fel, nem teljesült. Ám ha elővesszük nem is túl régi történelmi tapasztalataink    emlékeit, és a ma is bőven tenyésző diktatúrákról szerzett tudásunkat, mindjárt    kiderül, hogy Orwell jóslata minden apró részletében bevált. A regény egy olyan rendszerről szól, mely kizárólag a hazugságra    és a terrorra épül. Az emberek általánosságban háromféleképpen viszonyulnak    hozzá: szenvednek tőle, de tudják, hogy a lázadás eleve lehetetlen, így apatikusak;    szenvednek tőle szellemileg jobban mint fizikailag, és fellázadnak, tudva, hogy    biztosan belebuknak; végül vannak olyan ostobák, akik nem szenvednek tőle, így    hisznek benne. Az irányítók, a Belső Párt tagjai természetesen egészen más világban    élnek. A történet főhőse a halálba induló lázadók csoportjába tartozik. Egyike    a sokszáz hivatalnoknak, akik a hivatásszerű történelemhamisítást végzik. Először    csak naplót ír, maga sem tudja kinek, mi célból. Fokozatosan egy szerelem erősokszorozó    adományával jut el addig, hogy többé nem azt kutatja, mi volt régen, mit hamisított    meg a diktatúra, és hogyan működik az egész világra kiterjedő zsarnokság, hanem    azt, hogy miért, kinek és mi öröme telik ebben. A bukás elkerülhetetlen, de    nem is a testi kínzás bemutatása a legsokkolóbb, hanem az a kegyetlenség, ahogy    módszeresen elpusztítják a lélek önállóságát és a személyes érzelmet, s a fogoly    nemcsak addig jut el, hogy szabad akaratából belátja a 2+2=5 igazságát, nemcsak    szerelmét tagadja meg, de módszeres önneveléssel ráveszi magát arra, hogy őszintén    szeresse a Nagy Testvért. A sok utalás és párhuzam nem könnyíti meg az olvasó dolgát;    nyomasztó légköre, a vallatások brutalitása el fog rettenteni sokakat. De nemcsak    érdemes elolvasni, hanem kell is. Forrás: Legeza Ilona könyvismertetői\n   http://legeza.oszk.hu",
-    "Summary": null,
-    "Labels": "MEK-00896 1984 : Regény / George Orwell \n;   fordító Szíjgyártó László \r\nregény ;  magyar \r\neredeti kiadvány: 1984 : regény / George Orwell\nBp. : Európa, 1989\nISBN 963 07 4815 0 \r\nKlasszikus világirodalom\nangol irodalom, 20. sz.\r\nMEK-be került: 2003-07-14 \r\nURL: http://mek.oszk.hu/00800/00896",
-    "Recommendation": null,
-    "HasContent": true,
-    "Media": [ "http://mek.oszk.hu/00800/00896/00896.pdf", "http://mek.oszk.hu/00800/00896/00896.htm", "http://mek.oszk.hu/00800/00896/00896.doc" ],
-    "MediaDictionary": [
-      {
-        "Key": "PDF",
-        "Value": "http://mek.oszk.hu/00800/00896/00896.pdf"
-      },
-      {
-        "Key": "HTM",
-        "Value": "http://mek.oszk.hu/00800/00896/00896.htm"
-      },
-      {
-        "Key": "DOC",
-        "Value": "http://mek.oszk.hu/00800/00896/00896.doc"
-      }
-    ],
-    "PreferedMedia": "http://mek.oszk.hu/00800/00896/00896.pdf",
-    "ContentUri": null,
-    "IsFavorite": true,
-    "ShareInfo": "Orwell, George: 1984  / Regény\nhttp://mek.oszk.hu/00800/00896\n\n"
-  },
-  {
     "Title": "Madách Imre: Az ember tragédiája",
     "ThumbnailUrl": "http://mek.oszk.hu/06200/06266/borito.jpg",
     "DbId": "6006",
