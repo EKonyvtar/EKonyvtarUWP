@@ -1,9 +1,11 @@
 ﻿using EKonyvtarUW.Models;
 using EKonyvtarUW.Services;
 using EKonyvtarUW.ViewModels;
+using System;
 using System.Collections.Generic;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -19,13 +21,27 @@ namespace EKonyvtarUW.Views
         {
             this.InitializeComponent();
             vm = new BookViewModel();
-            //http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://murati.hu
+
             this.DataContext = vm;
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView().DataRequested += BookPage_DataRequested;
+        }
+
+        private void BookPage_DataRequested(Windows.ApplicationModel.DataTransfer.DataTransferManager sender, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args)
+        {
+            if (vm != null && !string.IsNullOrWhiteSpace(vm.book.Url))
+            {
+                //http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://murati.hu
+                args.Request.Data.SetText(vm.book.ShareInfo);
+                args.Request.Data.Properties.Title = Windows.ApplicationModel.Package.Current.DisplayName;
+            }
+            else
+            {
+                args.Request.FailWithDisplayText("Hiba a könyv megosztásakor.");
+            }
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            //target_item.Uri
             if (e != null && e.Parameter != null)
             {
                 vm.book = (Book)e.Parameter;
@@ -34,28 +50,73 @@ namespace EKonyvtarUW.Views
             }
         }
 
-        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ReadButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(BookReader), vm.book.ContentUri);
+            if (string.IsNullOrWhiteSpace(vm.book.PreferedMedia))
+            {
+                var dialog = new MessageDialog(BookViewModel.BookErrorString);
+                await dialog.ShowAsync();
+            }
+            else
+                Frame.Navigate(typeof(BookReader), vm.book);
         }
 
-        private void ComboBox_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
+        private async void SaveButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(vm.book.PreferedMedia))
+            {
+                var dialog = new MessageDialog(BookViewModel.BookErrorString);
+                await dialog.ShowAsync();
+            }
+            else
+                await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.PreferedMedia));
+        }
+
+        private void MediaSelector_IsEnabledChanged(object sender, Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)
         {
             var combo = (ComboBox)sender;
             try
             {
                 combo.SelectedIndex = 0;
+                if (combo.Items.Count > 1)
+                    combo.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-            catch {
+            catch
+            {
                 //No formats available
             }
             vm.IsLoading = false;
         }
 
-        private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void MediaSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var picker = new FileSavePicker();
-            //StorageFile file = picker.PickSaveFileAndContinue();
+            try
+            {
+                var combo = (ComboBox)sender;
+                var item = (KeyValuePair<string, string>)combo.SelectedItem;
+                vm.book.PreferedMedia = item.Value;
+            }
+            catch { }
+        }
+
+        private void FavoriteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            vm.book.ToggleFavorite();
+        }
+
+        private void Share_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
+        }
+
+        private async void OpenMek_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(vm.book.Url));
+        }
+
+        private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(BookPage), vm.book);
         }
     }
 }

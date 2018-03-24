@@ -23,18 +23,17 @@ namespace EKonyvtarUW.ViewModels
                 //SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
             }
 
-            SimpleIoc.Default.Register<WelcomeViewModel>();
-            SimpleIoc.Default.Register<BrowseViewModel>();
+            SimpleIoc.Default.Register<HomeViewModel>();
         }
 
-        public WelcomeViewModel Welcome => ServiceLocator.Current.GetInstance<WelcomeViewModel>();
-        public BrowseViewModel Browse => ServiceLocator.Current.GetInstance<BrowseViewModel>();
+        public HomeViewModel Welcome => ServiceLocator.Current.GetInstance<HomeViewModel>();
         public BookViewModel Book => ServiceLocator.Current.GetInstance<BookViewModel>();
 
         private INavigationService CreateNavigationService()
         {
             var navigationService = new NavigationServiceUwp();
-            navigationService.Configure("Browse", typeof(BrowsePage));
+            navigationService.Configure("Home", typeof(HomePage));
+            navigationService.Configure("Favorit", typeof(FavoritPage));
             navigationService.Configure("Book", typeof(BookPage));
 
             return navigationService;

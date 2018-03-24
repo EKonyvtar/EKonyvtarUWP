@@ -21,8 +21,9 @@ namespace EKonyvtarUW.Services
             //Test file if exists
             try
             {
-                StorageFile file2 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/mek.sqlite"));
-                await file2.CopyAsync(ApplicationData.Current.LocalFolder, dbFile);
+                //C:\Users\akos.murati\AppData\Local\Packages\25172murati.hu.MagyarElektronikusKonyvtar_9w49m19w6vm4w\LocalState
+                StorageFile mekDb = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/mek.sqlite"));
+                await mekDb.CopyAsync(ApplicationData.Current.LocalFolder, dbFile);
             }
             catch
             {
@@ -38,8 +39,6 @@ namespace EKonyvtarUW.Services
                 var db_path = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbFile);
                 if (!File.Exists(db_path))
                     CopyDatabaseFile().RunSynchronously();
-
-
                 return new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), db_path);
             }
         }
@@ -59,27 +58,21 @@ namespace EKonyvtarUW.Services
         {
             using (var db = DbConnection)
             {
-                var topicList = db.Table<Book>().Where(t => t.UrlId == uriId).FirstOrDefault();
-                return topicList;
-            }
-        }
-
-        public static async Task<Book> GetBookByDbId(string dbId)
-        {
-            //TODO: cache toplevel
-            using (var db = DbConnection)
-            {
-                var topicList = db.Table<Book>().Where(t => t.DbId == dbId).First();
+                var topicList = db.Table<Book>().Where(b => b.UrlId == uriId).FirstOrDefault();
                 return topicList;
             }
         }
 
         public static async Task<List<Book>> SearchBookAsync(string text)
         {
-            //TODO: select unique
             using (var db = DbConnection)
             {
-                var topicList = db.Table<Book>().Where(t => t.Title.Contains(text)).GroupBy(x => x.DbId).Select(x => x.First());//.Distinct();
+                var topicList = db.Table<Book>().Where(b =>
+                    b.Title.Contains(text) ||
+                    b.Creators.Contains(text) ||
+                    b.SubTitle.Contains(text) ||
+                    b.Creators.Contains(text)
+                ).GroupBy(x => x.DbId).Select(x => x.First());
                 return topicList.ToList();
             }
         }

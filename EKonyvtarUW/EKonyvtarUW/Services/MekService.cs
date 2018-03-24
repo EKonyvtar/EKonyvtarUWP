@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 
 namespace EKonyvtarUW.Services
@@ -16,21 +17,72 @@ namespace EKonyvtarUW.Services
     {
         public static async Task<Book> GetBookByUrlId(string urlId)
         {
-            //var offlineBook = await LocalMekService.GetBookByUrlId(urlId);
-            //if (offlineBook != null)
-            //    return offlineBook;
-
             var onlineBook = await OnlineMekService.GetBookByUrlId(urlId);
             return onlineBook;
         }
 
-        public static async Task<List<Book>> SearchBookAsync(string searchKeyword = "", string searchTitle = "", string searchCreator = "")
+        public static async Task<List<Book>> SearchBookAsync(string searchKeyword = "")
         {
-            List<Task<List<Book>>> bookTasks = new List<Task<List<Book>>>();
-            bookTasks.Add(LocalMekService.SearchBookAsync(searchKeyword));
-            bookTasks.Add(OnlineMekService.SearchBookAsync(searchKeyword, searchTitle, searchCreator));
-            Task<List<Book>> firstFinishedTask = await Task.WhenAny(bookTasks);
-            return firstFinishedTask.Result;
+            var fault = false;
+            var result = new List<Book>();
+
+            try
+            {
+                var onlineKeyWord = await OnlineMekService.SearchBookAsync(searchKeyword, "", "");
+                if (onlineKeyWord != null)
+                    result.AddRange(onlineKeyWord);
+
+            }
+            catch
+            {
+                fault = true;
+            }
+
+            //try
+            //{
+            //    var onlineTitle = await OnlineMekService.SearchBookAsync("", searchKeyword, "");
+            //    if (onlineTitle != null)
+            //        result.AddRange(onlineTitle);
+
+            //}
+            //catch
+            //{
+            //    fault = true;
+            //}
+
+            try
+            {
+                var onlineCreator = await OnlineMekService.SearchBookAsync("", "", searchKeyword);
+                if (onlineCreator != null)
+                    result.AddRange(onlineCreator);
+
+            }
+            catch
+            {
+                fault = true;
+            }
+
+            try
+            {
+                var offline = await LocalMekService.SearchBookAsync(searchKeyword);
+                if (offline != null)
+                    result.AddRange(offline);
+            }
+            catch (Exception ex)
+            {
+                fault = true;
+            }
+
+            if (result.Count > 1)
+            {
+                result = result.GroupBy(b => b.UrlId).Select(grp => grp.First()).ToList();
+            }
+
+            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+            {
+                result = result.Take(30).ToList();
+            }
+            return result;
         }
     }
 }

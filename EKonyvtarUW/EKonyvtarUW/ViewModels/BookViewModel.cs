@@ -11,8 +11,10 @@ namespace EKonyvtarUW.ViewModels
     {
         private readonly INavigationService _navigationService;
 
-        private bool _IsLoading = true;
+        public static string BookErrorString = "A kiadvány jelenleg nem elérhető. Kérem próbálja meg újra később.";
         public bool IsReady { get { return !IsLoading; } }
+
+        private bool _IsLoading = true;
         public bool IsLoading
         {
             get { return _IsLoading; }
@@ -39,28 +41,19 @@ namespace EKonyvtarUW.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string info)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
 
         public BookViewModel()
         {
             IsLoading = true;
             //ReadCommand = new RelayCommand(() => Frame.Navigate(typeof(BookPage), book););
-
-            // In design mode sample
-            if (IsInDesignMode)
-            {
-                //
-            }
         }
         public BookViewModel(INavigationService navigationService) : this()
         {
             _navigationService = navigationService;
         }
 
-        public RelayCommand ReadCommand { get; private set; }
+        //TODO: public RelayCommand ReadCommand { get; private set; }
     }
 }

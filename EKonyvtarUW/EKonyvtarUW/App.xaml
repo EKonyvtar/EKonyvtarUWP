@@ -9,48 +9,105 @@
     mc:Ignorable="d"
     RequestedTheme="Light">
 
+
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
 
-        <Style x:Key="AppTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-            <Setter Property="Margin" Value="12,6,0,6" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
+        <!-- Theme and color -->
+        <!--<Color x:Key="SystemAccentColor">#2990CC</Color>-->
 
-        <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
-            <Setter Property="Margin" Value="0,1,0,18" />
-        </Style>
+        <Color x:Key="AppTitleBarColor">#b12324</Color>
+        <Color x:Key="AppToolBarColor">#f5f5f5</Color>
+        <Color x:Key="HamburgerButtonColor">#d75247</Color>
+        <Color x:Key="MenuBackgroundColor">#1f1f22</Color>
+        <Color x:Key="MenuSelectedColor">#2c2c30r</Color>
+        <Color x:Key="ContentBackground">AliceBlue</Color>
 
-        <Style x:Key="ParagraphTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
-            <Setter Property="Margin" Value="0,1,0,34" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        </Style>
+        <SolidColorBrush x:Key="AppTitleBarBrush" Color="#dbdcdd" Opacity="1"></SolidColorBrush>
 
-        <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">
+        <!-- Menu Style -->
+        <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}"></SolidColorBrush>
+        <!--<SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush" Color="{ThemeResource MenuSelectedColor}" Opacity="0.7" />
+        <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush" Color="{ThemeResource MenuSelectedColor}" Opacity="0.4" />
+        <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush" Color="{ThemeResource MenuSelectedColor}" Opacity="0.6" />-->
+
+        <Style x:Key="HamburgerButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="22" />
             <Setter Property="Width" Value="48" />
             <Setter Property="Height" Value="48" />
+            <Setter Property="Background" Value="{StaticResource SystemAccentColor}" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
 
-        <Style x:Key="IconTextBlockStyle" TargetType="TextBlock">
+        <Style x:Key="MenuIconTextBlockStyle" TargetType="TextBlock"  BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-            <Setter Property="FontSize" Value="24" />
             <Setter Property="Width" Value="48" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
 
         <Style x:Key="MenuTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
 
-        <Style x:Key="PageScrollViewerStyle" TargetType="ScrollViewer">
-            <Setter Property="Padding" Value="24,20,24,24" />
+        <!-- Top bar -->
+        <Style x:Key="AppToolbarGridStyle" TargetType="Grid">
+            <Setter Property="Background" Value="{StaticResource AppTitleBarBrush}" />
+        </Style>
+
+        <Style x:Key="AppToolbarCommandBarStyle" TargetType="CommandBar">
+            <Setter Property="Background" Value="{StaticResource AppTitleBarBrush}" />
+
+        </Style>
+
+        <Style x:Key="AppHeaderTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="LineHeight" Value="20" />
+        </Style>
+
+
+        <!-- Content Style -->
+        <Style x:Key="ContentContainer" TargetType="Grid">
+            <!--<Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource ContentBackground}" Opacity="0.65"></SolidColorBrush>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+        <Style x:Key="ContentBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="Margin" Value="0,5,5,5" />
+            <Setter Property="TextWrapping" Value="WrapWholeWords" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextAlignment" Value="Justify" />
+        </Style>
+
+        <Style x:Key="ContentSubTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ContentBodyTextBlockStyle}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Medium" />
         </Style>
 
         <common:ObjectToMenuItemConverter x:Key="ObjectToMenuItemConverter"/>
+        <common:BooleanInverterConverter x:Key="BooleanInverterConverter"/>
+
+        <common:BooleanToVisibilityConverter x:Key="TrueToVisibleConverter"/>
+        <common:BooleanToVisibilityConverter x:Key="FalseToVisibleConverter" IsReversed="True"/>
+
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToFalseConverter" />
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToTrueConverter" IsReversed="True"/>
+        
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToHiddenConverter" />
+        <common:EmptyStateToVisibilityConverter x:Key="EmptyToVisibleConverter" IsReversed="True"/>
     </Application.Resources>
 </Application>

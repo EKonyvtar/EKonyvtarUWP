@@ -11,64 +11,86 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="Assets/oszk_blur.jpg"/>
+            <ImageBrush
+                Stretch="UniformToFill"
+                ImageSource="Assets/background.png"
+                />
         </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="48" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-            <Button Content="&#xE700;" Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}" Style="{StaticResource IconButtonStyle}" Grid.Column="0"/>
-            <TextBlock Text="Elektronikus Könyvtár" Style="{StaticResource AppTitleTextBlockStyle}" Grid.Column="1"/>
-            <AutoSuggestBox Name="Search" QueryIcon="Find" Margin="10" Grid.Column="2" QuerySubmitted="Search_QuerySubmitted"/>
-        </Grid>
+        <Frame
+            x:Name="Frame"
+            SourcePageType="{x:Bind ViewModel.SelectedPageType, Mode=TwoWay}"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+        />
 
-        <SplitView x:Name="SplitView" Grid.Row="1" IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}" >
+        <!-- TODO: move all styles to single place -->
+        <Button Content="&#xE700;"
+                            Command="{x:Bind ViewModel.ToggleSplitViewPaneCommand}"
+                            Style="{StaticResource HamburgerButtonStyle}"
+                            Margin="-8,-4"
+                            Width="64"
+                            Height="56"
+                            VerticalAlignment="Top"
+                            Grid.Column="0"
+                        />
+
+        <SplitView x:Name="SplitView"
+                   IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}"
+                   OpenPaneLength="220"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="0,48,0,0"
+            >
             <SplitView.Pane>
-                <ListView ItemsSource="{x:Bind ViewModel.MenuItems}"
-                          SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Padding" Value="0" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="common:MenuItem">
-                            <StackPanel Orientation="Horizontal" Height="48">
-                                <TextBlock Grid.RowSpan="2" Text="{x:Bind Icon, Mode=OneWay}" Style="{StaticResource IconTextBlockStyle}" />
-                                <TextBlock Grid.Column="1" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource MenuTitleTextBlockStyle}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <Grid Background="{StaticResource MenuBackgroundBrush}">
+                    <ListView
+                        ItemsSource="{x:Bind ViewModel.MenuItems}"
+                        SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}"
+                    >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Padding" Value="0" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="common:MenuItem">
+                                <StackPanel Orientation="Horizontal" Height="48">
+                                    <TextBlock Text="{x:Bind Icon, Mode=OneWay}" Style="{StaticResource MenuIconTextBlockStyle}" />
+                                    <TextBlock Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource MenuTitleTextBlockStyle}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:Name="Frame" SourcePageType="{x:Bind ViewModel.SelectedPageType, Mode=TwoWay}" />
+                <Grid/>
             </SplitView.Content>
         </SplitView>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SplitView.DisplayMode" Value="CompactInline" />
-                    </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="Frame.Margin" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SplitView.DisplayMode" Value="CompactInline" />
+                        <Setter Target="Frame.Margin" Value="48,0,0,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

@@ -1,48 +1,72 @@
 ﻿<UserControl
-    x:Class="EKonyvtarUW.Views.BookControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:EKonyvtarUW.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:common="using:EKonyvtarUW.Common"
+    x:Class="EKonyvtarUW.Views.BookControl"
+    mc:Ignorable="d" Height="300" Width="190"
+    >
 
-    <Grid Background="#E5FFFFFF">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="220"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
+    <Grid Width="188" Height="300">
+        <Grid Width="188" Height="230" Opacity="0.8" VerticalAlignment="Top">
+            <Rectangle Stroke="Black" Margin="5" RadiusX="7" RadiusY="7" Opacity="0.22" StrokeThickness="2"/>
+            <Rectangle Stroke="Black" Margin="4" RadiusX="8" RadiusY="8" Opacity="0.2"/>
+            <Rectangle Stroke="Black" Margin="3" RadiusX="9" RadiusY="9" Opacity="0.15"/>
+            <Rectangle Stroke="Black" Margin="2" RadiusX="10" RadiusY="10" Opacity="0.1"/>
+            <Rectangle Stroke="Black" Margin="1" RadiusX="11" RadiusY="11" Opacity="0.05"/>
+            <Rectangle Stroke="Black" Margin="0" RadiusX="12" RadiusY="12" Opacity="0.01"/>
+        </Grid>
 
-        <!--<Border
-            Width="192"
-            Height="234"
-            CornerRadius="8"
-            BorderThickness="5" >
-            <Border.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#CC000000" Offset="0.561"/>
-                    <GradientStop Color="#33151414" Offset="1"/>
-                    <GradientStop Color="#E0423C3C" Offset="0.008"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>-->
+        <Grid Height="216" Width="174" VerticalAlignment="Top" Margin="0,7,0,0">
+            <!--Visibility="{Binding DbId, Converter={StaticResource EmptyToHiddenConverter}}"-->
+            <Border
+                Height="216"
+                Width="174"
+                CornerRadius="6"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                >
+                <Border.Background>
+                    <ImageBrush ImageSource="/Assets/BookControl.png" />
+                </Border.Background>
+                <TextBlock
+                    Margin="30,50,30,50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    MaxWidth="160"
+                    TextWrapping="WrapWholeWords"
+                    Style="{StaticResource ContentSubTitleTextBlockStyle}"
+                    TextAlignment="Center"
+                    FontWeight="Light"
+                    Foreground="#EED2B8"
+                    Text="{Binding Title, Mode=OneTime}"
+                />
+            </Border>
 
-        <!-- 160/130 -->
-        <Image
-            Source="{Binding ThumbnailUrl}"
-            Height="224"
-            Width="182"
-            Stretch="UniformToFill"
-            Grid.Row="0" 
-            VerticalAlignment="Center"
-        />
-        <!--</Border>-->
-
+            <Border
+                Height="224"
+                Width="182"
+                CornerRadius="17"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+            >
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding ThumbnailUrl, Mode=OneTime}" />
+                </Border.Background>
+            </Border>
+        </Grid>
         <TextBlock
-            Text="{Binding Title}"
-            Grid.Row="1"
-            Width="178"
-            VerticalAlignment="Top"
-            Margin="2"
-        />
+                    Margin="30,230,30,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    MaxWidth="160"
+                    TextWrapping="WrapWholeWords"
+                    Style="{StaticResource ContentSubTitleTextBlockStyle}"
+                    TextAlignment="Center"
+                    FontWeight="Light"
+                    Foreground="Black"
+                    Text="{Binding Title, Mode=OneTime}"
+                />
     </Grid>
 </UserControl>

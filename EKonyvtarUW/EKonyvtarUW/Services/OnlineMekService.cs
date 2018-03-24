@@ -64,7 +64,7 @@ namespace EKonyvtarUW.Services
 
 
                 var cedula = elements.Where(n => n.GetAttributeValue("id", "").Equals("cedula")).First().ChildNodes.Where(n => n.Name == "fieldset");
-                book.Abbreviation = StringConvert(cedula.First().InnerHtml);
+                book.Labels = StringConvert(cedula.First().InnerHtml);
 
                 var img = elements.Where(n => n.GetAttributeValue("id", "").Equals("footer")).First().ChildNodes[1].ChildNodes.Where(n => n.Name == "img").First();
                 book.ThumbnailUrl = new Uri(domain + img.GetAttributeValue("src", ""));
@@ -72,7 +72,7 @@ namespace EKonyvtarUW.Services
                 //TODO populate list in a more smart way
                 HttpClient httpClient = new HttpClient();
                 book.Media = new List<string>();
-                foreach (var ext in new string[] { "{1}.pdf", "{1}.html", "{1}.htm", "pdf/{1}_1.pdf", "pdf/{1}_2.pdf" })
+                foreach (var ext in new string[] { "{1}.pdf", "{1}.html", "{1}.htm", "pdf/{1}.pdf", "pdf/{1}_1.pdf", "pdf/{1}_2.pdf", "{1}.doc", "html/", "pdf/" }) //"{1}.rtf"
                 {
                     if (book.Media.Count > 2) break;
                     var mediaUrl = String.Format(("http://mek.oszk.hu/{0}/" + ext), urlId, shortUrlId);
@@ -116,6 +116,7 @@ namespace EKonyvtarUW.Services
 
         public static async Task<List<Book>> SearchBookAsync(string searchKeyword = "", string searchTitle = "", string searchCreator = "")
         {
+            // DKA: http://mek.oszk.hu/kozoskereso/mobil/mek_epa_dka_kereso/build/
             // "http://mek.oszk.hu/kozoskereso/mobil/index.php?alkoto=&cim=&temakor=horthy";
             var searchEndpoint = "http://mek.oszk.hu/kozoskereso/mobil/index.php?alkoto={0}&cim={1}&temakor={2}";
             var uri = String.Format(searchEndpoint, searchCreator, searchTitle, searchKeyword);
@@ -134,31 +135,36 @@ namespace EKonyvtarUW.Services
             JsonArray root = JsonValue.Parse(json).GetArray();
             for (uint i = 0; i < root.Count; i++)
             {
-                //string collection = root.GetObjectAt(i).GetNamedString("collection");
-                string id = root.GetObjectAt(i).GetNamedString("id");
-                string url = root.GetObjectAt(i).GetNamedString("URL");
-                string title = root.GetObjectAt(i).GetNamedString("title");
-                string subtitle = root.GetObjectAt(i).GetNamedString("subtitle");
-                string creators = root.GetObjectAt(i).GetNamedString("creators");
-                string thumbnailUrl = root.GetObjectAt(i).GetNamedString("thumbnailURL");
-
-                if (id == "0") continue;
-
-                //TODO: solve paging
-                //http://mek.oszk.hu/kozoskereso/mobil/mek_epa_dka_kereso/build/
-                //TODO: Imagefeed 
-
-                var book = new Book()
+                try
                 {
-                    UrlId = id,
-                    Url = url,
-                    //Collection = collection,
-                    Title = title,
-                    SubTitle = subtitle,
-                    Creators = creators,
-                    ThumbnailUrl = new Uri(thumbnailUrl)
-                };
-                results.Add(book);
+                    string id = root.GetObjectAt(i).GetNamedString("id");
+                    string collection = root.GetObjectAt(i).GetNamedString("collection");
+
+                    if (id == "0" || collection.ToLower() != "mek") continue;
+
+                    string url = root.GetObjectAt(i).GetNamedString("URL");
+                    string title = root.GetObjectAt(i).GetNamedString("title");
+                    string subtitle = root.GetObjectAt(i).GetNamedString("subtitle");
+                    string creators = root.GetObjectAt(i).GetNamedString("creators");
+                    string thumbnailUrl = root.GetObjectAt(i).GetNamedString("thumbnailURL");
+
+                    //TODO: solve paging
+
+                    var book = new Book()
+                    {
+                        UrlId = ItemResolver.Resolve(url).UrlId,
+                        Url = url,
+                        Title = title,
+                        SubTitle = subtitle,
+                        Creators = creators,
+                        ThumbnailUrl = new Uri(thumbnailUrl)
+                    };
+                    results.Add(book);
+                }
+                catch (Exception ex)
+                {
+                    //Swallow to survive populating results
+                }
 
             };
             return results;
