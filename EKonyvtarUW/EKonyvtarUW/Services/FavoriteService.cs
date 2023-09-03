@@ -96,14 +96,14 @@ namespace EKonyvtarUW.Services
                 string json = await Windows.Storage.FileIO.ReadTextAsync(favoriteFile);
                 _favorites = JsonConvert.DeserializeObject<List<Book>>(json);
             }
-            catch (UnauthorizedAccessException uex)
+            catch (UnauthorizedAccessException)
             {
                 // Swallow unathorized exception
             }
             catch (FileNotFoundException)
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Unknown exception yet
 
@@ -130,7 +130,7 @@ namespace EKonyvtarUW.Services
                 await FileIO.WriteTextAsync(favoriteFile, json);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // File not found exception 
             }

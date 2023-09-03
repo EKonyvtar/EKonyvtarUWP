@@ -26,31 +26,17 @@ namespace EKonyvtarUW.Services
                 var onlineKeyWord = await OnlineMekService.SearchBookAsync(searchKeyword, "", "");
                 if (onlineKeyWord != null)
                     result.AddRange(onlineKeyWord);
-
             }
             catch
             {
                 fault = true;
             }
 
-            //try
-            //{
-            //    var onlineTitle = await OnlineMekService.SearchBookAsync("", searchKeyword, "");
-            //    if (onlineTitle != null)
-            //        result.AddRange(onlineTitle);
-
-            //}
-            //catch
-            //{
-            //    fault = true;
-            //}
-
             try
             {
                 var onlineCreator = await OnlineMekService.SearchBookAsync("", "", searchKeyword);
                 if (onlineCreator != null)
                     result.AddRange(onlineCreator);
-
             }
             catch
             {
@@ -63,7 +49,7 @@ namespace EKonyvtarUW.Services
                 if (offline != null)
                     result.AddRange(offline);
             }
-            catch (Exception ex)
+            catch
             {
                 fault = true;
             }

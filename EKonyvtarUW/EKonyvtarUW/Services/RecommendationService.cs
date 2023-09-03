@@ -19,7 +19,7 @@ namespace EKonyvtarUW.Services
                 string json = await FileIO.ReadTextAsync(recommendationFile);
                 result = JsonConvert.DeserializeObject<List<Book>>(json);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Unknown exception yet
             }

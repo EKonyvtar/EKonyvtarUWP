@@ -1,13 +1,10 @@
 ﻿using EKonyvtarUW.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Web.Syndication;
-using EKonyvtarUW.Models;
 
 namespace EKonyvtarUW.Services
 {
@@ -49,7 +46,7 @@ namespace EKonyvtarUW.Services
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //InvalidRSSFeedMessageVisibility = Visibility.Visible;
             }

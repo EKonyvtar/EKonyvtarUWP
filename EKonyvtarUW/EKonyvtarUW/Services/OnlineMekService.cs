@@ -161,7 +161,7 @@ namespace EKonyvtarUW.Services
                     };
                     results.Add(book);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Swallow to survive populating results
                 }
