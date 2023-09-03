@@ -1,12 +1,10 @@
 ﻿//using SQLite.Net.Async;
 using EKonyvtarUW.Models;
 using SQLite;
-using SQLite.Net;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -39,7 +37,7 @@ namespace EKonyvtarUW.Services
                 var db_path = Path.Combine(ApplicationData.Current.LocalFolder.Path, dbFile);
                 if (!File.Exists(db_path))
                     CopyDatabaseFile().RunSynchronously();
-                return new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), db_path);
+                return new SQLiteConnection(db_path);
             }
         }
 

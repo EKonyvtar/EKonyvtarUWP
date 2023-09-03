@@ -1,5 +1,5 @@
 ﻿using EKonyvtarUW.Services;
-using SQLite.Net.Attributes;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -205,7 +205,7 @@ namespace EKonyvtarUW.Models
                 this.Labels = book.Labels;
                 this.Recommendation = this.Recommendation ?? book.Recommendation;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Resolve offline page issues..
             }

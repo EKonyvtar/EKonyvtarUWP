@@ -1,15 +1,10 @@
-﻿//using SQLite.Net.Async;
-using EKonyvtarUW.Models;
-using SQLite;
-using SQLite.Net;
+﻿using EKonyvtarUW.Models;
+
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
-using Windows.Storage;
 
 namespace EKonyvtarUW.Services
 {

@@ -1,5 +1,6 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+
 
 namespace EKonyvtarUW.Common
 {
@@ -12,19 +13,19 @@ namespace EKonyvtarUW.Common
         public string Icon
         {
             get { return _icon; }
-            set { Set(ref _icon, value); }
+            set { SetProperty(ref _icon, value); }
         }
 
         public string Title
         {
             get { return _title; }
-            set { Set(ref _title, value); }
+            set { SetProperty(ref _title, value); }
         }
 
         public Type PageType
         {
             get { return _pageType; }
-            set { Set(ref _pageType, value); }
+            set { SetProperty(ref _pageType, value); }
         }
     }
 }
