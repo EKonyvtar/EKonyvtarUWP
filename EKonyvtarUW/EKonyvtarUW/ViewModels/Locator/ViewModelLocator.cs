@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
-using Microsoft.Practices.ServiceLocation;
 using EKonyvtarUW.Common;
 using EKonyvtarUW.Views;
+using CommonServiceLocator;
 
 namespace EKonyvtarUW.ViewModels
 {
