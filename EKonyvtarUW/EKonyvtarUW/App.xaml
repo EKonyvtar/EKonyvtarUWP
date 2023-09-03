@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:EKonyvtarUW.ViewModels"
     xmlns:common="using:EKonyvtarUW.Common"
+    
     x:Class="EKonyvtarUW.App"
     mc:Ignorable="d"
     RequestedTheme="Light">
@@ -20,7 +21,7 @@
         <Color x:Key="AppToolBarColor">#f5f5f5</Color>
         <Color x:Key="HamburgerButtonColor">#d75247</Color>
         <Color x:Key="MenuBackgroundColor">#1f1f22</Color>
-        <Color x:Key="MenuSelectedColor">#2c2c30r</Color>
+        <Color x:Key="MenuSelectedColor">#2c2c30</Color>
         <Color x:Key="ContentBackground">AliceBlue</Color>
 
         <SolidColorBrush x:Key="AppTitleBarBrush" Color="#dbdcdd" Opacity="1"></SolidColorBrush>
