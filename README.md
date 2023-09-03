@@ -1,7 +1,7 @@
 # EKonyvtár - Universal Windows App
 
 <a href="https://apps.microsoft.com/store/detail/9NBLGGH4THS0?launch=true&mode=full">
-	<img src="https://get.microsoft.com/images/en-NZ%20dark.svg"/>
+	<img src="https://get.microsoft.com/images/en-us%20dark.svg"/>
 </a>
 
 This project is free Universal Windows application for the
